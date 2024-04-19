@@ -10,7 +10,8 @@
 	{
 		"commands" : 
 		[
-			"add_library"
+			"add_library",
+			"install"
 		],
 		"files" : 
 		[
@@ -24,7 +25,13 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 34,
+				"line" : 35,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 38,
 				"parent" : 0
 			}
 		]
@@ -58,6 +65,24 @@
 		}
 	],
 	"id" : "gr-math::@6890427a1f51a3e7e1df",
+	"install" : 
+	{
+		"destinations" : 
+		[
+			{
+				"backtrace" : 2,
+				"path" : "/usr/local/lib/gr-math"
+			},
+			{
+				"backtrace" : 2,
+				"path" : "/usr/local/lib/gr-math"
+			}
+		],
+		"prefix" : 
+		{
+			"path" : "/usr/lib"
+		}
+	},
 	"link" : 
 	{
 		"commandFragments" : 

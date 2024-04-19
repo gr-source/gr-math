@@ -6,7 +6,8 @@
 			[
 				{
 					"build" : ".",
-					"jsonFile" : "directory-.-Debug-f5ebdc15457944623624.json",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-59212fcab6a181510297.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.0.0"
@@ -39,7 +40,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "gr-math::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-gr-math-Debug-91ad23c30d63937c06cc.json",
+					"jsonFile" : "target-gr-math-Debug-809dc29e85e90f7b793a.json",
 					"name" : "gr-math",
 					"projectIndex" : 0
 				}

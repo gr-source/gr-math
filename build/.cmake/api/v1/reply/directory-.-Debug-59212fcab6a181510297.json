@@ -1,0 +1,67 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"install"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 38,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 40,
+				"parent" : 0
+			}
+		]
+	},
+	"installers" : 
+	[
+		{
+			"backtrace" : 1,
+			"component" : "Unspecified",
+			"destination" : "/usr/local/lib/gr-math",
+			"paths" : 
+			[
+				"/home/grsource/Documentos/AppProjects/gr-math/lib/libgr-math.so"
+			],
+			"targetId" : "gr-math::@6890427a1f51a3e7e1df",
+			"targetIndex" : 0,
+			"type" : "target"
+		},
+		{
+			"backtrace" : 2,
+			"component" : "Unspecified",
+			"destination" : "/usr/local/include/gr-math",
+			"paths" : 
+			[
+				"src/math.h",
+				"src/vector2.h",
+				"src/vector3.h",
+				"src/vector4.h",
+				"src/matrix3x3.h",
+				"src/matrix4x4.h",
+				"src/quaternion.h"
+			],
+			"type" : "file"
+		}
+	],
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	}
+}

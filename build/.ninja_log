@@ -1,12 +1,14 @@
 # ninja log v5
-2	1681	1713493230482923549	CMakeFiles/gr-math.dir/src/vector2.cpp.o	abca708b92b331cf
-2	1864	1713493230666919325	CMakeFiles/gr-math.dir/src/vector4.cpp.o	35f6a0aa02e58ecd
-1	1574	1713493230378925936	CMakeFiles/gr-math.dir/src/math.cpp.o	6a0ec5a0771d4227
-2	1352	1713493230158930985	CMakeFiles/gr-math.dir/src/vector3.cpp.o	e9c773ec008fac7f
-2	27	1713493205059508328	../lib/libgr-math.a	4d4addbe72f7c411
-12	2046	1713493230854915011	CMakeFiles/gr-math.dir/src/matrix4x4.cpp.o	2eaa459f48d7cd20
-3	2187	1713493230994911797	CMakeFiles/gr-math.dir/src/matrix3x3.cpp.o	14c13ab7dfba57d2
+2	24	0	CMakeFiles/install.util	847ba9ac6b1b57b5
+0	13	0	clean	a31eedcededa8236
+1	695	1713494902485800373	CMakeFiles/gr-math.dir/src/vector2.cpp.o	abca708b92b331cf
+2	992	1713494902781818417	CMakeFiles/gr-math.dir/src/vector4.cpp.o	35f6a0aa02e58ecd
+1	1111	1713494902897825488	CMakeFiles/gr-math.dir/src/math.cpp.o	6a0ec5a0771d4227
+1	812	1713494902601807444	CMakeFiles/gr-math.dir/src/vector3.cpp.o	e9c773ec008fac7f
+3	971	1713494902761817198	CMakeFiles/gr-math.dir/src/matrix4x4.cpp.o	2eaa459f48d7cd20
+3	1278	1713494903065835725	CMakeFiles/gr-math.dir/src/matrix3x3.cpp.o	14c13ab7dfba57d2
 1741	1774	1713493146344869068	libgr-math.a	d41627540599efda
-1352	2398	1713493231206906932	CMakeFiles/gr-math.dir/src/quaternion.cpp.o	777ebbe00640a622
+701	1329	1713494903117838891	CMakeFiles/gr-math.dir/src/quaternion.cpp.o	777ebbe00640a622
+1329	1433	1713494903217844982	../lib/libgr-math.so	cb9de25ff3ae02c3
 2398	2512	1713493231318904363	libgr-math.so	c743f43fad4278cb
-1	110	1713493264430146565	../lib/libgr-math.so	cb9de25ff3ae02c3
+1	16	0	CMakeFiles/install.util	847ba9ac6b1b57b5

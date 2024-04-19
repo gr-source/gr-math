@@ -587,7 +587,7 @@
 				}
 			],
 			"type" : "PATH",
-			"value" : "/usr/local"
+			"value" : "/usr/lib"
 		},
 		{
 			"name" : "CMAKE_INSTALL_SO_NO_EXE",
@@ -1159,6 +1159,18 @@
 				}
 			],
 			"type" : "BOOL",
+			"value" : "FALSE"
+		},
+		{
+			"name" : "DISABLE_INSTALL",
+			"properties" : 
+			[
+				{
+					"name" : "HELPSTRING",
+					"value" : "No help, variable specified on the command line."
+				}
+			],
+			"type" : "UNINITIALIZED",
 			"value" : "FALSE"
 		},
 		{
