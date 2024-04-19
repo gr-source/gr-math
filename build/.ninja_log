@@ -1,5 +1,5 @@
 # ninja log v5
-2	24	0	CMakeFiles/install.util	847ba9ac6b1b57b5
+1	16	0	CMakeFiles/install.util	847ba9ac6b1b57b5
 0	13	0	clean	a31eedcededa8236
 1	695	1713494902485800373	CMakeFiles/gr-math.dir/src/vector2.cpp.o	abca708b92b331cf
 2	992	1713494902781818417	CMakeFiles/gr-math.dir/src/vector4.cpp.o	35f6a0aa02e58ecd
@@ -11,4 +11,4 @@
 701	1329	1713494903117838891	CMakeFiles/gr-math.dir/src/quaternion.cpp.o	777ebbe00640a622
 1329	1433	1713494903217844982	../lib/libgr-math.so	cb9de25ff3ae02c3
 2398	2512	1713493231318904363	libgr-math.so	c743f43fad4278cb
-1	16	0	CMakeFiles/install.util	847ba9ac6b1b57b5
+1	13	0	CMakeFiles/install.util	847ba9ac6b1b57b5

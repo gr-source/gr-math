@@ -33,7 +33,7 @@
 		{
 			"backtrace" : 1,
 			"component" : "Unspecified",
-			"destination" : "/usr/local/lib/gr-math",
+			"destination" : "/usr/lib/gr-math",
 			"paths" : 
 			[
 				"/home/grsource/Documentos/AppProjects/gr-math/lib/libgr-math.so"
@@ -45,7 +45,7 @@
 		{
 			"backtrace" : 2,
 			"component" : "Unspecified",
-			"destination" : "/usr/local/include/gr-math",
+			"destination" : "/usr/include/gr-math",
 			"paths" : 
 			[
 				"src/math.h",

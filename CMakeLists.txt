@@ -35,9 +35,9 @@ set(math_hdr
 add_library(gr-math SHARED ${math_src})
     
 if(NOT DISABLE_INSTALL)
-    install(TARGETS gr-math DESTINATION /usr/local/lib/gr-math)
+    install(TARGETS gr-math DESTINATION /usr/lib/gr-math)
 
-    install(FILES ${math_hdr} DESTINATION /usr/local/include/gr-math)
+    install(FILES ${math_hdr} DESTINATION /usr/include/gr-math)
 endif()
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})

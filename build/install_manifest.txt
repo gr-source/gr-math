@@ -1,8 +1,8 @@
-/usr/local/lib/gr-math/libgr-math.so
-/usr/local/include/gr-math/math.h
-/usr/local/include/gr-math/vector2.h
-/usr/local/include/gr-math/vector3.h
-/usr/local/include/gr-math/vector4.h
-/usr/local/include/gr-math/matrix3x3.h
-/usr/local/include/gr-math/matrix4x4.h
-/usr/local/include/gr-math/quaternion.h
+/usr/lib/gr-math/libgr-math.so
+/usr/include/gr-math/math.h
+/usr/include/gr-math/vector2.h
+/usr/include/gr-math/vector3.h
+/usr/include/gr-math/vector4.h
+/usr/include/gr-math/matrix3x3.h
+/usr/include/gr-math/matrix4x4.h
+/usr/include/gr-math/quaternion.h

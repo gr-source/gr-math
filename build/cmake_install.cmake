@@ -43,25 +43,25 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  if(EXISTS "$ENV{DESTDIR}/usr/local/lib/gr-math/libgr-math.so" AND
-     NOT IS_SYMLINK "$ENV{DESTDIR}/usr/local/lib/gr-math/libgr-math.so")
+  if(EXISTS "$ENV{DESTDIR}/usr/lib/gr-math/libgr-math.so" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}/usr/lib/gr-math/libgr-math.so")
     file(RPATH_CHECK
-         FILE "$ENV{DESTDIR}/usr/local/lib/gr-math/libgr-math.so"
+         FILE "$ENV{DESTDIR}/usr/lib/gr-math/libgr-math.so"
          RPATH "")
   endif()
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/usr/local/lib/gr-math/libgr-math.so")
+   "/usr/lib/gr-math/libgr-math.so")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/usr/local/lib/gr-math" TYPE SHARED_LIBRARY FILES "/home/grsource/Documentos/AppProjects/gr-math/lib/libgr-math.so")
-  if(EXISTS "$ENV{DESTDIR}/usr/local/lib/gr-math/libgr-math.so" AND
-     NOT IS_SYMLINK "$ENV{DESTDIR}/usr/local/lib/gr-math/libgr-math.so")
+  file(INSTALL DESTINATION "/usr/lib/gr-math" TYPE SHARED_LIBRARY FILES "/home/grsource/Documentos/AppProjects/gr-math/lib/libgr-math.so")
+  if(EXISTS "$ENV{DESTDIR}/usr/lib/gr-math/libgr-math.so" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}/usr/lib/gr-math/libgr-math.so")
     if(CMAKE_INSTALL_DO_STRIP)
-      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}/usr/local/lib/gr-math/libgr-math.so")
+      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}/usr/lib/gr-math/libgr-math.so")
     endif()
   endif()
 endif()
@@ -71,14 +71,14 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/usr/local/include/gr-math/math.h;/usr/local/include/gr-math/vector2.h;/usr/local/include/gr-math/vector3.h;/usr/local/include/gr-math/vector4.h;/usr/local/include/gr-math/matrix3x3.h;/usr/local/include/gr-math/matrix4x4.h;/usr/local/include/gr-math/quaternion.h")
+   "/usr/include/gr-math/math.h;/usr/include/gr-math/vector2.h;/usr/include/gr-math/vector3.h;/usr/include/gr-math/vector4.h;/usr/include/gr-math/matrix3x3.h;/usr/include/gr-math/matrix4x4.h;/usr/include/gr-math/quaternion.h")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-  file(INSTALL DESTINATION "/usr/local/include/gr-math" TYPE FILE FILES
+  file(INSTALL DESTINATION "/usr/include/gr-math" TYPE FILE FILES
     "/home/grsource/Documentos/AppProjects/gr-math/src/math.h"
     "/home/grsource/Documentos/AppProjects/gr-math/src/vector2.h"
     "/home/grsource/Documentos/AppProjects/gr-math/src/vector3.h"

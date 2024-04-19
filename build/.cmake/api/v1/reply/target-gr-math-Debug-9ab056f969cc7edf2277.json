@@ -71,11 +71,11 @@
 		[
 			{
 				"backtrace" : 2,
-				"path" : "/usr/local/lib/gr-math"
+				"path" : "/usr/lib/gr-math"
 			},
 			{
 				"backtrace" : 2,
-				"path" : "/usr/local/lib/gr-math"
+				"path" : "/usr/lib/gr-math"
 			}
 		],
 		"prefix" : 
