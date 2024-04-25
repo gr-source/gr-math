@@ -54,7 +54,7 @@ endif()
 add_library(gr-math::gr-math SHARED IMPORTED)
 
 set_target_properties(gr-math::gr-math PROPERTIES
-  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include"
+  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include/gr-math"
 )
 
 # Load information for each installed configuration.

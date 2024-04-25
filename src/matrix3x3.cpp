@@ -2,9 +2,6 @@
 
 #include "gmath.h"
 
-#include <glm/glm.hpp>
-#include <glm/gtx/transform.hpp>
-
 Matrix3x3::Matrix3x3(vvalue m00, vvalue m01, vvalue m02, vvalue m10, vvalue m11, vvalue m12, vvalue m20, vvalue m21, vvalue m22) :
     m00(m00), m01(m01), m02(m02),
     m10(m10), m11(m11), m12(m12),

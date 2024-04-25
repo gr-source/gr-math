@@ -29,10 +29,10 @@ add_library(gr-math SHARED ${math_src})
 if(NOT DISABLE_INSTALL)
     install(TARGETS gr-math
         EXPORT gr-mathTargets
-        LIBRARY DESTINATION lib
-        ARCHIVE DESTINATION lib
-        RUNTIME DESTINATION bin
-        INCLUDES DESTINATION include
+        LIBRARY DESTINATION lib/gr-math
+        ARCHIVE DESTINATION lib/gr-math
+        RUNTIME DESTINATION bin/gr-math
+        INCLUDES DESTINATION include/gr-math
     )
 
     install(FILES ${math_hdr}
@@ -42,19 +42,25 @@ if(NOT DISABLE_INSTALL)
     install(EXPORT gr-mathTargets
         FILE gr-mathTargets.cmake
         NAMESPACE gr-math::
-        DESTINATION lib/cmake/gr-math
+        DESTINATION lib/gr-math/cmake
     )
 
     include(CMakePackageConfigHelpers)
-
     write_basic_package_version_file(
         "${CMAKE_CURRENT_BINARY_DIR}/gr-mathConfigVersion.cmake"
         VERSION ${PROJECT_VERSION}
         COMPATIBILITY SameMajorVersion
     )
 
+    configure_package_config_file(
+        "${CMAKE_CURRENT_LIST_DIR}/Config.cmake.in"
+        "${CMAKE_CURRENT_BINARY_DIR}/gr-mathConfig.cmake"
+        INSTALL_DESTINATION lib/cmake/gr-math
+    )
+
     install(FILES
-        "${CMAKE_CURRENT_BINARY_DIR}/gr-mathConfigVersion.cmake" DESTINATION lib/cmake/gr-math
+        "${CMAKE_CURRENT_BINARY_DIR}/gr-mathConfig.cmake"
+        "${CMAKE_CURRENT_BINARY_DIR}/gr-mathConfigVersion.cmake" DESTINATION lib/gr-math/cmake
     )
 endif()
 
