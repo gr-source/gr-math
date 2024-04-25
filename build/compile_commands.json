@@ -1,8 +1,8 @@
 [
 {
   "directory": "/home/grsource/Documentos/AppProjects/gr-math/build",
-  "command": "/usr/bin/g++ -Dgr_math_EXPORTS -g -fPIC -o CMakeFiles/gr-math.dir/src/math.cpp.o -c /home/grsource/Documentos/AppProjects/gr-math/src/math.cpp",
-  "file": "/home/grsource/Documentos/AppProjects/gr-math/src/math.cpp"
+  "command": "/usr/bin/g++ -Dgr_math_EXPORTS -g -fPIC -o CMakeFiles/gr-math.dir/src/gmath.cpp.o -c /home/grsource/Documentos/AppProjects/gr-math/src/gmath.cpp",
+  "file": "/home/grsource/Documentos/AppProjects/gr-math/src/gmath.cpp"
 },
 {
   "directory": "/home/grsource/Documentos/AppProjects/gr-math/build",

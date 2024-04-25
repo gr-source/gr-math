@@ -2,7 +2,7 @@
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "/usr/lib")
+  set(CMAKE_INSTALL_PREFIX "/usr/local")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -43,25 +43,17 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  if(EXISTS "$ENV{DESTDIR}/usr/lib/gr-math/libgr-math.so" AND
-     NOT IS_SYMLINK "$ENV{DESTDIR}/usr/lib/gr-math/libgr-math.so")
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libgr-math.so" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libgr-math.so")
     file(RPATH_CHECK
-         FILE "$ENV{DESTDIR}/usr/lib/gr-math/libgr-math.so"
+         FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libgr-math.so"
          RPATH "")
   endif()
-  list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/usr/lib/gr-math/libgr-math.so")
-  if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
-    message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
-  endif()
-  if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
-    message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
-  endif()
-  file(INSTALL DESTINATION "/usr/lib/gr-math" TYPE SHARED_LIBRARY FILES "/home/grsource/Documentos/AppProjects/gr-math/lib/libgr-math.so")
-  if(EXISTS "$ENV{DESTDIR}/usr/lib/gr-math/libgr-math.so" AND
-     NOT IS_SYMLINK "$ENV{DESTDIR}/usr/lib/gr-math/libgr-math.so")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/home/grsource/Documentos/AppProjects/gr-math/lib/libgr-math.so")
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libgr-math.so" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libgr-math.so")
     if(CMAKE_INSTALL_DO_STRIP)
-      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}/usr/lib/gr-math/libgr-math.so")
+      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libgr-math.so")
     endif()
   endif()
 endif()
@@ -70,16 +62,9 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/usr/include/gr-math/math.h;/usr/include/gr-math/vector2.h;/usr/include/gr-math/vector3.h;/usr/include/gr-math/vector4.h;/usr/include/gr-math/matrix3x3.h;/usr/include/gr-math/matrix4x4.h;/usr/include/gr-math/quaternion.h")
-  if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
-    message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
-  endif()
-  if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
-    message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
-  endif()
-  file(INSTALL DESTINATION "/usr/include/gr-math" TYPE FILE FILES
-    "/home/grsource/Documentos/AppProjects/gr-math/src/math.h"
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/gr-math" TYPE FILE FILES
+    "/home/grsource/Documentos/AppProjects/gr-math/src/gmath.h"
+    "/home/grsource/Documentos/AppProjects/gr-math/src/types.h"
     "/home/grsource/Documentos/AppProjects/gr-math/src/vector2.h"
     "/home/grsource/Documentos/AppProjects/gr-math/src/vector3.h"
     "/home/grsource/Documentos/AppProjects/gr-math/src/vector4.h"
@@ -87,6 +72,29 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
     "/home/grsource/Documentos/AppProjects/gr-math/src/matrix4x4.h"
     "/home/grsource/Documentos/AppProjects/gr-math/src/quaternion.h"
     )
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/gr-math/gr-mathTargets.cmake")
+    file(DIFFERENT EXPORT_FILE_CHANGED FILES
+         "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/gr-math/gr-mathTargets.cmake"
+         "/home/grsource/Documentos/AppProjects/gr-math/build/CMakeFiles/Export/lib/cmake/gr-math/gr-mathTargets.cmake")
+    if(EXPORT_FILE_CHANGED)
+      file(GLOB OLD_CONFIG_FILES "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/gr-math/gr-mathTargets-*.cmake")
+      if(OLD_CONFIG_FILES)
+        message(STATUS "Old export file \"$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/cmake/gr-math/gr-mathTargets.cmake\" will be replaced.  Removing files [${OLD_CONFIG_FILES}].")
+        file(REMOVE ${OLD_CONFIG_FILES})
+      endif()
+    endif()
+  endif()
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/gr-math" TYPE FILE FILES "/home/grsource/Documentos/AppProjects/gr-math/build/CMakeFiles/Export/lib/cmake/gr-math/gr-mathTargets.cmake")
+  if("${CMAKE_INSTALL_CONFIG_NAME}" MATCHES "^([Dd][Ee][Bb][Uu][Gg])$")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/gr-math" TYPE FILE FILES "/home/grsource/Documentos/AppProjects/gr-math/build/CMakeFiles/Export/lib/cmake/gr-math/gr-mathTargets-debug.cmake")
+  endif()
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/cmake/gr-math" TYPE FILE FILES "/home/grsource/Documentos/AppProjects/gr-math/build/gr-mathConfigVersion.cmake")
 endif()
 
 if(CMAKE_INSTALL_COMPONENT)

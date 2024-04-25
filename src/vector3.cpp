@@ -1,6 +1,6 @@
 #include "vector3.h"
 
-#include "math.h"
+#include "gmath.h"
 
 Vector3::Vector3(vvalue x, vvalue y, vvalue z) : x(x), y(y), z(z) {}
 

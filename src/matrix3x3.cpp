@@ -1,6 +1,6 @@
 #include "matrix3x3.h"
 
-#include "math.h"
+#include "gmath.h"
 
 #include <glm/glm.hpp>
 #include <glm/gtx/transform.hpp>

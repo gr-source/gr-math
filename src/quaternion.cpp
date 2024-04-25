@@ -2,7 +2,7 @@
 
 #include "matrix3x3.h"
 
-#include "math.h"
+#include "gmath.h"
 
 Quaternion::Quaternion(vvalue value) : w(value), x(value), y(value), z(value) {}
     

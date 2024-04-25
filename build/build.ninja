@@ -49,9 +49,9 @@ cmake_ninja_workdir = /home/grsource/Documentos/AppProjects/gr-math/build/
 
 build cmake_object_order_depends_target_gr-math: phony || CMakeFiles/gr-math.dir
 
-build CMakeFiles/gr-math.dir/src/math.cpp.o: CXX_COMPILER__gr-math_Debug /home/grsource/Documentos/AppProjects/gr-math/src/math.cpp || cmake_object_order_depends_target_gr-math
+build CMakeFiles/gr-math.dir/src/gmath.cpp.o: CXX_COMPILER__gr-math_Debug /home/grsource/Documentos/AppProjects/gr-math/src/gmath.cpp || cmake_object_order_depends_target_gr-math
   DEFINES = -Dgr_math_EXPORTS
-  DEP_FILE = CMakeFiles/gr-math.dir/src/math.cpp.o.d
+  DEP_FILE = CMakeFiles/gr-math.dir/src/gmath.cpp.o.d
   FLAGS = -g -fPIC
   OBJECT_DIR = CMakeFiles/gr-math.dir
   OBJECT_FILE_DIR = CMakeFiles/gr-math.dir/src
@@ -106,7 +106,7 @@ build CMakeFiles/gr-math.dir/src/quaternion.cpp.o: CXX_COMPILER__gr-math_Debug /
 #############################################
 # Link the shared library ../lib/libgr-math.so
 
-build ../lib/libgr-math.so: CXX_SHARED_LIBRARY_LINKER__gr-math_Debug CMakeFiles/gr-math.dir/src/math.cpp.o CMakeFiles/gr-math.dir/src/vector3.cpp.o CMakeFiles/gr-math.dir/src/vector2.cpp.o CMakeFiles/gr-math.dir/src/vector4.cpp.o CMakeFiles/gr-math.dir/src/matrix3x3.cpp.o CMakeFiles/gr-math.dir/src/matrix4x4.cpp.o CMakeFiles/gr-math.dir/src/quaternion.cpp.o
+build ../lib/libgr-math.so: CXX_SHARED_LIBRARY_LINKER__gr-math_Debug CMakeFiles/gr-math.dir/src/gmath.cpp.o CMakeFiles/gr-math.dir/src/vector3.cpp.o CMakeFiles/gr-math.dir/src/vector2.cpp.o CMakeFiles/gr-math.dir/src/vector4.cpp.o CMakeFiles/gr-math.dir/src/matrix3x3.cpp.o CMakeFiles/gr-math.dir/src/matrix4x4.cpp.o CMakeFiles/gr-math.dir/src/quaternion.cpp.o
   LANGUAGE_COMPILE_FLAGS = -g
   OBJECT_DIR = CMakeFiles/gr-math.dir
   POST_BUILD = :
@@ -115,30 +115,6 @@ build ../lib/libgr-math.so: CXX_SHARED_LIBRARY_LINKER__gr-math_Debug CMakeFiles/
   SONAME_FLAG = -Wl,-soname,
   TARGET_FILE = ../lib/libgr-math.so
   TARGET_PDB = gr-math.so.dbg
-
-
-#############################################
-# Utility command for package
-
-build CMakeFiles/package.util: CUSTOM_COMMAND all
-  COMMAND = cd /home/grsource/Documentos/AppProjects/gr-math/build && /usr/bin/cpack --config ./CPackConfig.cmake
-  DESC = Run CPack packaging tool...
-  pool = console
-  restat = 1
-
-build package: phony CMakeFiles/package.util
-
-
-#############################################
-# Utility command for package_source
-
-build CMakeFiles/package_source.util: CUSTOM_COMMAND
-  COMMAND = cd /home/grsource/Documentos/AppProjects/gr-math/build && /usr/bin/cpack --config ./CPackSourceConfig.cmake /home/grsource/Documentos/AppProjects/gr-math/build/CPackSourceConfig.cmake
-  DESC = Run CPack packaging tool for source...
-  pool = console
-  restat = 1
-
-build package_source: phony CMakeFiles/package_source.util
 
 
 #############################################
@@ -234,14 +210,14 @@ build all: phony ../lib/libgr-math.so
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | ../CMakeLists.txt /usr/share/cmake-3.22/Modules/CMakeCInformation.cmake /usr/share/cmake-3.22/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.22/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.22/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.22/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.22/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.22/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.22/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.22/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.22/Modules/Compiler/GNU-C.cmake /usr/share/cmake-3.22/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake-3.22/Modules/Compiler/GNU.cmake /usr/share/cmake-3.22/Modules/Platform/Linux-GNU-C.cmake /usr/share/cmake-3.22/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.22/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.22/Modules/Platform/Linux.cmake /usr/share/cmake-3.22/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.22.1/CMakeCCompiler.cmake CMakeFiles/3.22.1/CMakeCXXCompiler.cmake CMakeFiles/3.22.1/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | ../CMakeLists.txt /usr/share/cmake-3.22/Modules/BasicConfigVersion-SameMajorVersion.cmake.in /usr/share/cmake-3.22/Modules/CMakeCInformation.cmake /usr/share/cmake-3.22/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.22/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.22/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.22/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.22/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.22/Modules/CMakePackageConfigHelpers.cmake /usr/share/cmake-3.22/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.22/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.22/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.22/Modules/Compiler/GNU-C.cmake /usr/share/cmake-3.22/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake-3.22/Modules/Compiler/GNU.cmake /usr/share/cmake-3.22/Modules/Platform/Linux-GNU-C.cmake /usr/share/cmake-3.22/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.22/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.22/Modules/Platform/Linux.cmake /usr/share/cmake-3.22/Modules/Platform/UnixPaths.cmake /usr/share/cmake-3.22/Modules/WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles/3.22.1/CMakeCCompiler.cmake CMakeFiles/3.22.1/CMakeCXXCompiler.cmake CMakeFiles/3.22.1/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build ../CMakeLists.txt /usr/share/cmake-3.22/Modules/CMakeCInformation.cmake /usr/share/cmake-3.22/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.22/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.22/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.22/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.22/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.22/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.22/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.22/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.22/Modules/Compiler/GNU-C.cmake /usr/share/cmake-3.22/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake-3.22/Modules/Compiler/GNU.cmake /usr/share/cmake-3.22/Modules/Platform/Linux-GNU-C.cmake /usr/share/cmake-3.22/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.22/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.22/Modules/Platform/Linux.cmake /usr/share/cmake-3.22/Modules/Platform/UnixPaths.cmake CMakeCache.txt CMakeFiles/3.22.1/CMakeCCompiler.cmake CMakeFiles/3.22.1/CMakeCXXCompiler.cmake CMakeFiles/3.22.1/CMakeSystem.cmake: phony
+build ../CMakeLists.txt /usr/share/cmake-3.22/Modules/BasicConfigVersion-SameMajorVersion.cmake.in /usr/share/cmake-3.22/Modules/CMakeCInformation.cmake /usr/share/cmake-3.22/Modules/CMakeCXXInformation.cmake /usr/share/cmake-3.22/Modules/CMakeCommonLanguageInclude.cmake /usr/share/cmake-3.22/Modules/CMakeGenericSystem.cmake /usr/share/cmake-3.22/Modules/CMakeInitializeConfigs.cmake /usr/share/cmake-3.22/Modules/CMakeLanguageInformation.cmake /usr/share/cmake-3.22/Modules/CMakePackageConfigHelpers.cmake /usr/share/cmake-3.22/Modules/CMakeSystemSpecificInformation.cmake /usr/share/cmake-3.22/Modules/CMakeSystemSpecificInitialize.cmake /usr/share/cmake-3.22/Modules/Compiler/CMakeCommonCompilerMacros.cmake /usr/share/cmake-3.22/Modules/Compiler/GNU-C.cmake /usr/share/cmake-3.22/Modules/Compiler/GNU-CXX.cmake /usr/share/cmake-3.22/Modules/Compiler/GNU.cmake /usr/share/cmake-3.22/Modules/Platform/Linux-GNU-C.cmake /usr/share/cmake-3.22/Modules/Platform/Linux-GNU-CXX.cmake /usr/share/cmake-3.22/Modules/Platform/Linux-GNU.cmake /usr/share/cmake-3.22/Modules/Platform/Linux.cmake /usr/share/cmake-3.22/Modules/Platform/UnixPaths.cmake /usr/share/cmake-3.22/Modules/WriteBasicConfigVersionFile.cmake CMakeCache.txt CMakeFiles/3.22.1/CMakeCCompiler.cmake CMakeFiles/3.22.1/CMakeCXXCompiler.cmake CMakeFiles/3.22.1/CMakeSystem.cmake: phony
 
 
 #############################################

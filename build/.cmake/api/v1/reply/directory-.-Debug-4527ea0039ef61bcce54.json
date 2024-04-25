@@ -17,13 +17,25 @@
 			{
 				"command" : 0,
 				"file" : 0,
+				"line" : 30,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
 				"line" : 38,
 				"parent" : 0
 			},
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 40,
+				"line" : 42,
+				"parent" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 56,
 				"parent" : 0
 			}
 		]
@@ -33,7 +45,7 @@
 		{
 			"backtrace" : 1,
 			"component" : "Unspecified",
-			"destination" : "/usr/lib/gr-math",
+			"destination" : "lib",
 			"paths" : 
 			[
 				"/home/grsource/Documentos/AppProjects/gr-math/lib/libgr-math.so"
@@ -45,16 +57,45 @@
 		{
 			"backtrace" : 2,
 			"component" : "Unspecified",
-			"destination" : "/usr/include/gr-math",
+			"destination" : "include/gr-math",
 			"paths" : 
 			[
-				"src/math.h",
+				"src/gmath.h",
+				"src/types.h",
 				"src/vector2.h",
 				"src/vector3.h",
 				"src/vector4.h",
 				"src/matrix3x3.h",
 				"src/matrix4x4.h",
 				"src/quaternion.h"
+			],
+			"type" : "file"
+		},
+		{
+			"backtrace" : 3,
+			"component" : "Unspecified",
+			"destination" : "lib/cmake/gr-math",
+			"exportName" : "gr-mathTargets",
+			"exportTargets" : 
+			[
+				{
+					"id" : "gr-math::@6890427a1f51a3e7e1df",
+					"index" : 0
+				}
+			],
+			"paths" : 
+			[
+				"CMakeFiles/Export/lib/cmake/gr-math/gr-mathTargets.cmake"
+			],
+			"type" : "export"
+		},
+		{
+			"backtrace" : 4,
+			"component" : "Unspecified",
+			"destination" : "lib/cmake/gr-math",
+			"paths" : 
+			[
+				"build/gr-mathConfigVersion.cmake"
 			],
 			"type" : "file"
 		}

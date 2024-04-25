@@ -3,7 +3,7 @@
 
 #include <cmath>
 
-#include "math.h"
+#include "gmath.h"
 
 Matrix4x4::Matrix4x4(vvalue m00, vvalue m01, vvalue m02, vvalue m03, vvalue m10, vvalue m11, vvalue m12, vvalue m13, vvalue m20, vvalue m21, vvalue m22, vvalue m23, vvalue m30, vvalue m31, vvalue m32, vvalue m33) :
         m00(m00), m01(m01), m02(m02), m03(m03),
