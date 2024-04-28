@@ -11,32 +11,28 @@ Quaternion::Quaternion(vvalue w, vvalue x, vvalue y, vvalue z) : w(w), x(x), y(y
 Quaternion::Quaternion(const Matrix3x3& rhs) {
     vvalue trace = rhs.m00 + rhs.m11 + rhs.m22;
 
-    if (trace > 0.0f) {
-        vvalue s = std::sqrt(1.0f + trace) * 2.0f;
-
+    if (trace > 0) {
+        vvalue s = std::sqrt(trace + 1.0f) * 2.0f;
         w = 0.25f * s;
-        x = (rhs.m12 - rhs.m21) / s;
-        y = (rhs.m20 - rhs.m02) / s;
-        z = (rhs.m01 - rhs.m10) / s;
-    } else if (rhs.m00 > rhs.m11 && rhs.m00 > rhs.m22) {
+        x = (rhs.m21 - rhs.m12) / s;
+        y = (rhs.m02 - rhs.m20) / s;
+        z = (rhs.m10 - rhs.m01) / s;
+    } else if ((rhs.m00 > rhs.m11) && (rhs.m00 > rhs.m22)) {
         vvalue s = std::sqrt(1.0f + rhs.m00 - rhs.m11 - rhs.m22) * 2.0f;
-
-        w = (rhs.m12 - rhs.m21) / s;
+        w = (rhs.m21 - rhs.m12) / s;
         x = 0.25f * s;
         y = (rhs.m01 + rhs.m10) / s;
-        z = (rhs.m20 + rhs.m02) / s;
+        z = (rhs.m02 + rhs.m20) / s;
     } else if (rhs.m11 > rhs.m22) {
         vvalue s = std::sqrt(1.0f + rhs.m11 - rhs.m00 - rhs.m22) * 2.0f;
-
-        w = (rhs.m20 - rhs.m02) / s;
+        w = (rhs.m02 - rhs.m20) / s;
         x = (rhs.m01 + rhs.m10) / s;
         y = 0.25f * s;
         z = (rhs.m12 + rhs.m21) / s;
     } else {
         vvalue s = std::sqrt(1.0f + rhs.m22 - rhs.m00 - rhs.m11) * 2.0f;
-
-        w = (rhs.m01 - rhs.m10) / s;
-        x = (rhs.m20 + rhs.m02) / s;
+        w = (rhs.m10 - rhs.m01) / s;
+        x = (rhs.m02 + rhs.m20) / s;
         y = (rhs.m12 + rhs.m21) / s;
         z = 0.25f * s;
     }
@@ -124,7 +120,7 @@ Vector3 Quaternion::eulerAngles() const {
 }
 
 const Quaternion Quaternion::LookRotation(const Vector3& forward, const Vector3& upward) {
-    const Vector3 right = Math::normalize(Math::cross(forward, upward));
+    /*const Vector3 right = Math::normalize(Math::cross(forward, upward));
     const Vector3 up = Math::normalize(Math::cross(right, forward));
 
     vvalue m00 = right.x;
@@ -143,10 +139,57 @@ const Quaternion Quaternion::LookRotation(const Vector3& forward, const Vector3&
 
     return {
         0.25f * s,
-        (m12 - m21) / s,
-        (m20 - m02) / s,
-        (m01 - m10) / s
-    };
+        (m21 - m12) / s,
+        (m02 - m20) / s,
+        (m10 - m01) / s
+    };*/
+    
+    
+    const Vector3 right = Math::normalize(Math::cross(forward, upward));
+    const Vector3 up = Math::normalize(Math::cross(right, forward));
+
+    vvalue m00 = right.x;
+    vvalue m10 = right.y;
+    vvalue m20 = right.z;
+
+    vvalue m01 = up.x;
+    vvalue m11 = up.y;
+    vvalue m21 = up.z;
+
+    vvalue m02 = -forward.x;
+    vvalue m12 = -forward.y;
+    vvalue m22 = -forward.z;
+
+    vvalue trace = m00 + m11 + m22;
+
+    vvalue w, x, y, z;
+
+    if (trace > 0) {
+        vvalue s = std::sqrt(trace + 1.0f) * 2.0f;
+        w = 0.25f * s;
+        x = (m21 - m12) / s;
+        y = (m02 - m20) / s;
+        z = (m10 - m01) / s;
+    } else if ((m00 > m11) && (m00 > m22)) {
+        vvalue s = std::sqrt(1.0f + m00 - m11 - m22) * 2.0f;
+        w = (m21 - m12) / s;
+        x = 0.25f * s;
+        y = (m01 + m10) / s;
+        z = (m02 + m20) / s;
+    } else if (m11 > m22) {
+        vvalue s = std::sqrt(1.0f + m11 - m00 - m22) * 2.0f;
+        w = (m02 - m20) / s;
+        x = (m01 + m10) / s;
+        y = 0.25f * s;
+        z = (m12 + m21) / s;
+    } else {
+        vvalue s = std::sqrt(1.0f + m22 - m00 - m11) * 2.0f;
+        w = (m10 - m01) / s;
+        x = (m02 + m20) / s;
+        y = (m12 + m21) / s;
+        z = 0.25f * s;
+    }
+    return { w, x, y, z };
 }
 
 const Quaternion Quaternion::Euler(vvalue angle, const Vector3& axis) {

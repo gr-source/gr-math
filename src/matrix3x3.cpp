@@ -18,33 +18,22 @@ Matrix3x3::Matrix3x3(const Matrix4x4& rhs) :
     m20(rhs.m20), m21(rhs.m21), m22(rhs.m22) {}
 
 Matrix3x3::Matrix3x3(const Quaternion& q) {
+    //i = x    j = y   k = z   r = w
 
-    /* ???? */
-    m00 = 1.0f - (2.0f * ((q.y * q.y) + (q.z * q.z))); //(((q.w * q.w) + (q.x * q.x)) - ((q.y * q.y) - (q.z * q.z)));
-    m01 = 2.0f * ((q.x * q.y) + (q.w * q.z));
-    m02 = 2.0f * ((q.x * q.z) - (q.w * q.y));
+    /* linha 0 */
+    m00 = 1.0f - 2.0f * ((q.y * q.y) + (q.z * q.z));
+    m10 = 2.0f * ((q.x * q.y) - (q.z * q.w));
+    m20 = 2.0f * ((q.x * q.z) + (q.y * q.w));
 
-    m10 = 2.0f * ((q.x * q.y) - (q.w * q.z));
-    m11 = 1.0f - (2.0f * ((q.x * q.x) + (q.z * q.z))); //(((q.w * q.w) - (q.x * q.x)) + ((q.y * q.y) - (q.z * q.z)));
-    m12 = 2.0f * ((q.w * q.x) + (q.y * q.z));
-
-    m20 = 2.0f * ((q.w * q.y) + (q.x * q.z));
-    m21 = 2.0f * ((q.y * q.z) - (q.w * q.x));
-    m22 = 1.0f - (2.0f * ((q.x * q.x) + (q.y * q.y))); //(((q.w * q.w) - (q.x * q.x)) - ((q.y * q.y) + (q.z * q.z)));
+    /* linha 1 */
+    m01 = 2.0f * ((q.x * q.y) + (q.z * q.w));
+    m11 = 1.0f - 2.0f * ((q.x * q.x) + (q.z * q.z));
+    m21 = 2.0f * ((q.y * q.z) - (q.x * q.w));
     
-    
-    /*m00 = 1.0f - (2.0f * ((q.y * q.y) + (q.z * q.z)));
-    m10 = 2.0f * ((q.x * q.y) - (q.w * q.z));
-    m20 = 2.0f * ((q.x * q.z) + (q.w * q.y));
-
-    m01 = 2.0f * ((q.x * q.y) + (q.w * q.z));
-    m11 = 1.0f - (2.0f * ((q.x * q.x) + (q.z * q.z)));
-    m21 = 2.0f * ((q.y * q.z) - (q.w * q.x));
-
-    m02 = 2.0f * ((q.x * q.z) - (q.w * q.y));
-    m12 = 2.0f * ((q.y * q.z) + (q.w * q.x));
-    m22 = 1.0f - (2.0f * ((q.x * q.x) + (q.y * q.y)));*/
-
+    /* linha 2 */
+    m02 = 2.0f * ((q.x * q.z) - (q.y * q.w));
+    m12 = 2.0f * ((q.y * q.z) + (q.x * q.w));
+    m22 = 1.0f - 2.0f * ((q.x * q.x) + (q.y * q.y));
 }
 
 const Matrix3x3 Matrix3x3::translate(const Matrix3x3& m, const Vector2& v) {
