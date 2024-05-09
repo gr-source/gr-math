@@ -232,14 +232,12 @@ const Matrix4x4 Math::orthographic(vvalue left, vvalue right, vvalue bottom, vva
     Matrix4x4 result = Matrix4x4::identityMatrix;
 
     result.m00 = 2.0f / (right - left);
-    
     result.m11 = 2.0f / (top - bottom);
-
     result.m22 = -2.0f / (far - near);
 
     result.m30 = -((right + left)   / (right - left));
     result.m31 = -((top   + bottom) / (top   - bottom));
-    result.m32 = -((far  + near)  / (far  - near));
+    result.m32 = -((far   + near)   / (far   - near));
 
     return result;
 }
