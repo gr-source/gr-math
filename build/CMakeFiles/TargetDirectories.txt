@@ -1,7 +1,0 @@
-/home/grsource/Documentos/AppProjects/gr-math/build/CMakeFiles/gr-math.dir
-/home/grsource/Documentos/AppProjects/gr-math/build/CMakeFiles/edit_cache.dir
-/home/grsource/Documentos/AppProjects/gr-math/build/CMakeFiles/rebuild_cache.dir
-/home/grsource/Documentos/AppProjects/gr-math/build/CMakeFiles/list_install_components.dir
-/home/grsource/Documentos/AppProjects/gr-math/build/CMakeFiles/install.dir
-/home/grsource/Documentos/AppProjects/gr-math/build/CMakeFiles/install/local.dir
-/home/grsource/Documentos/AppProjects/gr-math/build/CMakeFiles/install/strip.dir
