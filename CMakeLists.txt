@@ -14,14 +14,14 @@ set(math_src
 )
 
 set(math_hdr
-    src/gmath.h
-    src/types.h
-    src/vector2.h
-    src/vector3.h
-    src/vector4.h
-    src/matrix3x3.h
-    src/matrix4x4.h
-    src/quaternion.h
+    include/gmath.h
+    include/types.h
+    include/vector2.h
+    include/vector3.h
+    include/vector4.h
+    include/matrix3x3.h
+    include/matrix4x4.h
+    include/quaternion.h
 )
 
 add_library(gr-math SHARED ${math_src})

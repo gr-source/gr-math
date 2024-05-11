@@ -1,8 +1,6 @@
-#include "quaternion.h"
+#include "../include/quaternion.h"
 
-#include "matrix3x3.h"
-
-#include "gmath.h"
+#include "../include/gmath.h"
 
 Quaternion::Quaternion(vvalue value) : w(value), x(value), y(value), z(value) {}
     
@@ -222,7 +220,7 @@ const Quaternion Quaternion::Slerp(const Quaternion& lhs, const Quaternion& rhs,
     Quaternion q;
     vvalue cosHalfTheta = (lhs.w * rhs.w) + (lhs.x * rhs.x) + (lhs.y * rhs.y) + (lhs.z * rhs.z);
 
-	if (abs(cosHalfTheta) >= 1.0) {
+	if (std::abs(cosHalfTheta) >= 1.0) {
 		q.w = lhs.w;
 		q.x = lhs.x;
 		q.y = lhs.y;

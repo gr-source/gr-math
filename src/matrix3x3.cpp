@@ -1,6 +1,5 @@
-#include "matrix3x3.h"
-
-#include "gmath.h"
+#include "../include/matrix3x3.h"
+#include "../include/gmath.h"
 
 Matrix3x3::Matrix3x3(vvalue m00, vvalue m01, vvalue m02, vvalue m10, vvalue m11, vvalue m12, vvalue m20, vvalue m21, vvalue m22) :
     m00(m00), m01(m01), m02(m02),

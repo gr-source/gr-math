@@ -1,4 +1,4 @@
-#include "gmath.h"
+#include "../include/gmath.h"
 
 const vvalue Math::rad(vvalue degrees) {
     return degrees * (M_PI / 180.0f);
@@ -235,9 +235,9 @@ const Matrix4x4 Math::orthographic(vvalue left, vvalue right, vvalue bottom, vva
     result.m11 = 2.0f / (top - bottom);
     result.m22 = -2.0f / (far - near);
 
-    result.m30 = -((right + left)   / (right - left));
-    result.m31 = -((top   + bottom) / (top   - bottom));
-    result.m32 = -((far   + near)   / (far   - near));
+    result.m03 = -((right + left)   / (right - left));
+    result.m13 = -((top   + bottom) / (top   - bottom));
+    result.m23 = -((far   + near)   / (far   - near));
 
     return result;
 }
