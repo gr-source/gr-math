@@ -63,14 +63,14 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/gr-math" TYPE FILE FILES
-    "/home/grsource/Documentos/AppProjects/gr-math/src/gmath.h"
-    "/home/grsource/Documentos/AppProjects/gr-math/src/types.h"
-    "/home/grsource/Documentos/AppProjects/gr-math/src/vector2.h"
-    "/home/grsource/Documentos/AppProjects/gr-math/src/vector3.h"
-    "/home/grsource/Documentos/AppProjects/gr-math/src/vector4.h"
-    "/home/grsource/Documentos/AppProjects/gr-math/src/matrix3x3.h"
-    "/home/grsource/Documentos/AppProjects/gr-math/src/matrix4x4.h"
-    "/home/grsource/Documentos/AppProjects/gr-math/src/quaternion.h"
+    "/home/grsource/Documentos/AppProjects/gr-math/include/gmath.h"
+    "/home/grsource/Documentos/AppProjects/gr-math/include/types.h"
+    "/home/grsource/Documentos/AppProjects/gr-math/include/vector2.h"
+    "/home/grsource/Documentos/AppProjects/gr-math/include/vector3.h"
+    "/home/grsource/Documentos/AppProjects/gr-math/include/vector4.h"
+    "/home/grsource/Documentos/AppProjects/gr-math/include/matrix3x3.h"
+    "/home/grsource/Documentos/AppProjects/gr-math/include/matrix4x4.h"
+    "/home/grsource/Documentos/AppProjects/gr-math/include/quaternion.h"
     )
 endif()
 
