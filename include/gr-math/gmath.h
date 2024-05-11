@@ -5,6 +5,7 @@
 #include <ostream>
 #include <iostream>
 
+#include "types.h"
 #include "vector2.h"
 #include "vector3.h"
 #include "vector4.h"

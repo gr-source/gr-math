@@ -43,6 +43,10 @@ if(NOT DEFINED CMAKE_OBJDUMP)
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include" TYPE DIRECTORY FILES "/home/grsource/Documentos/AppProjects/gr-math/include/gr-math")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/gr-math/libgr-math.so" AND
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/gr-math/libgr-math.so")
     file(RPATH_CHECK
@@ -59,19 +63,6 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-endif()
-
-if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/include/gr-math" TYPE FILE FILES
-    "/home/grsource/Documentos/AppProjects/gr-math/include/gmath.h"
-    "/home/grsource/Documentos/AppProjects/gr-math/include/types.h"
-    "/home/grsource/Documentos/AppProjects/gr-math/include/vector2.h"
-    "/home/grsource/Documentos/AppProjects/gr-math/include/vector3.h"
-    "/home/grsource/Documentos/AppProjects/gr-math/include/vector4.h"
-    "/home/grsource/Documentos/AppProjects/gr-math/include/matrix3x3.h"
-    "/home/grsource/Documentos/AppProjects/gr-math/include/matrix4x4.h"
-    "/home/grsource/Documentos/AppProjects/gr-math/include/quaternion.h"
-    )
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)

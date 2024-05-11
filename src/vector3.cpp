@@ -1,6 +1,5 @@
-#include "../include/vector3.h"
-
-#include "../include/gmath.h"
+#include "gr-math/vector3.h"
+#include "gr-math/gmath.h"
 
 Vector3::Vector3(vvalue x, vvalue y, vvalue z) : x(x), y(y), z(z) {}
 

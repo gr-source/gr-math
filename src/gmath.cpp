@@ -1,4 +1,4 @@
-#include "../include/gmath.h"
+#include "gr-math/gmath.h"
 
 const vvalue Math::rad(vvalue degrees) {
     return degrees * (M_PI / 180.0f);

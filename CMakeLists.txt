@@ -14,29 +14,33 @@ set(math_src
 )
 
 set(math_hdr
-    include/gmath.h
-    include/types.h
-    include/vector2.h
-    include/vector3.h
-    include/vector4.h
-    include/matrix3x3.h
-    include/matrix4x4.h
-    include/quaternion.h
+    include/${PROJECT_NAME}/gmath.h
+    include/${PROJECT_NAME}/types.h
+    include/${PROJECT_NAME}/vector2.h
+    include/${PROJECT_NAME}/vector3.h
+    include/${PROJECT_NAME}/vector4.h
+    include/${PROJECT_NAME}/matrix3x3.h
+    include/${PROJECT_NAME}/matrix4x4.h
+    include/${PROJECT_NAME}/quaternion.h
 )
 
 add_library(gr-math SHARED ${math_src})
 
+target_include_directories(gr-math PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<INSTALL_INTERFACE:include/gr-math>
+)
+
 if(NOT DISABLE_INSTALL)
+    install(DIRECTORY include/gr-math
+        DESTINATION include
+    )
+
     install(TARGETS gr-math
         EXPORT gr-mathTargets
         LIBRARY DESTINATION lib/gr-math
         ARCHIVE DESTINATION lib/gr-math
         RUNTIME DESTINATION bin/gr-math
-        INCLUDES DESTINATION include/gr-math
-    )
-
-    install(FILES ${math_hdr}
-        DESTINATION include/gr-math
     )
 
     install(EXPORT gr-mathTargets

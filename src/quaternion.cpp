@@ -1,6 +1,5 @@
-#include "../include/quaternion.h"
-
-#include "../include/gmath.h"
+#include "gr-math/quaternion.h"
+#include "gr-math/gmath.h"
 
 Quaternion::Quaternion(vvalue value) : w(value), x(value), y(value), z(value) {}
     

@@ -1,37 +1,37 @@
 [
 {
   "directory": "/home/grsource/Documentos/AppProjects/gr-math/build",
-  "command": "/usr/bin/clang++ -Dgr_math_EXPORTS  -g -fPIC -o CMakeFiles/gr-math.dir/src/gmath.cpp.o -c /home/grsource/Documentos/AppProjects/gr-math/src/gmath.cpp",
+  "command": "/usr/bin/clang++ -Dgr_math_EXPORTS -I/home/grsource/Documentos/AppProjects/gr-math/include -g -fPIC -o CMakeFiles/gr-math.dir/src/gmath.cpp.o -c /home/grsource/Documentos/AppProjects/gr-math/src/gmath.cpp",
   "file": "/home/grsource/Documentos/AppProjects/gr-math/src/gmath.cpp"
 },
 {
   "directory": "/home/grsource/Documentos/AppProjects/gr-math/build",
-  "command": "/usr/bin/clang++ -Dgr_math_EXPORTS  -g -fPIC -o CMakeFiles/gr-math.dir/src/vector3.cpp.o -c /home/grsource/Documentos/AppProjects/gr-math/src/vector3.cpp",
+  "command": "/usr/bin/clang++ -Dgr_math_EXPORTS -I/home/grsource/Documentos/AppProjects/gr-math/include -g -fPIC -o CMakeFiles/gr-math.dir/src/vector3.cpp.o -c /home/grsource/Documentos/AppProjects/gr-math/src/vector3.cpp",
   "file": "/home/grsource/Documentos/AppProjects/gr-math/src/vector3.cpp"
 },
 {
   "directory": "/home/grsource/Documentos/AppProjects/gr-math/build",
-  "command": "/usr/bin/clang++ -Dgr_math_EXPORTS  -g -fPIC -o CMakeFiles/gr-math.dir/src/vector2.cpp.o -c /home/grsource/Documentos/AppProjects/gr-math/src/vector2.cpp",
+  "command": "/usr/bin/clang++ -Dgr_math_EXPORTS -I/home/grsource/Documentos/AppProjects/gr-math/include -g -fPIC -o CMakeFiles/gr-math.dir/src/vector2.cpp.o -c /home/grsource/Documentos/AppProjects/gr-math/src/vector2.cpp",
   "file": "/home/grsource/Documentos/AppProjects/gr-math/src/vector2.cpp"
 },
 {
   "directory": "/home/grsource/Documentos/AppProjects/gr-math/build",
-  "command": "/usr/bin/clang++ -Dgr_math_EXPORTS  -g -fPIC -o CMakeFiles/gr-math.dir/src/vector4.cpp.o -c /home/grsource/Documentos/AppProjects/gr-math/src/vector4.cpp",
+  "command": "/usr/bin/clang++ -Dgr_math_EXPORTS -I/home/grsource/Documentos/AppProjects/gr-math/include -g -fPIC -o CMakeFiles/gr-math.dir/src/vector4.cpp.o -c /home/grsource/Documentos/AppProjects/gr-math/src/vector4.cpp",
   "file": "/home/grsource/Documentos/AppProjects/gr-math/src/vector4.cpp"
 },
 {
   "directory": "/home/grsource/Documentos/AppProjects/gr-math/build",
-  "command": "/usr/bin/clang++ -Dgr_math_EXPORTS  -g -fPIC -o CMakeFiles/gr-math.dir/src/matrix3x3.cpp.o -c /home/grsource/Documentos/AppProjects/gr-math/src/matrix3x3.cpp",
+  "command": "/usr/bin/clang++ -Dgr_math_EXPORTS -I/home/grsource/Documentos/AppProjects/gr-math/include -g -fPIC -o CMakeFiles/gr-math.dir/src/matrix3x3.cpp.o -c /home/grsource/Documentos/AppProjects/gr-math/src/matrix3x3.cpp",
   "file": "/home/grsource/Documentos/AppProjects/gr-math/src/matrix3x3.cpp"
 },
 {
   "directory": "/home/grsource/Documentos/AppProjects/gr-math/build",
-  "command": "/usr/bin/clang++ -Dgr_math_EXPORTS  -g -fPIC -o CMakeFiles/gr-math.dir/src/matrix4x4.cpp.o -c /home/grsource/Documentos/AppProjects/gr-math/src/matrix4x4.cpp",
+  "command": "/usr/bin/clang++ -Dgr_math_EXPORTS -I/home/grsource/Documentos/AppProjects/gr-math/include -g -fPIC -o CMakeFiles/gr-math.dir/src/matrix4x4.cpp.o -c /home/grsource/Documentos/AppProjects/gr-math/src/matrix4x4.cpp",
   "file": "/home/grsource/Documentos/AppProjects/gr-math/src/matrix4x4.cpp"
 },
 {
   "directory": "/home/grsource/Documentos/AppProjects/gr-math/build",
-  "command": "/usr/bin/clang++ -Dgr_math_EXPORTS  -g -fPIC -o CMakeFiles/gr-math.dir/src/quaternion.cpp.o -c /home/grsource/Documentos/AppProjects/gr-math/src/quaternion.cpp",
+  "command": "/usr/bin/clang++ -Dgr_math_EXPORTS -I/home/grsource/Documentos/AppProjects/gr-math/include -g -fPIC -o CMakeFiles/gr-math.dir/src/quaternion.cpp.o -c /home/grsource/Documentos/AppProjects/gr-math/src/quaternion.cpp",
   "file": "/home/grsource/Documentos/AppProjects/gr-math/src/quaternion.cpp"
 }
 ]
