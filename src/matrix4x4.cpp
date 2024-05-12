@@ -1,5 +1,7 @@
-#include "gr-math/matrix4x4.h"
-#include "gr-math/gmath.h"
+#include "matrix4x4.h"
+#include "gmath.h"
+
+#define CHECK_SCALE(value) (value > 0.001f ? value : 1.0f)
 
 Matrix4x4::Matrix4x4(vvalue m00, vvalue m01, vvalue m02, vvalue m03, vvalue m10, vvalue m11, vvalue m12, vvalue m13, vvalue m20, vvalue m21, vvalue m22, vvalue m23, vvalue m30, vvalue m31, vvalue m32, vvalue m33) :
         m00(m00), m01(m01), m02(m02), m03(m03),
@@ -25,9 +27,9 @@ void Matrix4x4::decompose(Vector3& scale, Quaternion& rotation, Vector3& positio
     position = Vector3(getRow(3));
 
     scale = Vector3(
-        Math::magnitude(getRow(0)),
-        Math::magnitude(getRow(1)),
-        Math::magnitude(getRow(2))
+        CHECK_SCALE(Math::magnitude(getRow(0))),
+        CHECK_SCALE(Math::magnitude(getRow(1))),
+        CHECK_SCALE(Math::magnitude(getRow(2)))
     );
 
     Matrix3x3 matrix(

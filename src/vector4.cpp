@@ -1,5 +1,5 @@
-#include "gr-math/vector4.h"
-#include "gr-math/vector3.h"
+#include "vector4.h"
+#include "vector3.h"
 
 Vector4::Vector4(const Vector3& rhs, vvalue w) : x(rhs.x), y(rhs.y), z(rhs.z), w(w) {}
 

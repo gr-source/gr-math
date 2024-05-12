@@ -1,5 +1,5 @@
-#include "gr-math/quaternion.h"
-#include "gr-math/gmath.h"
+#include "quaternion.h"
+#include "gmath.h"
 
 Quaternion::Quaternion(vvalue value) : w(value), x(value), y(value), z(value) {}
     
@@ -101,92 +101,19 @@ Vector3 Quaternion::eulerAngles() const {
 
     float sinr_cosp = 2 * (w * x + y * z);
     float cosr_cosp = 1 - 2 * (x * x + y * y);
-    angles.x = std::atan2(sinr_cosp, cosr_cosp);
+    angles.x = Math::degree(std::atan2(sinr_cosp, cosr_cosp));
 
     // pitch (y-axis rotation)
     float sinp = std::sqrt(1 + 2 * (w * y - x * z));
     float cosp = std::sqrt(1 - 2 * (w * y - x * z));
-    angles.y = 2 * std::atan2(sinp, cosp) - M_PI / 2;
+    angles.y = Math::degree(2 * std::atan2(sinp, cosp) - M_PI / 2);
 
     // yaw (z-axis rotation)
     float siny_cosp = 2 * (w * z + x * y);
     float cosy_cosp = 1 - 2 * (y * y + z * z);
-    angles.z = std::atan2(siny_cosp, cosy_cosp);
+    angles.z = Math::degree(std::atan2(siny_cosp, cosy_cosp));
 
     return angles;
-}
-
-const Quaternion Quaternion::LookRotation(const Vector3& forward, const Vector3& upward) {
-    /*const Vector3 right = Math::normalize(Math::cross(forward, upward));
-    const Vector3 up = Math::normalize(Math::cross(right, forward));
-
-    vvalue m00 = right.x;
-    vvalue m10 = right.y;
-    vvalue m20 = right.z;
-
-    vvalue m01 = up.x;
-    vvalue m11 = up.y;
-    vvalue m21 = up.z;
-
-    vvalue m02 = -forward.x;
-    vvalue m12 = -forward.y;
-    vvalue m22 = -forward.z;
-
-    vvalue s = std::sqrt(1.0f + (m00 + m11 + m22)) * 2.0f;
-
-    return {
-        0.25f * s,
-        (m21 - m12) / s,
-        (m02 - m20) / s,
-        (m10 - m01) / s
-    };*/
-    
-    
-    const Vector3 right = Math::normalize(Math::cross(forward, upward));
-    const Vector3 up = Math::normalize(Math::cross(right, forward));
-
-    vvalue m00 = right.x;
-    vvalue m10 = right.y;
-    vvalue m20 = right.z;
-
-    vvalue m01 = up.x;
-    vvalue m11 = up.y;
-    vvalue m21 = up.z;
-
-    vvalue m02 = -forward.x;
-    vvalue m12 = -forward.y;
-    vvalue m22 = -forward.z;
-
-    vvalue trace = m00 + m11 + m22;
-
-    vvalue w, x, y, z;
-
-    if (trace > 0) {
-        vvalue s = std::sqrt(trace + 1.0f) * 2.0f;
-        w = 0.25f * s;
-        x = (m21 - m12) / s;
-        y = (m02 - m20) / s;
-        z = (m10 - m01) / s;
-    } else if ((m00 > m11) && (m00 > m22)) {
-        vvalue s = std::sqrt(1.0f + m00 - m11 - m22) * 2.0f;
-        w = (m21 - m12) / s;
-        x = 0.25f * s;
-        y = (m01 + m10) / s;
-        z = (m02 + m20) / s;
-    } else if (m11 > m22) {
-        vvalue s = std::sqrt(1.0f + m11 - m00 - m22) * 2.0f;
-        w = (m02 - m20) / s;
-        x = (m01 + m10) / s;
-        y = 0.25f * s;
-        z = (m12 + m21) / s;
-    } else {
-        vvalue s = std::sqrt(1.0f + m22 - m00 - m11) * 2.0f;
-        w = (m10 - m01) / s;
-        x = (m02 + m20) / s;
-        y = (m12 + m21) / s;
-        z = 0.25f * s;
-    }
-    return { w, x, y, z };
 }
 
 const Quaternion Quaternion::Euler(vvalue angle, const Vector3& axis) {
@@ -216,7 +143,7 @@ const Quaternion Quaternion::Euler(const Vector3& axis) {
 }
 
 const Quaternion Quaternion::Slerp(const Quaternion& lhs, const Quaternion& rhs, vvalue t) {
-    Quaternion q;
+    /*Quaternion q;
     vvalue cosHalfTheta = (lhs.w * rhs.w) + (lhs.x * rhs.x) + (lhs.y * rhs.y) + (lhs.z * rhs.z);
 
 	if (std::abs(cosHalfTheta) >= 1.0) {
@@ -248,8 +175,9 @@ const Quaternion Quaternion::Slerp(const Quaternion& lhs, const Quaternion& rhs,
 	q.y = (lhs.y * ratioA + rhs.y * ratioB);
 	q.z = (lhs.z * ratioA + rhs.z * ratioB);
 
-    return q;
-
+    return q;*/
+    /* Falta corrigir nao consegui achar o esquema matematico correto na internet */
+    return Quaternion::identity;
 }
 
 const Quaternion Quaternion::identity = {1.0f, 0.0f, 0.0f, 0.0f};

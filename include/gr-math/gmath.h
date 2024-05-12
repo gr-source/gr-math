@@ -72,6 +72,8 @@ namespace Math {
 
     const Matrix4x4 lookAt(const Vector3& eye, const Vector3& center, const Vector3& upward);
 
+    /*********** Quaternion ***********/
+    const Quaternion lookRotation(const Vector3& forward, const Vector3& up);
 };
 
 

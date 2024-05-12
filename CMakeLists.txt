@@ -27,7 +27,7 @@ set(math_hdr
 add_library(gr-math SHARED ${math_src})
 
 target_include_directories(gr-math PUBLIC
-    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/gr-math>
     $<INSTALL_INTERFACE:include/gr-math>
 )
 

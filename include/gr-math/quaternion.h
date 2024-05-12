@@ -47,8 +47,6 @@ struct Quaternion {
 
     static const Quaternion identity;
 
-    static const Quaternion LookRotation(const Vector3& forward, const Vector3& upward);
-
     static const Quaternion Euler(vvalue angle, const Vector3& axis);
 
     static const Quaternion Euler(const Vector3& axis);
