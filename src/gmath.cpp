@@ -106,7 +106,7 @@ const Vector4 Math::normalize(const Vector4& rhs) {
 template <>
 const Quaternion Math::normalize(const Quaternion& rhs) {
     vvalue mag = magnitude(rhs);
-    if (mag > 0.000001f) {
+    if (mag > 0.0001f) {
         return {
             rhs.w / mag,
             rhs.x / mag,

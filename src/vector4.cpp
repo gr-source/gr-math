@@ -5,8 +5,16 @@ Vector4::Vector4(const Vector3& rhs, vvalue w) : x(rhs.x), y(rhs.y), z(rhs.z), w
 
 Vector4::Vector4(vvalue x, vvalue y, vvalue z, vvalue w) : x(x), y(y), z(z), w(w) {}
 
-Vector4 Vector4::operator*(const Vector4& rhs) {
+const Vector4 Vector4::operator*(const Vector4& rhs) const {
     return {x * rhs.x, y * rhs.y, z * rhs.z, w * rhs.w};
+}
+
+const Vector4 Vector4::operator-(const Vector4 &rhs) const {
+    return {x - rhs.x, y - rhs.y, z - rhs.z, w - rhs.w};
+}
+
+const Vector4 Vector4::operator/(const Vector4 &rhs) const {
+    return {x / rhs.x, y / rhs.y, z / rhs.z, w / rhs.w};
 }
 
 Vector4& Vector4::operator /=(vvalue rhs) {
@@ -15,6 +23,10 @@ Vector4& Vector4::operator /=(vvalue rhs) {
     z /= rhs;
     w /= rhs;
     return  *this;
+}
+
+const bool Vector4::operator>(const Vector4 &rhs) const {
+    return (x > rhs.x) && (y > rhs.y) && (z > rhs.z) && (w > rhs.w);
 }
 
 Vector4& Vector4::operator =(const Vector4& rhs) {

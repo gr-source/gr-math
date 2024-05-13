@@ -23,11 +23,14 @@ struct Vector4 {
 
     Vector4(vvalue x = 0.0f, vvalue y = 0.0f, vvalue z = 0.0f, vvalue w = 1.0f);
 
-    Vector4 operator*(const Vector4& rhs);
+    const Vector4 operator*(const Vector4& rhs) const;
+    const Vector4 operator-(const Vector4& rhs) const;
+    const Vector4 operator/(const Vector4& rhs) const;
 
     Vector4& operator=(const Vector4& rhs);
-
     Vector4& operator /=(vvalue rhs);
+
+    const bool operator>(const Vector4& rhs) const;
 
     friend std::istream& operator >>(std::istream& is, Vector4& rhs) {
         is >> rhs.x >> rhs.y >> rhs.z >> rhs.w;

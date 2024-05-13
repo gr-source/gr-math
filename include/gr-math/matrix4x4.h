@@ -52,7 +52,11 @@ struct Matrix4x4 {
     Matrix4x4 operator*(const Matrix4x4& rhs) const noexcept;
     Matrix4x4& operator*=(const Matrix4x4& rhs) noexcept;
 
-    Vector4 operator *(const Vector4& rhs) const noexcept;
+    const Vector4 operator *(const Vector4& rhs) const noexcept;
+    const Matrix4x4 operator-(const Matrix4x4& rhs) const noexcept;
+    const Matrix4x4 operator/(const Matrix4x4& rhs) const noexcept;
+    
+    const bool operator>(const Matrix4x4& rhs) const noexcept;
 
     bool operator==(const Matrix4x4& other) const noexcept;
 
