@@ -138,15 +138,6 @@ Matrix4x4 &Matrix4x4::operator*=(const Matrix4x4 &rhs) noexcept {
     return *this;
 }
 
-const Vector4 Matrix4x4::operator*(const Vector4& rhs) const noexcept {
-    return {
-        Math::dot(getRow(0), rhs),
-        Math::dot(getRow(1), rhs),
-        Math::dot(getRow(2), rhs),
-        Math::dot(getRow(3), rhs)
-    };
-}
-
 const Matrix4x4 Matrix4x4::operator-(const Matrix4x4 &rhs) const noexcept {
     return Matrix4x4(
         getColumn(0) - rhs.getColumn(0),
@@ -208,3 +199,20 @@ const Matrix4x4 Matrix4x4::identityMatrix = Matrix4x4{
     0.0f, 0.0f, 0.0f, 1.0f
 };
 
+inline const Vector4 operator*(const Matrix4x4 &lhs, const Vector4 &rhs) noexcept {
+    return {
+        Math::dot(lhs.getRow(0), rhs),
+        Math::dot(lhs.getRow(1), rhs),
+        Math::dot(lhs.getRow(2), rhs),
+        Math::dot(lhs.getRow(3), rhs)
+    };
+}
+
+inline const Vector4 operator*(const Vector4 &lhs, const Matrix4x4 &rhs) noexcept {
+    return {
+        Math::dot(lhs, rhs.getRow(0)),
+        Math::dot(lhs, rhs.getRow(1)),
+        Math::dot(lhs, rhs.getRow(2)),
+        Math::dot(lhs, rhs.getRow(3))
+    };
+}

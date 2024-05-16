@@ -216,11 +216,11 @@ const Matrix4x4 Math::perspective(vvalue fovy, vvalue aspect, vvalue far, vvalue
     vvalue tanHalfFovy = std::tan(fovy / 2.0f);
     
     Matrix4x4 result = Matrix4x4::zeroMatrix;
+
     result.m00 = 1.0f / (aspect * tanHalfFovy);
-
     result.m11 = 1.0f / tanHalfFovy;
-
     result.m22 = -((far + near) / (far - near));
+
     result.m23 = -1.0f;
 
     result.m32 = -(2.0f * (far * near) / (far - near));
@@ -228,16 +228,16 @@ const Matrix4x4 Math::perspective(vvalue fovy, vvalue aspect, vvalue far, vvalue
     return result;
 }
 
-const Matrix4x4 Math::orthographic(vvalue left, vvalue right, vvalue bottom, vvalue top, vvalue far, vvalue near) {
+const Matrix4x4 Math::orthographic(vvalue left, vvalue right, vvalue bottom, vvalue top, vvalue near, vvalue far) {
     Matrix4x4 result = Matrix4x4::identityMatrix;
 
-    result.m00 = 2.0f / (right - left);
-    result.m11 = 2.0f / (top - bottom);
-    result.m22 = -2.0f / (far - near);
+    result.m00 =  2.0f / (right - left);
+    result.m11 =  2.0f / (top   - bottom);
+    result.m22 = -2.0f / (far   - near);
 
-    result.m03 = -((right + left)   / (right - left));
-    result.m13 = -((top   + bottom) / (top   - bottom));
-    result.m23 = -((far   + near)   / (far   - near));
+    result.m30 = -((right + left)   / (right - left));
+    result.m31 = -((top   + bottom) / (top   - bottom));
+    result.m32 = -((far   + near)   / (far   - near));
 
     return result;
 }

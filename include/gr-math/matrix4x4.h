@@ -52,7 +52,6 @@ struct Matrix4x4 {
     Matrix4x4 operator*(const Matrix4x4& rhs) const noexcept;
     Matrix4x4& operator*=(const Matrix4x4& rhs) noexcept;
 
-    const Vector4 operator *(const Vector4& rhs) const noexcept;
     const Matrix4x4 operator-(const Matrix4x4& rhs) const noexcept;
     const Matrix4x4 operator/(const Matrix4x4& rhs) const noexcept;
     
@@ -69,4 +68,8 @@ struct Matrix4x4 {
     static const Matrix4x4 zeroMatrix;
     static const Matrix4x4 identityMatrix;
 };
+
+inline const Vector4 operator*(const Matrix4x4& lhs, const Vector4& rhs) noexcept;
+
+inline const Vector4 operator*(const Vector4& lhs, const Matrix4x4& rhs) noexcept;
 

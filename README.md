@@ -10,4 +10,7 @@ Estou disponibilizando esse sistema matemático que utilizo no meu motor, não �
 
 * Quaternion para angulo euler: https://en.wikipedia.org/wiki/Conversion_between_quaternions_and_Euler_angles#Source_code
 
+* Orografia projeção: https://en.wikipedia.org/wiki/Orthographic_projection
+
+
 

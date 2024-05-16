@@ -68,7 +68,7 @@ namespace Math {
     * @param far plano distante
     * @param near plano proximo
     */
-    const Matrix4x4 orthographic(vvalue left, vvalue right, vvalue bottom, vvalue top, vvalue far, vvalue near);
+    const Matrix4x4 orthographic(vvalue left, vvalue right, vvalue bottom, vvalue top, vvalue near, vvalue far);
 
     const Matrix4x4 lookAt(const Vector3& eye, const Vector3& center, const Vector3& upward);
 
