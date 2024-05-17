@@ -42,25 +42,6 @@ Quaternion::Quaternion(vvalue angle, const Vector3& axis) {
     z = std::sin(angle / 2.0f) * axis.z;
 }
 
-Vector3 Quaternion::operator*(const Vector3& rhs) const {
-    Matrix3x3 m(*this);
-
-    return {
-        Math::dot(m.getColumn(0), rhs),
-        Math::dot(m.getColumn(1), rhs),
-        Math::dot(m.getColumn(2), rhs)
-    };
-}
-
-Quaternion Quaternion::operator *(const Quaternion& rhs) const {
-    return {
-        (w * rhs.w) - (x * rhs.x) - (y * rhs.y) - (z * rhs.z),
-        (w * rhs.x) + (x * rhs.w) + (y * rhs.z) - (z * rhs.y),
-        (w * rhs.y) - (x * rhs.z) + (y * rhs.w) + (z * rhs.x),
-        (w * rhs.z) + (x * rhs.y) - (y * rhs.x) + (z * rhs.w)
-    };
-}
-
 Quaternion& Quaternion::operator *=(const Quaternion& rhs) {
     *this = *this * rhs;
     return *this;
@@ -75,7 +56,7 @@ Quaternion Quaternion::operator -(const Quaternion& lhs) const {
 }
 
 Quaternion Quaternion::operator -() const {
-    return {w, -x, -y, -z};
+    return {-w, -x, -y, -z};
 }
 
 Quaternion Quaternion::operator =(const Quaternion& other) {
@@ -143,41 +124,42 @@ const Quaternion Quaternion::Euler(const Vector3& axis) {
 }
 
 const Quaternion Quaternion::Slerp(const Quaternion& lhs, const Quaternion& rhs, vvalue t) {
-    /*Quaternion q;
-    vvalue cosHalfTheta = (lhs.w * rhs.w) + (lhs.x * rhs.x) + (lhs.y * rhs.y) + (lhs.z * rhs.z);
-
-	if (std::abs(cosHalfTheta) >= 1.0) {
-		q.w = lhs.w;
-		q.x = lhs.x;
-		q.y = lhs.y;
-		q.z = lhs.z;
-
-		return q;
+    float c;
+	Quaternion q1 = lhs;
+	c = Math::dot(q1, rhs);
+	if(c < 0.0f){
+		c = -c;
+		q1 = -q1;
 	}
-
-	double halfTheta = std::acos(cosHalfTheta);
-	double sinHalfTheta = std::sqrt(1.0f - cosHalfTheta * cosHalfTheta);
-
-	if (std::abs(sinHalfTheta) < 0.001) {
-		q.w = (lhs.w * 0.5f + rhs.w * 0.5f);
-		q.x = (lhs.x * 0.5f + rhs.x * 0.5f);
-		q.y = (lhs.y * 0.5f + rhs.y * 0.5f);
-		q.z = (lhs.z * 0.5f + rhs.z * 0.5f);
-
-		return q;
+	float phi = std::acos(c);
+	if(phi > 0.00001f){
+		float s = sinf(phi);
+		return q1 * (std::sin((1.0f - t) * phi) / s) + rhs * (std::sin(t * phi) / s);
 	}
-
-	vvalue ratioA = std::sin((1 - t) * halfTheta) / sinHalfTheta;
-	vvalue ratioB = std::sin(t * halfTheta) / sinHalfTheta;
-
-	q.w = (lhs.w * ratioA + rhs.w * ratioB);
-	q.x = (lhs.x * ratioA + rhs.x * ratioB);
-	q.y = (lhs.y * ratioA + rhs.y * ratioB);
-	q.z = (lhs.z * ratioA + rhs.z * ratioB);
-
-    return q;*/
-    /* Falta corrigir nao consegui achar o esquema matematico correto na internet */
-    return Quaternion::identity;
+	return q1;
 }
 
 const Quaternion Quaternion::identity = {1.0f, 0.0f, 0.0f, 0.0f};
+
+const Quaternion operator*(const Quaternion &lhs, const Quaternion &rhs) noexcept {
+    return {
+        (lhs.w * rhs.w) - (lhs.x * rhs.x) - (lhs.y * rhs.y) - (lhs.z * rhs.z),
+        (lhs.w * rhs.x) + (lhs.x * rhs.w) + (lhs.y * rhs.z) - (lhs.z * rhs.y),
+        (lhs.w * rhs.y) - (lhs.x * rhs.z) + (lhs.y * rhs.w) + (lhs.z * rhs.x),
+        (lhs.w * rhs.z) + (lhs.x * rhs.y) - (lhs.y * rhs.x) + (lhs.z * rhs.w)
+    };
+}
+
+const Vector3 operator*(const Quaternion &lhs, const Vector3 &rhs) noexcept {
+    Matrix3x3 m(lhs);
+
+    return {
+        Math::dot(m.getColumn(0), rhs),
+        Math::dot(m.getColumn(1), rhs),
+        Math::dot(m.getColumn(2), rhs)
+    };
+}
+
+const Quaternion operator*(const Quaternion &lhs, const float &rhs) noexcept {
+    return Quaternion(lhs.w * rhs, lhs.x * rhs, lhs.y * rhs, lhs.z * rhs);
+}
