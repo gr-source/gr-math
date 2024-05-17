@@ -203,16 +203,16 @@ const Matrix4x4 Matrix4x4::identityMatrix = Matrix4x4{
 
 const Matrix4x4 operator*(const Matrix4x4 &lhs, const Matrix4x4 &rhs) noexcept {
     return Matrix4x4(
-        rhs * lhs.getColumn(0),
-        rhs * lhs.getColumn(1),
-        rhs * lhs.getColumn(2),
-        rhs * lhs.getColumn(3)
+        lhs * rhs.getColumn(0), // (m00 * m00) + (m01 * m10) + (m02 * m20) + (m03 * m20)
+        lhs * rhs.getColumn(1),
+        lhs * rhs.getColumn(2),
+        lhs * rhs.getColumn(3)
     );
 }
 
 const Vector4 operator*(const Matrix4x4 &lhs, const Vector4 &rhs) noexcept {
     return {
-        Math::dot(lhs.getRow(0), rhs),
+        Math::dot(lhs.getRow(0), rhs), // (m00 * rhs) + (m01 * rhs) + (m02 * rhs) + (m03 * rhs)
         Math::dot(lhs.getRow(1), rhs),
         Math::dot(lhs.getRow(2), rhs),
         Math::dot(lhs.getRow(3), rhs)

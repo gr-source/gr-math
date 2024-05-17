@@ -12,5 +12,8 @@ Estou disponibilizando esse sistema matemático que utilizo no meu motor, não �
 
 * Orografia projeção: https://en.wikipedia.org/wiki/Orthographic_projection
 
+* Multiplicação de matrizes: https://en.wikipedia.org/wiki/Matrix_multiplication
+
+
 
 
