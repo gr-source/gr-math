@@ -16,4 +16,6 @@ Estou disponibilizando esse sistema matemático que utilizo no meu motor, não �
 
 * Importante sobre matrix 4x4: https://developer.unigine.com/en/docs/latest/code/fundamentals/matrix_transformations/index?rlang=cpp
 
+* Slerp: https://en.wikipedia.org/wiki/Slerp
+
 

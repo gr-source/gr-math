@@ -125,12 +125,12 @@ const Quaternion Quaternion::Euler(const Vector3& axis) {
 
 const Quaternion Quaternion::Slerp(const Quaternion& lhs, const Quaternion& rhs, vvalue t) {
 	Quaternion result = lhs;
-	float c = Math::dot(result, rhs);
+	float c = Math::dot(lhs, rhs);
 	if (c < 0.0f) {
 		c = -c;
 		result = -result;
 	}
-	float phi = std::acos(c);
+	float phi = std::cos(c);
 	if (phi > 0.00001f) {
 		float s = std::sin(phi);
 		return result * (std::sin((1.0f - t) * phi) / s) + rhs * (std::sin(t * phi) / s);
