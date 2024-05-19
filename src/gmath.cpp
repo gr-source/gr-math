@@ -106,7 +106,7 @@ const Vector4 Math::normalize(const Vector4& rhs) {
 template <>
 const Quaternion Math::normalize(const Quaternion& rhs) {
     vvalue mag = magnitude(rhs);
-    if (mag > 0.0001f) {
+    if (mag >  0.00001f) {
         return {
             rhs.w / mag,
             rhs.x / mag,
@@ -199,7 +199,25 @@ const Matrix4x4 Math::translate(const Vector3& vector) {
 }
 
 const Matrix4x4 Math::rotate(const Quaternion& q) {
-    return Matrix4x4(Matrix3x3(q));
+    //i = x    j = y   k = z   r = w
+
+    Matrix4x4 result = Matrix4x4::identityMatrix;
+
+    /* linha 0 */
+    result.m00 = 1.0f - 2.0f * ((q.y * q.y) + (q.z * q.z));
+    result.m10 = 2.0f * ((q.x * q.y) - (q.z * q.w));
+    result.m20 = 2.0f * ((q.x * q.z) + (q.y * q.w));
+
+    /* linha 1 */
+    result.m01 = 2.0f * ((q.x * q.y) + (q.z * q.w));
+    result.m11 = 1.0f - 2.0f * ((q.x * q.x) + (q.z * q.z));
+    result.m21 = 2.0f * ((q.y * q.z) - (q.x * q.w));
+
+    /* linha 2 */
+    result.m02 = 2.0f * ((q.x * q.z) - (q.y * q.w));
+    result.m12 = 2.0f * ((q.y * q.z) + (q.x * q.w));
+    result.m22 = 1.0f - 2.0f * ((q.x * q.x) + (q.y * q.y));
+    return result;
 }
 
 const Matrix4x4 Math::scale(const Vector3& vector) {

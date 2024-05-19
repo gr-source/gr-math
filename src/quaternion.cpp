@@ -124,19 +124,18 @@ const Quaternion Quaternion::Euler(const Vector3& axis) {
 }
 
 const Quaternion Quaternion::Slerp(const Quaternion& lhs, const Quaternion& rhs, vvalue t) {
-    float c;
-	Quaternion q1 = lhs;
-	c = Math::dot(q1, rhs);
-	if(c < 0.0f){
+	Quaternion result = lhs;
+	float c = Math::dot(result, rhs);
+	if (c < 0.0f) {
 		c = -c;
-		q1 = -q1;
+		result = -result;
 	}
 	float phi = std::acos(c);
-	if(phi > 0.00001f){
-		float s = sinf(phi);
-		return q1 * (std::sin((1.0f - t) * phi) / s) + rhs * (std::sin(t * phi) / s);
+	if (phi > 0.00001f) {
+		float s = std::sin(phi);
+		return result * (std::sin((1.0f - t) * phi) / s) + rhs * (std::sin(t * phi) / s);
 	}
-	return q1;
+	return result;
 }
 
 const Quaternion Quaternion::identity = {1.0f, 0.0f, 0.0f, 0.0f};
@@ -151,15 +150,12 @@ const Quaternion operator*(const Quaternion &lhs, const Quaternion &rhs) noexcep
 }
 
 const Vector3 operator*(const Quaternion &lhs, const Vector3 &rhs) noexcept {
-    Matrix3x3 m(lhs);
+    const auto m = Math::rotate(lhs);
+    const Vector4 result = m * Vector4(rhs, 1.0f);
 
-    return {
-        Math::dot(m.getColumn(0), rhs),
-        Math::dot(m.getColumn(1), rhs),
-        Math::dot(m.getColumn(2), rhs)
-    };
+    return {result.x, result.y, result.z};
 }
 
-const Quaternion operator*(const Quaternion &lhs, const float &rhs) noexcept {
+const Quaternion operator*(const Quaternion &lhs, vvalue rhs) noexcept {
     return Quaternion(lhs.w * rhs, lhs.x * rhs, lhs.y * rhs, lhs.z * rhs);
 }

@@ -202,7 +202,7 @@ const Matrix4x4 Matrix4x4::identityMatrix = Matrix4x4{
 };
 
 const Matrix4x4 operator*(const Matrix4x4 &lhs, const Matrix4x4 &rhs) noexcept {
-    return Matrix4x4(
+    return Matrix4x4( // t * r * s  -  p * v
         lhs.getColumn(0) * rhs, // (lhs.m00 * rhs.m00) + (lhs.m10 * rhs.m01) + (lhs.m20 * rhs.m02) + (lhs.m30 * rhs.m03)
         lhs.getColumn(1) * rhs,
         lhs.getColumn(2) * rhs,

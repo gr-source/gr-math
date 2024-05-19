@@ -27,10 +27,6 @@ struct Quaternion {
 
     Quaternion(vvalue angle, const Vector3& axis);
 
-    // Vector3 operator*(const Vector3& rhs) const;
-
-    // Quaternion operator *(const Quaternion& lhs) const;
-
     Quaternion& operator *=(const Quaternion& rhs);
 
     Quaternion operator +(const Quaternion& lhs) const;
@@ -68,7 +64,7 @@ const Quaternion operator*(const Quaternion& lhs, const Quaternion& rhs) noexcep
 
 const Vector3 operator*(const Quaternion& lhs, const Vector3& rhs) noexcept;
 
-const Quaternion operator*(const Quaternion& lhs, const float& rhs) noexcept;
+const Quaternion operator*(const Quaternion& lhs, vvalue rhs) noexcept;
 
 
 

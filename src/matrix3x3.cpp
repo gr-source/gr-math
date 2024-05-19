@@ -16,68 +16,6 @@ Matrix3x3::Matrix3x3(const Matrix4x4& rhs) :
     m10(rhs.m10), m11(rhs.m11), m12(rhs.m12),
     m20(rhs.m20), m21(rhs.m21), m22(rhs.m22) {}
 
-Matrix3x3::Matrix3x3(const Quaternion& q) {
-    //i = x    j = y   k = z   r = w
-
-    /* linha 0 */
-    m00 = 1.0f - 2.0f * ((q.y * q.y) + (q.z * q.z));
-    m10 = 2.0f * ((q.x * q.y) - (q.z * q.w));
-    m20 = 2.0f * ((q.x * q.z) + (q.y * q.w));
-
-    /* linha 1 */
-    m01 = 2.0f * ((q.x * q.y) + (q.z * q.w));
-    m11 = 1.0f - 2.0f * ((q.x * q.x) + (q.z * q.z));
-    m21 = 2.0f * ((q.y * q.z) - (q.x * q.w));
-    
-    /* linha 2 */
-    m02 = 2.0f * ((q.x * q.z) - (q.y * q.w));
-    m12 = 2.0f * ((q.y * q.z) + (q.x * q.w));
-    m22 = 1.0f - 2.0f * ((q.x * q.x) + (q.y * q.y));
-}
-
-const Matrix3x3 Matrix3x3::translate(const Matrix3x3& m, const Vector2& v) {
-    Matrix3x3 result = m;
-    result.m20 += v.x;
-    result.m21 += v.y;
-    return result;
-}
-
-const Matrix3x3 Matrix3x3::scale(const Matrix3x3& m, const Vector2& v) {
-    Matrix3x3 result = m;
-    result.m00 *= Math::dot(m.getRow(0), Vector3(v, 1.0f));
-    result.m11 *= Math::dot(m.getRow(1), Vector3(v, 1.0f));
-    return result;
-}
-
-const Matrix3x3 Matrix3x3::rotate(const Matrix3x3& m, const Quaternion& q) {
-    Matrix3x3 result = Matrix3x3::identityMatrix;
-    result.m00 = 1.0f - (2.0f * ((q.y * q.y) + (q.z * q.z)));
-    result.m10 = 2.0f * ((q.x * q.y) + (q.w * q.z));
-
-    result.m01 = 2.0f * ((q.x * q.y) - (q.w * q.z));
-    result.m11 = 1.0f - (2.0f * ((q.x * q.x) + (q.z * q.z)));
-
-    return m * result;
-}
-
-Matrix3x3 Matrix3x3::inverse() const {
-    Vector3 row0 = getColumn(0);
-    Vector3 row1 = getColumn(1);
-    Vector3 row2 = getColumn(2);
-
-    Vector3 tmp0 = Math::cross(row1, row2);
-    Vector3 tmp1 = Math::cross(row2, row0);
-    Vector3 tmp2 = Math::cross(row0, row1);
-
-    vvalue detinv = 1.0f / Math::dot(row2, tmp2);
-
-    return Matrix3x3(
-        tmp0.x * detinv, tmp1.x * detinv, tmp2.x * detinv,
-        tmp0.y * detinv, tmp1.y * detinv, tmp2.y * detinv,
-        tmp0.z * detinv, tmp1.z * detinv, tmp2.z * detinv
-    );
-}
-
 Matrix3x3 Matrix3x3::transpose() const {
     return Matrix3x3(getRow(0), getRow(1), getRow(2));
 }

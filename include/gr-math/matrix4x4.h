@@ -49,7 +49,6 @@ struct Matrix4x4 {
     
     Matrix4x4& operator=(const Matrix4x4& other) noexcept;
 
-    // Matrix4x4 operator*(const Matrix4x4& rhs) const noexcept;
     Matrix4x4& operator*=(const Matrix4x4& rhs) noexcept;
 
     const Matrix4x4 operator-(const Matrix4x4& rhs) const noexcept;

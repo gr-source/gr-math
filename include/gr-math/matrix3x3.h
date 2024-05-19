@@ -24,16 +24,7 @@ struct Matrix3x3 {
     Matrix3x3(const Vector3& col0, const Vector3& col1, const Vector3& col2);
 
     Matrix3x3(const Matrix4x4& rhs);
-    
-    Matrix3x3(const Quaternion& q);
-
-    static const Matrix3x3 translate(const Matrix3x3& m, const Vector2& v);
-
-    static const Matrix3x3 scale(const Matrix3x3& m, const Vector2& v);
-
-    static const Matrix3x3 rotate(const Matrix3x3& m, const Quaternion& q);
-
-    Matrix3x3 inverse() const;
+ 
     Matrix3x3 transpose() const;
 
     void print() const;
