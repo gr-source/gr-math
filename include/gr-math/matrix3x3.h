@@ -4,7 +4,7 @@
 
 /* === Matrix3x3===
 * ordem de multiplicação:
-* m = s * r * t
+* m = t * r * s
 */
 struct Matrix3x3 {
     union {
