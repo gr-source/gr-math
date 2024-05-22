@@ -73,7 +73,15 @@ namespace Math {
     const Matrix4x4 lookAt(const Vector3& eye, const Vector3& center, const Vector3& upward);
 
     /*********** Quaternion ***********/
+    const Quaternion Mat4ToQuat(const Matrix4x4& lhs);
+
     const Quaternion lookRotation(const Vector3& forward, const Vector3& up);
+
+    const Quaternion euler(const Vector3& axis, vvalue angle);
+
+    const Quaternion euler(const Vector3& axis);
+
+    const Quaternion slerp(const Quaternion& lhs, const Quaternion& rhs, vvalue t);
 };
 
 

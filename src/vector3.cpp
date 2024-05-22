@@ -112,6 +112,18 @@ const Vector3 Vector3::right = {1.0f, 0.0f, 0.0f};
 
 const Vector3 Vector3::up = {0.0f, 1.0f, 0.0f};
 
-const Vector3 Vector3::down = {0.0f, -1.0f, 0.0f};
+const Vector3 operator *(vvalue rhs, const Vector3& lhs) {
+    return Vector3(lhs.x * rhs, lhs.y * rhs, lhs.z * rhs);
+}
 
+const Vector3 operator *(const Vector3& rhs, vvalue lhs) {
+    return Vector3(rhs.x * lhs, rhs.y * lhs, rhs.z * lhs);
+}
 
+const Vector3 operator /(vvalue rhs, const Vector3& lhs) {
+    return Vector3(lhs.x / rhs, lhs.y / rhs, lhs.z / rhs);
+}
+
+const Vector3 operator /(const Vector3& rhs, vvalue lhs) {
+    return Vector3(rhs.x / lhs, rhs.y / lhs, rhs.z / lhs);
+}

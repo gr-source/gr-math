@@ -18,4 +18,6 @@ Estou disponibilizando esse sistema matemático que utilizo no meu motor, não �
 
 * Slerp: https://en.wikipedia.org/wiki/Slerp
 
+* Matrix para quaternion: https://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/
+
 

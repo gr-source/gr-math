@@ -27,28 +27,12 @@ struct Matrix3x3 {
  
     Matrix3x3 transpose() const;
 
-    void print() const;
-
-    vvalue get(int row, int col) const;
-
     Vector3 getColumn(int index) const;
-    void setColumn(const Vector3& col0, const Vector3& col1, const Vector3& col2);
 
     Vector3 getRow(int index) const;
-    void setRow(const Vector3& row0, const Vector3& row1, const Vector3& row2);
 
     Matrix3x3 operator *(const Matrix3x3& rhs) const;
     Vector3 operator *(const Vector3& rhs) const;
-    Matrix3x3 operator*(vvalue lhs) const;
-    Matrix3x3& operator*=(vvalue lhs);
-
-    Matrix3x3& operator -=(const Matrix3x3& rhs);
-    Matrix3x3 operator -(const Matrix3x3& rhs) const;
-
-    Matrix3x3& operator +=(const Matrix3x3& rhs);
-
-    vvalue& operator()(int row, int col);
-    const vvalue& operator()(int row, int col) const;
 
     static const Matrix3x3 identityMatrix;
     static const Matrix3x3 zeroMatrix;

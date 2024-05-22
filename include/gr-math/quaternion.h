@@ -9,7 +9,7 @@
 * (Z) O componente z do quatérnion, que é o coeficiente do vetor de unidade k no quatérnion.
 */
 struct Quaternion {
-    union { //JPL (w,x,y,z) - Hamilton (x, y, z, w)
+    union {
         struct {
             vvalue w;
             vvalue x;
@@ -22,10 +22,6 @@ struct Quaternion {
     Quaternion(vvalue value = 0.0f);
     
     Quaternion(vvalue w, vvalue x, vvalue y, vvalue z);
-
-    Quaternion(const Matrix3x3& rhs);
-
-    Quaternion(vvalue angle, const Vector3& axis);
 
     Quaternion& operator *=(const Quaternion& rhs);
 
@@ -42,12 +38,6 @@ struct Quaternion {
     Vector3 eulerAngles() const;
 
     static const Quaternion identity;
-
-    static const Quaternion Euler(vvalue angle, const Vector3& axis);
-
-    static const Quaternion Euler(const Vector3& axis);
-
-    static const Quaternion Slerp(const Quaternion& lhs, const Quaternion& rhs, vvalue f);
 
     friend std::istream& operator >>(std::istream& is, Quaternion& rhs) {
         is >> rhs.w >> rhs.x >> rhs.y >> rhs.z;

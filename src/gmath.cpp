@@ -286,6 +286,38 @@ const Matrix4x4 Math::lookAt(const Vector3& eye, const Vector3& center, const Ve
 }
 
 /*********** Quaternion ***********/
+const Quaternion Math::Mat4ToQuat(const Matrix4x4 &lhs) {
+    vvalue trace = lhs.m00 + lhs.m11 + lhs.m22;
+
+    Quaternion result;
+    if (trace > 0) {
+        vvalue s = std::sqrt(trace + 1.0f) * 2.0f;
+        result.w = 0.25f * s;
+        result.x = (lhs.m21 - lhs.m12) / s;
+        result.y = (lhs.m02 - lhs.m20) / s;
+        result.z = (lhs.m10 - lhs.m01) / s;
+    } else if ((lhs.m00 > lhs.m11) && (lhs.m00 > lhs.m22)) {
+        vvalue s = std::sqrt(1.0f + lhs.m00 - lhs.m11 - lhs.m22) * 2.0f;
+        result.w = (lhs.m21 - lhs.m12) / s;
+        result.x = 0.25f * s;
+        result.y = (lhs.m01 + lhs.m10) / s;
+        result.z = (lhs.m02 + lhs.m20) / s;
+    } else if (lhs.m11 > lhs.m22) {
+        vvalue s = std::sqrt(1.0f + lhs.m11 - lhs.m00 - lhs.m22) * 2.0f;
+        result.w = (lhs.m02 - lhs.m20) / s;
+        result.x = (lhs.m01 + lhs.m10) / s;
+        result.y = 0.25f * s;
+        result.z = (lhs.m12 + lhs.m21) / s;
+    } else {
+        vvalue s = std::sqrt(1.0f + lhs.m22 - lhs.m00 - lhs.m11) * 2.0f;
+        result.w = (lhs.m10 - lhs.m01) / s;
+        result.x = (lhs.m02 + lhs.m20) / s;
+        result.y = (lhs.m12 + lhs.m21) / s;
+        result.z = 0.25f * s;
+    }
+    return result;
+}
+
 const Quaternion Math::lookRotation(const Vector3& forward, const Vector3& up) {
     const Vector3 right = Math::normalize(Math::cross(forward, up));
     const Vector3 upward = Math::normalize(Math::cross(right, forward));
@@ -333,3 +365,43 @@ const Quaternion Math::lookRotation(const Vector3& forward, const Vector3& up) {
     return result;
 }
 
+const Quaternion Math::euler(const Vector3& axis, vvalue angle) {
+    Quaternion result;
+    result.w = std::cos(angle / 2.0f);
+    result.x = std::sin(angle / 2.0f) * axis.x;
+    result.y = std::sin(angle / 2.0f) * axis.y;
+    result.z = std::sin(angle / 2.0f) * axis.z;
+    return result;
+}
+
+const Quaternion Math::euler(const Vector3& axis) {
+    Quaternion result;
+    vvalue cr = std::cos(axis.x * 0.5f);
+    vvalue sr = std::sin(axis.x * 0.5f);
+    vvalue cp = std::cos(axis.y * 0.5f);
+    vvalue sp = std::sin(axis.y * 0.5f);
+    vvalue cy = std::cos(axis.z * 0.5f);
+    vvalue sy = std::sin(axis.z * 0.5f);
+
+    result.w = cr * cp * cy + sr * sp * sy;
+    result.x = sr * cp * cy - cr * sp * sy;
+    result.y = cr * sp * cy + sr * cp * sy;
+    result.z = cr * cp * sy - sr * sp * cy;
+
+    return result;
+}
+
+const Quaternion Math::slerp(const Quaternion& lhs, const Quaternion& rhs, vvalue t) {
+	Quaternion result = lhs;
+	float c = Math::dot(lhs, rhs);
+	if (c < 0.0f) {
+		c = -c;
+		result = -result;
+	}
+	float phi = std::cos(c);
+	if (phi > 0.00001f) {
+		float s = std::sin(phi);
+		return result * (std::sin((1.0f - t) * phi) / s) + rhs * (std::sin(t * phi) / s);
+	}
+	return result;
+}

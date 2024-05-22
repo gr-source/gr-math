@@ -67,24 +67,14 @@ struct Vector3 {
     static const Vector3 right;
 
     static const Vector3 up;
-
-    static const Vector3 down;
 };
 
-inline const Vector3 operator *(vvalue rhs, const Vector3& lhs) {
-    return Vector3(lhs.x * rhs, lhs.y * rhs, lhs.z * rhs);
-}
+const Vector3 operator *(vvalue rhs, const Vector3& lhs);
 
-inline const Vector3 operator *(const Vector3& rhs, vvalue lhs) {
-    return Vector3(rhs.x * lhs, rhs.y * lhs, rhs.z * lhs);
-}
+const Vector3 operator *(const Vector3& rhs, vvalue lhs);
 
-inline const Vector3 operator /(vvalue rhs, const Vector3& lhs) {
-    return Vector3(lhs.x / rhs, lhs.y / rhs, lhs.z / rhs);
-}
+const Vector3 operator /(vvalue rhs, const Vector3& lhs);
 
-inline const Vector3 operator /(const Vector3& rhs, vvalue lhs) {
-    return Vector3(rhs.x / lhs, rhs.y / lhs, rhs.z / lhs);
-}
+const Vector3 operator /(const Vector3& rhs, vvalue lhs);
 
 

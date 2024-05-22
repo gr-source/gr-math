@@ -38,7 +38,7 @@ void Matrix4x4::decompose(Vector3& scale, Quaternion& rotation, Vector3& positio
         Vector3(getRow(2)) / scale.z
     );
 
-    rotation = Math::normalize(Quaternion(matrix));
+    rotation = Math::normalize(Math::Mat4ToQuat(matrix));
 }
 
 Matrix4x4 Matrix4x4::transpose() const {
@@ -48,29 +48,6 @@ Matrix4x4 Matrix4x4::transpose() const {
         getRow(2),
         getRow(3)
     );
-}
-
-Matrix4x4 Matrix4x4::inverse() const {
-    /*Vector4 row0 = getRow(0);
-    Vector4 row1 = getRow(1);
-    Vector4 row2 = getRow(2);
-
-    Vector4 tmp0 = Vector4::Cross(row1, row2);
-    Vector4 tmp1 = Vector4::Cross(row2, row0);
-    Vector4 tmp2 = Vector4::Cross(row0, row1);
-
-    vvalue detinv = 1.0f / Vector4::Dot(row2, tmp2);
-
-    return Matrix3x3(
-        tmp0.x * detinv, tmp1.x * detinv, tmp2.x * detinv,
-        tmp0.y * detinv, tmp1.y * detinv, tmp2.y * detinv,
-        tmp0.z * detinv, tmp1.z * detinv, tmp2.z * detinv
-    );*/
-    return Matrix4x4::identityMatrix;
-}
-
-vvalue Matrix4x4::get(int row, int col) const {
-    return data[row * 4 + col];
 }
 
 Vector4 Matrix4x4::getColumn(int index) const {
@@ -103,15 +80,6 @@ Vector4 Matrix4x4::getRow(int index) const {
     }
 }
 
-void Matrix4x4::print() const {
-    for (int i=0;i<4;i++) {
-        for (int j=0;j<4;j++) {
-            std::cout << get(i, j) << " ";
-        }
-        std::cout << std::endl;
-    }
-}
-
 /* ========================================= */
 
 Matrix4x4& Matrix4x4::operator=(const Matrix4x4& other) noexcept {
@@ -123,17 +91,6 @@ Matrix4x4& Matrix4x4::operator=(const Matrix4x4& other) noexcept {
     }
     return *this;
 }
-
-/*
-Matrix4x4 Matrix4x4::operator*(const Matrix4x4& rhs) const noexcept {
-    return Matrix4x4(
-        rhs * getColumn(0),
-        rhs * getColumn(1),
-        rhs * getColumn(2),
-        rhs * getColumn(3)
-    );
-}
-*/
 
 Matrix4x4 &Matrix4x4::operator*=(const Matrix4x4 &rhs) noexcept {
     *this = *this * rhs;
@@ -168,14 +125,6 @@ const vvalue& Matrix4x4::operator[](int index) const {
 
 vvalue& Matrix4x4::operator[](int index) {
     return data[index];
-}
-
-vvalue& Matrix4x4::operator()(int row, int col) {
-    return data[row * 4 + col];
-}
-
-const vvalue& Matrix4x4::operator()(int row, int col) const {
-    return data[row * 4 + col];
 }
 
 bool Matrix4x4::operator==(const Matrix4x4& other) const noexcept {

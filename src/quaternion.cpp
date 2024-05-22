@@ -5,43 +5,6 @@ Quaternion::Quaternion(vvalue value) : w(value), x(value), y(value), z(value) {}
     
 Quaternion::Quaternion(vvalue w, vvalue x, vvalue y, vvalue z) : w(w), x(x), y(y), z(z) {}
 
-Quaternion::Quaternion(const Matrix3x3& rhs) {
-    vvalue trace = rhs.m00 + rhs.m11 + rhs.m22;
-
-    if (trace > 0) {
-        vvalue s = std::sqrt(trace + 1.0f) * 2.0f;
-        w = 0.25f * s;
-        x = (rhs.m21 - rhs.m12) / s;
-        y = (rhs.m02 - rhs.m20) / s;
-        z = (rhs.m10 - rhs.m01) / s;
-    } else if ((rhs.m00 > rhs.m11) && (rhs.m00 > rhs.m22)) {
-        vvalue s = std::sqrt(1.0f + rhs.m00 - rhs.m11 - rhs.m22) * 2.0f;
-        w = (rhs.m21 - rhs.m12) / s;
-        x = 0.25f * s;
-        y = (rhs.m01 + rhs.m10) / s;
-        z = (rhs.m02 + rhs.m20) / s;
-    } else if (rhs.m11 > rhs.m22) {
-        vvalue s = std::sqrt(1.0f + rhs.m11 - rhs.m00 - rhs.m22) * 2.0f;
-        w = (rhs.m02 - rhs.m20) / s;
-        x = (rhs.m01 + rhs.m10) / s;
-        y = 0.25f * s;
-        z = (rhs.m12 + rhs.m21) / s;
-    } else {
-        vvalue s = std::sqrt(1.0f + rhs.m22 - rhs.m00 - rhs.m11) * 2.0f;
-        w = (rhs.m10 - rhs.m01) / s;
-        x = (rhs.m02 + rhs.m20) / s;
-        y = (rhs.m12 + rhs.m21) / s;
-        z = 0.25f * s;
-    }
-}
-
-Quaternion::Quaternion(vvalue angle, const Vector3& axis) {
-    w = std::cos(angle / 2.0f);
-    x = std::sin(angle / 2.0f) * axis.x;
-    y = std::sin(angle / 2.0f) * axis.y;
-    z = std::sin(angle / 2.0f) * axis.z;
-}
-
 Quaternion& Quaternion::operator *=(const Quaternion& rhs) {
     *this = *this * rhs;
     return *this;
@@ -95,47 +58,6 @@ Vector3 Quaternion::eulerAngles() const {
     angles.z = Math::degree(std::atan2(siny_cosp, cosy_cosp));
 
     return angles;
-}
-
-const Quaternion Quaternion::Euler(vvalue angle, const Vector3& axis) {
-    Quaternion result;
-    result.w = std::cos(angle / 2.0f);
-    result.x = std::sin(angle / 2.0f) * axis.x;
-    result.y = std::sin(angle / 2.0f) * axis.y;
-    result.z = std::sin(angle / 2.0f) * axis.z;
-    return result;
-}
-
-const Quaternion Quaternion::Euler(const Vector3& axis) {
-    Quaternion result;
-    vvalue cr = std::cos(axis.x * 0.5f);
-    vvalue sr = std::sin(axis.x * 0.5f);
-    vvalue cp = std::cos(axis.y * 0.5f);
-    vvalue sp = std::sin(axis.y * 0.5f);
-    vvalue cy = std::cos(axis.z * 0.5f);
-    vvalue sy = std::sin(axis.z * 0.5f);
-
-    result.w = cr * cp * cy + sr * sp * sy;
-    result.x = sr * cp * cy - cr * sp * sy;
-    result.y = cr * sp * cy + sr * cp * sy;
-    result.z = cr * cp * sy - sr * sp * cy;
-
-    return result;
-}
-
-const Quaternion Quaternion::Slerp(const Quaternion& lhs, const Quaternion& rhs, vvalue t) {
-	Quaternion result = lhs;
-	float c = Math::dot(lhs, rhs);
-	if (c < 0.0f) {
-		c = -c;
-		result = -result;
-	}
-	float phi = std::cos(c);
-	if (phi > 0.00001f) {
-		float s = std::sin(phi);
-		return result * (std::sin((1.0f - t) * phi) / s) + rhs * (std::sin(t * phi) / s);
-	}
-	return result;
 }
 
 const Quaternion Quaternion::identity = {1.0f, 0.0f, 0.0f, 0.0f};

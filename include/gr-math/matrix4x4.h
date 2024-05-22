@@ -35,15 +35,9 @@ struct Matrix4x4 {
 
     Matrix4x4 transpose() const;
 
-    Matrix4x4 inverse() const;
-
-    vvalue get(int row, int col) const;
-
     Vector4 getColumn(int index) const;
 
     Vector4 getRow(int index) const;
-
-    void print() const;
 
     /* ========================================= */
     
@@ -60,9 +54,6 @@ struct Matrix4x4 {
 
     const vvalue& operator[](int index) const;
     vvalue& operator[](int index);
-
-    vvalue& operator()(int row, int col);
-    const vvalue& operator()(int row, int col) const;
 
     static const Matrix4x4 zeroMatrix;
     static const Matrix4x4 identityMatrix;
