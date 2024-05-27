@@ -15,28 +15,15 @@ struct Vector2 {
 
     Vector2(const Vector2& other) : x(other.x), y(other.y) {}
 
-    Vector2 operator /(const Vector2& other) const;
-
-    Vector2 operator /(vvalue other) const;
-
-    Vector2 operator -(const Vector2& other) const;
-
-    Vector2 operator -(vvalue other) const;
-
-    Vector2 operator+(const Vector2& lhs);
-    Vector2& operator +=(vvalue rhs);
-
-    Vector2 operator *(const Vector2& other) const;
-
-    Vector2 operator *(vvalue other) const;
-
     Vector2& operator =(const Vector2& other);
+
+    Vector2& operator+=(const Vector2& lhs);
+
+    bool operator !=(const Vector2& other) const;
 
     static const Vector2 zero;
 
     static const Vector2 one;
-
-    bool operator !=(const Vector2& other) const;
 
     friend std::istream& operator >>(std::istream& is, Vector2& other) {
         is >> other.x >> other.y;
@@ -49,5 +36,20 @@ struct Vector2 {
     }
 };
 
+const Vector2 operator-(const Vector2& lhs, const Vector2& rhs);
+
+const Vector2 operator+(const Vector2& lhs, const Vector2& rhs);
+
+const Vector2 operator*(const Vector2& lhs, const Vector2& rhs);
+
+const Vector2 operator*(const Vector2& lhs, vvalue rhs);
+
+const Vector2 operator*(vvalue lhs, const Vector2& rhs);
+
+const Vector2 operator/(const Vector2& lhs, const Vector2& rhs);
+
+const Vector2 operator/(const Vector2& lhs, vvalue rhs);
+
+const Vector2 operator/(vvalue lhs, const Vector2& rhs);
 
 
