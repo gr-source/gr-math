@@ -72,7 +72,7 @@ const Quaternion operator*(const Quaternion &lhs, const Quaternion &rhs) noexcep
 }
 
 const Vector3 operator*(const Quaternion &lhs, const Vector3 &rhs) noexcept {
-    const auto m = Math::rotate(lhs);
+    const auto m = Math::rotate<Matrix4x4>(lhs);
     const Vector4 result = m * Vector4(rhs, 1.0f);
 
     return {result.x, result.y, result.z};

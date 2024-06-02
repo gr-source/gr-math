@@ -11,9 +11,11 @@ struct Vector2 {
         vvalue data[2];
     };
 
-    Vector2(vvalue x = 0.0f, vvalue y = 0.0f) : x(x), y(y) {}
+    Vector2(vvalue x = 0.0f, vvalue y = 0.0f);
 
-    Vector2(const Vector2& other) : x(other.x), y(other.y) {}
+    Vector2(const Vector2& other);
+
+    Vector2(const Vector3& other);
 
     Vector2& operator =(const Vector2& other);
 
@@ -51,5 +53,3 @@ const Vector2 operator/(const Vector2& lhs, const Vector2& rhs);
 const Vector2 operator/(const Vector2& lhs, vvalue rhs);
 
 const Vector2 operator/(vvalue lhs, const Vector2& rhs);
-
-

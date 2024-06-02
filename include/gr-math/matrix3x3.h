@@ -31,10 +31,13 @@ struct Matrix3x3 {
 
     Vector3 getRow(int index) const;
 
-    Matrix3x3 operator *(const Matrix3x3& rhs) const;
-    Vector3 operator *(const Vector3& rhs) const;
-
     static const Matrix3x3 identityMatrix;
     static const Matrix3x3 zeroMatrix;
 };
+
+const Matrix3x3 operator*(const Matrix3x3& lhs, const Matrix3x3& rhs) noexcept;
+
+const Vector3 operator*(const Matrix3x3& lhs, const Vector3& rhs) noexcept;
+
+const Vector3 operator*(const Vector3& lhs, const Matrix3x3& rhs) noexcept;
 

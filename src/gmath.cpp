@@ -186,8 +186,9 @@ const Vector3 Math::abs(const Vector3& rhs) {
     return {std::abs(rhs.x), std::abs(rhs.y), std::abs(rhs.z)};
 }
 
-/* ========== Matrix 4x4 ========== */
+/* ========== Matrix ========== */
 
+template <>
 const Matrix4x4 Math::translate(const Vector3& vector) {
     Matrix4x4 result = Matrix4x4::identityMatrix;
 
@@ -198,6 +199,17 @@ const Matrix4x4 Math::translate(const Vector3& vector) {
     return result;
 }
 
+template <>
+const Matrix3x3 Math::translate(const Vector2& vector) {
+    Matrix3x3 result = Matrix3x3::identityMatrix;
+
+    result.m20 = vector.x;
+    result.m21 = vector.y;
+
+    return result;
+}
+
+template <>
 const Matrix4x4 Math::rotate(const Quaternion& q) {
     //i = x    j = y   k = z   r = w
 
@@ -220,12 +232,37 @@ const Matrix4x4 Math::rotate(const Quaternion& q) {
     return result;
 }
 
+template <>
+const Matrix3x3 Math::rotate(const Quaternion& q) {
+    Matrix3x3 result = Matrix3x3::identityMatrix;
+    
+    /* linha 0 */
+    result.m00 = 1.0f - 2.0f * ((q.y * q.y) + (q.z * q.z));
+    result.m10 = 2.0f * ((q.x * q.y) - (q.z * q.w));
+    
+    /* linha 1 */
+    result.m01 = 2.0f * ((q.x * q.y) + (q.z * q.w));
+    result.m11 = 1.0f - 2.0f * ((q.x * q.x) + (q.z * q.z));
+    return result;
+}
+
+template <>
 const Matrix4x4 Math::scale(const Vector3& vector) {
     Matrix4x4 result = Matrix4x4::identityMatrix;
 
     result.m00 = vector.x;
     result.m11 = vector.y;
     result.m22 = vector.z;
+
+    return result;
+}
+
+template <>
+const Matrix3x3 Math::scale(const Vector2& vector) {
+    Matrix3x3 result = Matrix3x3::identityMatrix;
+
+    result.m00 = vector.x;
+    result.m11 = vector.y;
 
     return result;
 }

@@ -52,11 +52,14 @@ namespace Math {
     template <typename T>
     const T abs(const T& rhs);
 
-    const Matrix4x4 translate(const Vector3& vector);
+    template <typename T, typename V>
+    const T translate(const V& vector);
 
-    const Matrix4x4 rotate(const Quaternion& q);
+    template <typename T>
+    const T rotate(const Quaternion& q);
 
-    const Matrix4x4 scale(const Vector3& vector);
+    template <typename T, typename V>
+    const T scale(const V& vector);
 
     /* perspectiva calcula a view com profundidade de um plano de fundo, ideal pra render 3d
     * @param far plano distante

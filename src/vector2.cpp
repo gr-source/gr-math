@@ -1,6 +1,14 @@
 #include "vector2.h"
 
-Vector2& Vector2::operator =(const Vector2& other) {
+#include "gmath.h"
+
+Vector2::Vector2(vvalue x, vvalue y) : x(x), y(y) {}
+
+Vector2::Vector2(const Vector2 &other) : x(other.x), y(other.y) {}
+
+Vector2::Vector2(const Vector3 &other) : x(other.x), y(other.y) {}
+
+Vector2 &Vector2::operator=(const Vector2 &other) {
     if (this != &other) {
         x = other.x;
         y = other.y;
