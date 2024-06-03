@@ -6,10 +6,10 @@ Matrix3x3::Matrix3x3(vvalue m00, vvalue m01, vvalue m02, vvalue m10, vvalue m11,
     m10(m10), m11(m11), m12(m12),
     m20(m20), m21(m21), m22(m22) {}
 
-Matrix3x3::Matrix3x3(const Vector3& col0, const Vector3& col1, const Vector3& col2)  :
-    m00(col0.x), m01(col1.x), m02(col2.x),
-    m10(col0.y), m11(col1.y), m12(col2.y),
-    m20(col0.z), m21(col1.z), m22(col2.z) {}
+Matrix3x3::Matrix3x3(const Vector3& row0, const Vector3& row1, const Vector3& row2)  :
+    m00(row0.x), m01(row0.y), m02(row0.z),
+    m10(row1.x), m11(row1.y), m12(row1.z),
+    m20(row2.x), m21(row2.y), m22(row2.z) {}
 
 Matrix3x3::Matrix3x3(const Matrix4x4& rhs) :
     m00(rhs.m00), m01(rhs.m01), m02(rhs.m02),
@@ -46,7 +46,6 @@ Vector3 Matrix3x3::getRow(int index) const {
     }
 }
 
-
 const Matrix3x3 Matrix3x3::identityMatrix = {
     1.0f, 0.0f, 0.0f,
     0.0f, 1.0f, 0.0f,
@@ -60,10 +59,10 @@ const Matrix3x3 Matrix3x3::zeroMatrix = {
 };
 
 const Matrix3x3 operator*(const Matrix3x3 &lhs, const Matrix3x3 &rhs) noexcept {
-    return Matrix3x3( // t * r * s  -  p * v
-        lhs.getColumn(0) * rhs, // (lhs.m00 * rhs.m00) + (lhs.m10 * rhs.m01) + (lhs.m20 * rhs.m02) + (lhs.m30 * rhs.m03)
-        lhs.getColumn(1) * rhs,
-        lhs.getColumn(2) * rhs
+    return Matrix3x3( // s * r * t
+        lhs.getRow(0) * rhs, // (lhs.m00 * rhs.m00) + (lhs.m01 * rhs.m10) + (lhs.m02 * rhs.m20) + (lhs.m03 * rhs.m30)
+        lhs.getRow(1) * rhs,
+        lhs.getRow(2) * rhs
     );
 }
 
@@ -77,9 +76,9 @@ const Vector3 operator*(const Matrix3x3 &lhs, const Vector3 &rhs) noexcept {
 
 const Vector3 operator*(const Vector3 &lhs, const Matrix3x3 &rhs) noexcept {
     return {
-        Math::dot(lhs, rhs.getRow(0)), // (lhs.x * rhs.m00) + (lhs.y * rhs.m01) + (lhs.z * rhs.m02) + (lhs.w * rhs.m03)
-        Math::dot(lhs, rhs.getRow(1)),
-        Math::dot(lhs, rhs.getRow(2))
+        Math::dot(lhs, rhs.getColumn(0)), // (lhs.x * rhs.m00) + (lhs.y * rhs.m01) + (lhs.z * rhs.m02) + (lhs.w * rhs.m03)
+        Math::dot(lhs, rhs.getColumn(1)),
+        Math::dot(lhs, rhs.getColumn(2))
     };
 }
 

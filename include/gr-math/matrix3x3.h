@@ -21,7 +21,7 @@ struct Matrix3x3 {
         vvalue m10 = 0.0f, vvalue m11 = 1.0f, vvalue m12 = 0.0f,
         vvalue m20 = 0.0f, vvalue m21 = 0.0f, vvalue m22 = 1.0f);
 
-    Matrix3x3(const Vector3& col0, const Vector3& col1, const Vector3& col2);
+    Matrix3x3(const Vector3& row0, const Vector3& row1, const Vector3& row2);
 
     Matrix3x3(const Matrix4x4& rhs);
  
