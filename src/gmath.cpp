@@ -413,10 +413,16 @@ const Quaternion Math::euler(const Vector3& axis, vvalue angle) {
 
 const Quaternion Math::euler(const Vector3& axis) {
     Quaternion result;
+
+    // Roll
     vvalue cr = std::cos(axis.x * 0.5f);
     vvalue sr = std::sin(axis.x * 0.5f);
+
+    // Pitch
     vvalue cp = std::cos(axis.y * 0.5f);
     vvalue sp = std::sin(axis.y * 0.5f);
+
+    // Yaw
     vvalue cy = std::cos(axis.z * 0.5f);
     vvalue sy = std::sin(axis.z * 0.5f);
 
