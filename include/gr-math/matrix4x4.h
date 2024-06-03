@@ -20,12 +20,7 @@ struct Matrix4x4 {
         vvalue m30 = 0.0f, vvalue m31 = 0.0f, vvalue m32 = 0.0f, vvalue m33 = 1.0f
     );
 
-    Matrix4x4(
-        const Vector4& col0,
-        const Vector4& col1,
-        const Vector4& col2,
-        const Vector4& col3
-    );
+    Matrix4x4(const Vector4& row0, const Vector4& row1, const Vector4& row2, const Vector4& row3);
 
     Matrix4x4(const Matrix3x3& rhs);
     

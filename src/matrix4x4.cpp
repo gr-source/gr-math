@@ -9,11 +9,11 @@ Matrix4x4::Matrix4x4(vvalue m00, vvalue m01, vvalue m02, vvalue m03, vvalue m10,
         m20(m20), m21(m21), m22(m22), m23(m23),
         m30(m30), m31(m31), m32(m32), m33(m33) {}
 
-Matrix4x4::Matrix4x4(const Vector4& col0, const Vector4& col1, const Vector4& col2, const Vector4& col3) : 
-    m00(col0.x), m01(col1.x), m02(col2.x), m03(col3.x),
-    m10(col0.y), m11(col1.y), m12(col2.y), m13(col3.y),
-    m20(col0.z), m21(col1.z), m22(col2.z), m23(col3.z),
-    m30(col0.w), m31(col1.w), m32(col2.w), m33(col3.w) {}
+Matrix4x4::Matrix4x4(const Vector4& row0, const Vector4& row1, const Vector4& row2, const Vector4& row3) : 
+    m00(row0.x), m01(row0.y), m02(row0.z), m03(row0.w),
+    m10(row1.x), m11(row1.y), m12(row1.z), m13(row1.w),
+    m20(row2.x), m21(row2.y), m22(row2.z), m23(row2.w),
+    m30(row3.x), m31(row3.y), m32(row3.z), m33(row3.w) {}
 
 Matrix4x4::Matrix4x4(const Matrix3x3& rhs) :
     m00(rhs.m00), m01(rhs.m01), m02(rhs.m02), m03(0.0f),
@@ -151,11 +151,11 @@ const Matrix4x4 Matrix4x4::identityMatrix = Matrix4x4{
 };
 
 const Matrix4x4 operator*(const Matrix4x4 &lhs, const Matrix4x4 &rhs) noexcept {
-    return Matrix4x4( // t * r * s  -  p * v
-        lhs.getColumn(0) * rhs, // (lhs.m00 * rhs.m00) + (lhs.m10 * rhs.m01) + (lhs.m20 * rhs.m02) + (lhs.m30 * rhs.m03)
-        lhs.getColumn(1) * rhs,
-        lhs.getColumn(2) * rhs,
-        lhs.getColumn(3) * rhs
+    return Matrix4x4( // s * r * t  -  v * p
+        lhs.getRow(0) * rhs, // (lhs.m00 * rhs.m00) + (lhs.m01 * rhs.m10) + (lhs.m02 * rhs.m20) + (lhs.m03 * rhs.m30)
+        lhs.getRow(1) * rhs,
+        lhs.getRow(2) * rhs,
+        lhs.getRow(3) * rhs
     );
 }
 
@@ -170,9 +170,9 @@ const Vector4 operator*(const Matrix4x4 &lhs, const Vector4 &rhs) noexcept {
 
 const Vector4 operator*(const Vector4 &lhs, const Matrix4x4 &rhs) noexcept {
     return {
-        Math::dot(lhs, rhs.getRow(0)), // (lhs.x * rhs.m00) + (lhs.y * rhs.m01) + (lhs.z * rhs.m02) + (lhs.w * rhs.m03)
-        Math::dot(lhs, rhs.getRow(1)),
-        Math::dot(lhs, rhs.getRow(2)),
-        Math::dot(lhs, rhs.getRow(3))
+        Math::dot(lhs, rhs.getColumn(0)), // (lhs.x * rhs.m00) + (lhs.y * rhs.m10) + (lhs.z * rhs.m20) + (lhs.w * rhs.m30)
+        Math::dot(lhs, rhs.getColumn(1)),
+        Math::dot(lhs, rhs.getColumn(2)),
+        Math::dot(lhs, rhs.getColumn(3))
     };
 }

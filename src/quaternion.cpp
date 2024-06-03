@@ -43,6 +43,7 @@ Quaternion& Quaternion::operator +=(const Quaternion& lhs) {
 Vector3 Quaternion::eulerAngles() const {
     Vector3 angles;
 
+    // row (x-axis rotation)
     float sinr_cosp = 2.0f * ((w * x) + (y * z));
     float cosr_cosp = 1.0f - 2.0f * ((x * x) + (y * y));
     angles.x = Math::degree(std::atan2(sinr_cosp, cosr_cosp));
@@ -50,7 +51,7 @@ Vector3 Quaternion::eulerAngles() const {
     // pitch (y-axis rotation)
     float sinp = std::sqrt(1.0f + 2.0f * ((w * y) - (x * z)));
     float cosp = std::sqrt(1.0f - 2.0f * ((w * y) - (x * z)));
-    angles.y = Math::degree(2 * std::atan2(sinp, cosp) - M_PIf / 2.0f);
+    angles.y = Math::degree(2 * std::atan2(sinp, cosp) - M_PI / 2.0f);
 
     // yaw (z-axis rotation)
     float siny_cosp = 2.0f * ((w * z) + (x * y));
