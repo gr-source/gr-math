@@ -29,6 +29,10 @@ const bool Vector4::operator>(const Vector4 &rhs) const {
     return (x > rhs.x) && (y > rhs.y) && (z > rhs.z) && (w > rhs.w);
 }
 
+const bool Vector4::operator!=(const Vector4 &lhs) const {
+    return (x != lhs.x) && (y != lhs.y) && (z != lhs.z) && (w != lhs.w);
+}
+
 Vector4& Vector4::operator =(const Vector4& rhs) {
     if (this != &rhs) {
         x = rhs.x;

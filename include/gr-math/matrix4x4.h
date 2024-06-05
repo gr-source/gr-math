@@ -45,6 +45,8 @@ struct Matrix4x4 {
     
     const bool operator>(const Matrix4x4& rhs) const noexcept;
 
+    const bool operator!=(const Matrix4x4& lhs) const noexcept;
+
     bool operator==(const Matrix4x4& other) const noexcept;
 
     const vvalue& operator[](int index) const;

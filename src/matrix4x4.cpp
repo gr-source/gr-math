@@ -119,6 +119,10 @@ const bool Matrix4x4::operator>(const Matrix4x4 &rhs) const noexcept {
     return getColumn(0) > rhs.getColumn(0) && getColumn(1) > rhs.getColumn(1) && getColumn(2) > rhs.getColumn(2) && getColumn(3) > rhs.getColumn(3);
 }
 
+const bool Matrix4x4::operator!=(const Matrix4x4 &lhs) const noexcept {
+    return (getColumn(0) != lhs.getColumn(0)) && (getColumn(1) != lhs.getColumn(1)) && (getColumn(1) != lhs.getColumn(1)) && (getColumn(2) != lhs.getColumn(2));
+}
+
 const vvalue& Matrix4x4::operator[](int index) const {
     return data[index];
 }

@@ -22,7 +22,7 @@ Quaternion Quaternion::operator -() const {
     return {-w, -x, -y, -z};
 }
 
-Quaternion Quaternion::operator =(const Quaternion& other) {
+Quaternion& Quaternion::operator =(const Quaternion& other) {
     if (this != &other) {
         w = other.w;
         x = other.x;
@@ -38,6 +38,10 @@ Quaternion& Quaternion::operator +=(const Quaternion& lhs) {
     y += lhs.y;
     z += lhs.z;
     return *this;
+}
+
+const bool Quaternion::operator!=(const Quaternion &lhs) {
+    return (x != lhs.x) && (y != lhs.y) && (z != lhs.z) && (w != lhs.w);
 }
 
 Vector3 Quaternion::eulerAngles() const {

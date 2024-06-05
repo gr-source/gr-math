@@ -31,9 +31,11 @@ struct Quaternion {
 
     Quaternion operator -() const;
 
-    Quaternion operator =(const Quaternion& other);
+    Quaternion& operator =(const Quaternion& other);
 
     Quaternion& operator +=(const Quaternion& lhs);
+
+    const bool operator !=(const Quaternion& lhs);
 
     Vector3 eulerAngles() const;
 

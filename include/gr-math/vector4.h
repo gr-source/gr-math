@@ -32,6 +32,8 @@ struct Vector4 {
 
     const bool operator>(const Vector4& rhs) const;
 
+    const bool operator!=(const Vector4& lhs) const;
+
     friend std::istream& operator >>(std::istream& is, Vector4& rhs) {
         is >> rhs.x >> rhs.y >> rhs.z >> rhs.w;
         return is;
