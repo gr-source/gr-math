@@ -1,7 +1,7 @@
 #include "matrix4x4.h"
 #include "gmath.h"
 
-#define CHECK_SCALE(value) (value > 0.001f ? value : 1.0f)
+#define CHECK_SCALE(value) (value > 0.00001f ? value : 1.0f)
 
 Matrix4x4::Matrix4x4(vvalue m00, vvalue m01, vvalue m02, vvalue m03, vvalue m10, vvalue m11, vvalue m12, vvalue m13, vvalue m20, vvalue m21, vvalue m22, vvalue m23, vvalue m30, vvalue m31, vvalue m32, vvalue m33) :
         m00(m00), m01(m01), m02(m02), m03(m03),
@@ -24,30 +24,25 @@ Matrix4x4::Matrix4x4(const Matrix3x3& rhs) :
 /* ========================================= */
 
 void Matrix4x4::decompose(Vector3& scale, Quaternion& rotation, Vector3& position) const {
-    position = Vector3(getRow(3));
+    position = Vector3(getColumn(3));
 
     scale = Vector3(
-        CHECK_SCALE(Math::magnitude(getRow(0))),
-        CHECK_SCALE(Math::magnitude(getRow(1))),
-        CHECK_SCALE(Math::magnitude(getRow(2)))
+        CHECK_SCALE(Math::magnitude(getColumn(0))),
+        CHECK_SCALE(Math::magnitude(getColumn(1))),
+        CHECK_SCALE(Math::magnitude(getColumn(2)))
     );
 
     Matrix3x3 matrix(
-        Vector3(getRow(0)) / scale.x,
-        Vector3(getRow(1)) / scale.y,
-        Vector3(getRow(2)) / scale.z
+        Vector3(getColumn(0)) / scale.x,
+        Vector3(getColumn(1)) / scale.y,
+        Vector3(getColumn(2)) / scale.z
     );
 
     rotation = Math::normalize(Math::Mat4ToQuat(matrix));
 }
 
 Matrix4x4 Matrix4x4::transpose() const {
-    return Matrix4x4(
-        getRow(0),
-        getRow(1),
-        getRow(2),
-        getRow(3)
-    );
+    return Matrix4x4(getColumn(0), getColumn(1), getColumn(2), getColumn(3));
 }
 
 Vector4 Matrix4x4::getColumn(int index) const {
@@ -165,10 +160,10 @@ const Matrix4x4 operator*(const Matrix4x4 &lhs, const Matrix4x4 &rhs) noexcept {
 
 const Vector4 operator*(const Matrix4x4 &lhs, const Vector4 &rhs) noexcept {
     return {
-        Math::dot(lhs.getColumn(0), rhs), // (lhs.m00 * rhs.x) + (lhs.m10 * rhs.y) + (lhs.m20 * rhs.z) + (lhs.m30 * rhs.w)
-        Math::dot(lhs.getColumn(1), rhs),
-        Math::dot(lhs.getColumn(2), rhs),
-        Math::dot(lhs.getColumn(3), rhs)
+        Math::dot(lhs.getRow(0), rhs), // (lhs.m00 * rhs.x) + (lhs.m10 * rhs.y) + (lhs.m20 * rhs.z) + (lhs.m30 * rhs.w)
+        Math::dot(lhs.getRow(1), rhs),
+        Math::dot(lhs.getRow(2), rhs),
+        Math::dot(lhs.getRow(3), rhs)
     };
 }
 

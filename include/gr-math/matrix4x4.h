@@ -2,6 +2,11 @@
 
 #include "types.h"
 
+/*
+ s.x        t.x
+    s.y     t.y
+        s.z t.z
+*/
 struct Matrix4x4 {
     union {
         struct {
