@@ -17,7 +17,7 @@ Matrix3x3::Matrix3x3(const Matrix4x4& rhs) :
     m20(rhs.m20), m21(rhs.m21), m22(rhs.m22) {}
 
 Matrix3x3 Matrix3x3::transpose() const {
-    return Matrix3x3(getRow(0), getRow(1), getRow(2));
+    return Matrix3x3(getColumn(0), getColumn(1), getColumn(2));
 }
 
 Vector3 Matrix3x3::getColumn(int index) const {
@@ -59,7 +59,7 @@ const Matrix3x3 Matrix3x3::zeroMatrix = {
 };
 
 const Matrix3x3 operator*(const Matrix3x3 &lhs, const Matrix3x3 &rhs) noexcept {
-    return Matrix3x3( // s * r * t
+    return Matrix3x3( // t * r * s
         lhs.getRow(0) * rhs, // (lhs.m00 * rhs.m00) + (lhs.m01 * rhs.m10) + (lhs.m02 * rhs.m20) + (lhs.m03 * rhs.m30)
         lhs.getRow(1) * rhs,
         lhs.getRow(2) * rhs
@@ -68,15 +68,15 @@ const Matrix3x3 operator*(const Matrix3x3 &lhs, const Matrix3x3 &rhs) noexcept {
 
 const Vector3 operator*(const Matrix3x3 &lhs, const Vector3 &rhs) noexcept {
     return {
-        Math::dot(lhs.getColumn(0), rhs), // (lhs.m00 * rhs.x) + (lhs.m10 * rhs.y) + (lhs.m20 * rhs.z) + (lhs.m30 * rhs.w)
-        Math::dot(lhs.getColumn(1), rhs),
-        Math::dot(lhs.getColumn(2), rhs)
+        Math::dot(lhs.getRow(0), rhs), // (lhs.m00 * rhs.x) + (lhs.m01 * rhs.y) + (lhs.m02 * rhs.z)
+        Math::dot(lhs.getRow(1), rhs),
+        Math::dot(lhs.getRow(2), rhs)
     };
 }
 
 const Vector3 operator*(const Vector3 &lhs, const Matrix3x3 &rhs) noexcept {
     return {
-        Math::dot(lhs, rhs.getColumn(0)), // (lhs.x * rhs.m00) + (lhs.y * rhs.m01) + (lhs.z * rhs.m02) + (lhs.w * rhs.m03)
+        Math::dot(lhs, rhs.getColumn(0)), // (lhs.x * rhs.m00) + (lhs.y * rhs.m10) + (lhs.z * rhs.m20) + (lhs.w * rhs.m30)
         Math::dot(lhs, rhs.getColumn(1)),
         Math::dot(lhs, rhs.getColumn(2))
     };
