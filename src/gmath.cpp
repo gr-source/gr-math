@@ -192,9 +192,9 @@ template <>
 const Matrix4x4 Math::translate(const Vector3& vector) {
     Matrix4x4 result = Matrix4x4::identityMatrix;
 
-    result.m03 = vector.x;
-    result.m13 = vector.y;
-    result.m23 = vector.z;
+    result.m30 = vector.x;
+    result.m31 = vector.y;
+    result.m32 = vector.z;
 
     return result;
 }
@@ -214,15 +214,15 @@ const Matrix4x4 Math::rotate(const Quaternion& q) {
     Matrix4x4 result = Matrix4x4::identityMatrix;
 
     result.m00 = 1.0f - 2.0f * ((q.y * q.y) + (q.z * q.z));
-    result.m10 = 2.0f * ((q.x * q.y) + (q.z * q.w));
-    result.m20 = 2.0f * ((q.x * q.z) - (q.y * q.w));
+    result.m01 = 2.0f * ((q.x * q.y) + (q.z * q.w));
+    result.m02 = 2.0f * ((q.x * q.z) - (q.y * q.w));
 
-    result.m01 = 2.0f * ((q.x * q.y) - (q.z * q.w));
+    result.m10 = 2.0f * ((q.x * q.y) - (q.z * q.w));
     result.m11 = 1.0f - 2.0f * ((q.x * q.x) + (q.z * q.z));
-    result.m21 = 2.0f * ((q.y * q.z) + (q.x * q.w));
+    result.m12 = 2.0f * ((q.y * q.z) + (q.x * q.w));
 
-    result.m02 = 2.0f * ((q.x * q.z) + (q.y * q.w));
-    result.m12 = 2.0f * ((q.y * q.z) - (q.x * q.w));
+    result.m20 = 2.0f * ((q.x * q.z) + (q.y * q.w));
+    result.m21 = 2.0f * ((q.y * q.z) - (q.x * q.w));
     result.m22 = 1.0f - 2.0f * ((q.x * q.x) + (q.y * q.y));
 
     return result;

@@ -9,11 +9,11 @@ Matrix4x4::Matrix4x4(vvalue m00, vvalue m01, vvalue m02, vvalue m03, vvalue m10,
         m20(m20), m21(m21), m22(m22), m23(m23),
         m30(m30), m31(m31), m32(m32), m33(m33) {}
 
-Matrix4x4::Matrix4x4(const Vector4& row0, const Vector4& row1, const Vector4& row2, const Vector4& row3) : 
-    m00(row0.x), m01(row0.y), m02(row0.z), m03(row0.w),
-    m10(row1.x), m11(row1.y), m12(row1.z), m13(row1.w),
-    m20(row2.x), m21(row2.y), m22(row2.z), m23(row2.w),
-    m30(row3.x), m31(row3.y), m32(row3.z), m33(row3.w) {}
+Matrix4x4::Matrix4x4(const Vector4& column0, const Vector4& column1, const Vector4& column2, const Vector4& column3) : 
+    m00(column0.x), m01(column1.x), m02(column2.x), m03(column3.x),
+    m10(column0.y), m11(column1.y), m12(column2.y), m13(column3.y),
+    m20(column0.z), m21(column1.z), m22(column2.z), m23(column3.z),
+    m30(column0.w), m31(column1.w), m32(column2.w), m33(column3.w) {}
 
 Matrix4x4::Matrix4x4(const Matrix3x3& rhs) :
     m00(rhs.m00), m01(rhs.m01), m02(rhs.m02), m03(0.0f),
@@ -24,18 +24,18 @@ Matrix4x4::Matrix4x4(const Matrix3x3& rhs) :
 /* ========================================= */
 
 void Matrix4x4::decompose(Vector3& scale, Quaternion& rotation, Vector3& position) const {
-    position = Vector3(getColumn(3));
+    position = Vector3(getRow(3));
 
     scale = Vector3(
-        CHECK_SCALE(Math::magnitude(getColumn(0))),
-        CHECK_SCALE(Math::magnitude(getColumn(1))),
-        CHECK_SCALE(Math::magnitude(getColumn(2)))
+        CHECK_SCALE(Math::magnitude(getRow(0))),
+        CHECK_SCALE(Math::magnitude(getRow(1))),
+        CHECK_SCALE(Math::magnitude(getRow(2)))
     );
 
     Matrix3x3 matrix(
-        Vector3(getColumn(0)) / scale.x,
-        Vector3(getColumn(1)) / scale.y,
-        Vector3(getColumn(2)) / scale.z
+        Vector3(getRow(0)) / scale.x,
+        Vector3(getRow(1)) / scale.y,
+        Vector3(getRow(2)) / scale.z
     );
 
     rotation = Math::normalize(Math::Mat4ToQuat(matrix));
@@ -151,27 +151,27 @@ const Matrix4x4 Matrix4x4::identityMatrix = Matrix4x4{
 
 const Matrix4x4 operator*(const Matrix4x4 &lhs, const Matrix4x4 &rhs) noexcept {
     return Matrix4x4( // t * r * s  -  v * p
-        lhs.getRow(0) * rhs, // (lhs.m00 * rhs.m00) + (lhs.m01 * rhs.m10) + (lhs.m02 * rhs.m20) + (lhs.m03 * rhs.m30)
-        lhs.getRow(1) * rhs,
-        lhs.getRow(2) * rhs,
-        lhs.getRow(3) * rhs
+        lhs.getColumn(0) * rhs, // (lhs.m00 * rhs.m00) + (lhs.m01 * rhs.m10) + (lhs.m02 * rhs.m20) + (lhs.m03 * rhs.m30)
+        lhs.getColumn(1) * rhs,
+        lhs.getColumn(2) * rhs,
+        lhs.getColumn(3) * rhs
     );
 }
 
 const Vector4 operator*(const Matrix4x4 &lhs, const Vector4 &rhs) noexcept {
     return {
-        Math::dot(lhs.getRow(0), rhs), // (lhs.m00 * rhs.x) + (lhs.m01 * rhs.y) + (lhs.m02 * rhs.z) + (lhs.m03 * rhs.w)
-        Math::dot(lhs.getRow(1), rhs),
-        Math::dot(lhs.getRow(2), rhs),
-        Math::dot(lhs.getRow(3), rhs)
+        Math::dot(lhs.getColumn(0), rhs), // (lhs.m00 * rhs.x) + (lhs.m01 * rhs.y) + (lhs.m02 * rhs.z) + (lhs.m03 * rhs.w)
+        Math::dot(lhs.getColumn(1), rhs),
+        Math::dot(lhs.getColumn(2), rhs),
+        Math::dot(lhs.getColumn(3), rhs)
     };
 }
 
 const Vector4 operator*(const Vector4 &lhs, const Matrix4x4 &rhs) noexcept {
     return {
-        Math::dot(lhs, rhs.getColumn(0)), // (lhs.x * rhs.m00) + (lhs.y * rhs.m10) + (lhs.z * rhs.m20) + (lhs.w * rhs.m30)
-        Math::dot(lhs, rhs.getColumn(1)),
-        Math::dot(lhs, rhs.getColumn(2)),
-        Math::dot(lhs, rhs.getColumn(3))
+        Math::dot(lhs, rhs.getRow(0)), // (lhs.x * rhs.m00) + (lhs.y * rhs.m10) + (lhs.z * rhs.m20) + (lhs.w * rhs.m30)
+        Math::dot(lhs, rhs.getRow(1)),
+        Math::dot(lhs, rhs.getRow(2)),
+        Math::dot(lhs, rhs.getRow(3))
     };
 }
