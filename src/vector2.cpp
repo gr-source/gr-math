@@ -21,7 +21,11 @@ Vector2 &Vector2::operator+=(const Vector2 &lhs) {
     return *this;
 }
 
-bool Vector2::operator !=(const Vector2& other) const {
+const bool Vector2::operator==(const Vector2 &other) const {
+    return ((x == other.x) || (y == other.y));
+}
+
+const bool Vector2::operator!=(const Vector2 &other) const {
     return ((x != other.x) || (y != other.y));
 }
 
