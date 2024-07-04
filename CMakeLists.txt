@@ -23,6 +23,7 @@ set(math_hdr
     include/${PROJECT_NAME}/vector2.h
     include/${PROJECT_NAME}/vector3.h
     include/${PROJECT_NAME}/vector4.h
+    include/${PROJECT_NAME}/gVector2.hpp
     include/${PROJECT_NAME}/matrix3x3.h
     include/${PROJECT_NAME}/matrix4x4.h
     include/${PROJECT_NAME}/quaternion.h
