@@ -33,11 +33,11 @@ struct Matrix4x4 {
 
     void decompose(Vector3& scale, Quaternion& rotation, Vector3& position) const;
 
-    Matrix4x4 transpose() const;
+    const Matrix4x4 transpose() const;
 
-    Vector4 getColumn(int index) const;
+    const Vector4 getColumn(int index) const;
 
-    Vector4 getRow(int index) const;
+    const Vector4 getRow(int index) const;
 
     /* ========================================= */
     
@@ -52,7 +52,7 @@ struct Matrix4x4 {
 
     const bool operator!=(const Matrix4x4& lhs) const noexcept;
 
-    bool operator==(const Matrix4x4& other) const noexcept;
+    const bool operator==(const Matrix4x4& other) const noexcept;
 
     const vvalue& operator[](int index) const;
     vvalue& operator[](int index);

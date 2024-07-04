@@ -41,11 +41,11 @@ void Matrix4x4::decompose(Vector3& scale, Quaternion& rotation, Vector3& positio
     rotation = Math::normalize(Math::Mat4ToQuat(matrix));
 }
 
-Matrix4x4 Matrix4x4::transpose() const {
+const Matrix4x4 Matrix4x4::transpose() const {
     return Matrix4x4(getColumn(0), getColumn(1), getColumn(2), getColumn(3));
 }
 
-Vector4 Matrix4x4::getColumn(int index) const {
+const Vector4 Matrix4x4::getColumn(int index) const {
     switch (index) {
         case 0:
             return {m00, m10, m20, m30};
@@ -60,7 +60,7 @@ Vector4 Matrix4x4::getColumn(int index) const {
     }
 }
 
-Vector4 Matrix4x4::getRow(int index) const {
+const Vector4 Matrix4x4::getRow(int index) const {
     switch (index) {
         case 0:
             return {m00, m01, m02, m03};
@@ -126,7 +126,7 @@ vvalue& Matrix4x4::operator[](int index) {
     return data[index];
 }
 
-bool Matrix4x4::operator==(const Matrix4x4& other) const noexcept {
+const bool Matrix4x4::operator==(const Matrix4x4& other) const noexcept {
     return (
         (m00 == other.m00 && m10 == other.m10 && m20 == other.m20 && m30 == other.m30) &&
         (m01 == other.m01 && m11 == other.m11 && m21 == other.m21 && m31 == other.m31) &&
