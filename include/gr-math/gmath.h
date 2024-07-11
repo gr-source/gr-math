@@ -31,6 +31,11 @@ namespace Math {
     const vvalue magnitude(const T& rhs);
 
     template <typename T>
+    inline const T Magnitude(const gVector2<T>& lhs) {
+        return std::sqrt((lhs.x * lhs.x) + (lhs.y * lhs.y));
+    }
+
+    template <typename T>
     const vvalue dot(const T& rhs, const T& lhs);
 
     template <typename T>
@@ -88,5 +93,3 @@ namespace Math {
 
     const Quaternion slerp(const Quaternion& lhs, const Quaternion& rhs, vvalue t);
 };
-
-
