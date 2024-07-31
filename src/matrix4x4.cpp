@@ -33,9 +33,9 @@ void Matrix4x4::decompose(Vector3& scale, Quaternion& rotation, Vector3& positio
     );
 
     Matrix3x3 matrix(
-        Vector3(getRow(0)) / scale.x,
-        Vector3(getRow(1)) / scale.y,
-        Vector3(getRow(2)) / scale.z
+        Vector3(getColumn(0)) / scale.x,
+        Vector3(getColumn(1)) / scale.y,
+        Vector3(getColumn(2)) / scale.z
     );
 
     rotation = Math::normalize(Math::Mat4ToQuat(matrix));

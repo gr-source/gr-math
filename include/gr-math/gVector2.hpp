@@ -28,6 +28,8 @@ struct gVector2 {
 
     gVector2<T> &operator =(const gVector2<T>& lhs);
 
+    const bool operator ==(const gVector2<T> &rhs) const;
+
     inline friend std::istream &operator >>(std::istream& is, gVector2<T>& other) {
         is >> other.x >> other.y;
     }
@@ -176,4 +178,7 @@ inline gVector2<T> operator /(float lhs, const gVector2<T>& rhs) {
     return {lhs / rhs.x, lhs / rhs.y};
 }
 
-
+template <typename T>
+inline const bool gVector2<T>::operator==(const gVector2<T> &rhs) const {
+    return (x == rhs.x) && (y == rhs.y);
+}

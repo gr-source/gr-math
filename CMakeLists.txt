@@ -9,6 +9,7 @@ option(GR_COMPILE_STATIC_LIBRARY "Compile static library" OFF)
 
 set(math_src
     src/gmath.cpp
+    src/color.cpp
     src/vector3.cpp
     src/vector2.cpp
     src/vector4.cpp
@@ -20,6 +21,7 @@ set(math_src
 set(math_hdr
     include/${PROJECT_NAME}/gmath.h
     include/${PROJECT_NAME}/types.h
+    include/${PROJECT_NAME}/color.h
     include/${PROJECT_NAME}/vector2.h
     include/${PROJECT_NAME}/vector3.h
     include/${PROJECT_NAME}/vector4.h
