@@ -320,33 +320,34 @@ const Matrix4x4 Math::lookAt(const Vector3& eye, const Vector3& center, const Ve
 const Quaternion Math::Mat4ToQuat(const Matrix4x4 &lhs) {
     vvalue trace = lhs.m00 + lhs.m11 + lhs.m22;
 
-    Quaternion result;
+    Quaternion q;
+
     if (trace > 0) {
         vvalue s = std::sqrt(trace + 1.0f) * 2.0f;
-        result.w = 0.25f * s;
-        result.x = (lhs.m12 - lhs.m21) / s;
-        result.y = (lhs.m20 - lhs.m02) / s;
-        result.z = (lhs.m01 - lhs.m10) / s;
+        q.w = 0.25f * s;
+        q.x = (lhs.m21 - lhs.m12) / s;
+        q.y = (lhs.m02 - lhs.m20) / s;
+        q.z = (lhs.m10 - lhs.m01) / s;
     } else if ((lhs.m00 > lhs.m11) && (lhs.m00 > lhs.m22)) {
         vvalue s = std::sqrt(1.0f + lhs.m00 - lhs.m11 - lhs.m22) * 2.0f;
-        result.w = (lhs.m12 - lhs.m21) / s;
-        result.x = 0.25f * s;
-        result.y = (lhs.m10 + lhs.m01) / s;
-        result.z = (lhs.m20 + lhs.m02) / s;
+        q.w = (lhs.m21 - lhs.m12) / s;
+        q.x = 0.25f * s;
+        q.y = (lhs.m01 + lhs.m10) / s;
+        q.z = (lhs.m02 + lhs.m20) / s;
     } else if (lhs.m11 > lhs.m22) {
         vvalue s = std::sqrt(1.0f + lhs.m11 - lhs.m00 - lhs.m22) * 2.0f;
-        result.w = (lhs.m20 - lhs.m02) / s;
-        result.x = (lhs.m10 + lhs.m01) / s;
-        result.y = 0.25f * s;
-        result.z = (lhs.m21 + lhs.m12) / s;
+        q.w = (lhs.m02 - lhs.m20) / s;
+        q.x = (lhs.m01 + lhs.m10) / s;
+        q.y = 0.25f * s;
+        q.z = (lhs.m12 + lhs.m21) / s;
     } else {
         vvalue s = std::sqrt(1.0f + lhs.m22 - lhs.m00 - lhs.m11) * 2.0f;
-        result.w = (lhs.m01 - lhs.m10) / s;
-        result.x = (lhs.m20 + lhs.m02) / s;
-        result.y = (lhs.m21 + lhs.m12) / s;
-        result.z = 0.25f * s;
+        q.w = (lhs.m10 - lhs.m01) / s;
+        q.x = (lhs.m02 + lhs.m20) / s;
+        q.y = (lhs.m12 + lhs.m21) / s;
+        q.z = 0.25f * s;
     }
-    return result;
+    return q;
 }
 
 const Quaternion Math::lookRotation(const Vector3& forward, const Vector3& up) {
