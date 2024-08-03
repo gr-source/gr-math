@@ -166,18 +166,21 @@ const Vector4 Math::max(const Vector4& rhs, const Vector4& lhs) {
 
 /* ========== mix ========== */
 template <>
-const Vector3 Math::mix(const Vector3& rhs, const Vector3& lhs, vvalue f) {
+const Vector3 Math::mix(const Vector3 &lhs, const Vector3 &rhs, vvalue f) {
+    return (1.0f - f) * rhs + f * lhs;
+    /*
     return {
-        (1.0f - f) * lhs.x + f * rhs.x,
-        (1.0f - f) * lhs.y + f * rhs.y,
-        (1.0f - f) * lhs.z + f * rhs.z
+        (1.0f - f) * rhs.x + f * lhs.x,
+        (1.0f - f) * rhs.y + f * lhs.y,
+        (1.0f - f) * rhs.z + f * lhs.z
     };
+    */
 }
 
 /* ========== lerp ========== */
 template <>
-const Vector3 Math::lerp(const Vector3& rhs, const Vector3& lhs, vvalue t) {
-    return lhs + (rhs - lhs) * t;
+const Vector3 Math::lerp(const Vector3 &lhs, const Vector3 &rhs, vvalue t) {
+    return rhs + (lhs - rhs) * t;
 }
 
 /* ========== abs ========== */
@@ -437,7 +440,7 @@ const Quaternion Math::slerp(const Quaternion& lhs, const Quaternion& rhs, vvalu
 		result = -result;
 	}
 	float phi = std::cos(c);
-	if (phi > 0.00001f) {
+	if (phi > 0.001f) {
 		float s = std::sin(phi);
 		return result * (std::sin((1.0f - t) * phi) / s) + rhs * (std::sin(t * phi) / s);
 	}

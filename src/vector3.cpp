@@ -15,23 +15,14 @@ vvalue& Vector3::operator[](int index) {
     return data[index];
 }
 
-Vector3 Vector3::operator -(const Vector3& other) const {
-    return {x - other.x, y - other.y, z - other.z};
-}
-
 Vector3 Vector3::operator -() const {
     return {-x, -y, -z};
 }
 
-Vector3 Vector3::operator +(const Vector3& other) const {
-    return {x + other.x, y + other.y, z + other.z};
-}
-
-Vector3 Vector3::operator /(const Vector3& other) const {
-    return {x / other.x, y / other.y, z / other.z};
-}
-
 Vector3& Vector3::operator /=(const Vector3& rhs) {
+    if (this == &rhs) {
+        return *this;
+    }
     x /= rhs.x;
     y /= rhs.y;
     z /= rhs.z;
@@ -46,24 +37,43 @@ Vector3& Vector3::operator /=(vvalue rhs) {
 }
 
 Vector3& Vector3::operator +=(const Vector3& other) {
+    if (this == &other) {
+        return *this;
+    }
     x += other.x;
     y += other.y;
     z += other.z;
     return *this;
 }
 
+Vector3 &Vector3::operator+=(vvalue other) {
+    x += other;
+    y += other;
+    z += other;
+    return *this;
+}
+
 Vector3& Vector3::operator -=(const Vector3& other) {
+    if (this == &other) {
+        return *this;
+    }
     x -= other.x;
     y -= other.y;
     z -= other.z;
     return *this;
 }
 
-Vector3 Vector3::operator *(const Vector3& other) const {
-    return {x * other.x, y * other.y, z * other.z};
+Vector3 &Vector3::operator-=(vvalue other) {
+    x -= other;
+    y -= other;
+    z -= other;
+    return *this;
 }
 
 Vector3& Vector3::operator *=(const Vector3& other) {
+    if (this == &other) {
+        return *this;
+    }
     x *= other.x;
     y *= other.y;
     z *= other.z;
@@ -77,28 +87,30 @@ Vector3& Vector3::operator *=(vvalue other) {
     return *this;
 }
 
-bool Vector3::operator==(const Vector3& other) const {
-    return ((x == other.x) && (y == other.y) && (z == other.z));
-}
-
-bool Vector3::operator!=(const Vector3& other) const {
-    return ((x != other.x) || (y != other.y) || (z != other.z));
-}
-
-Vector3& Vector3::operator=(const Vector3& other) {
-    if (this != &other) {
-        x = other.x;
-        y = other.y;
-        z = other.z;
+Vector3& Vector3::operator =(const Vector3& other) {
+    if (this == &other) {
+        return *this;
     }
+    x = other.x;
+    y = other.y;
+    z = other.z;
     return *this;
 }
 
-bool Vector3::operator>(const Vector3& other) const {
+
+const bool Vector3::operator ==(const Vector3& other) const {
+    return ((x == other.x) && (y == other.y) && (z == other.z));
+}
+
+const bool Vector3::operator !=(const Vector3& other) const {
+    return ((x != other.x) || (y != other.y) || (z != other.z));
+}
+
+const bool Vector3::operator >(const Vector3& other) const {
     return (x > other.x) && (y > other.y) && (z > other.z);
 }
 
-bool Vector3::operator<(const Vector3& other) const {
+const bool Vector3::operator <(const Vector3& other) const {
     return (x < other.x) && (y < other.y) && (z < other.z);
 }
 
@@ -112,18 +124,54 @@ const Vector3 Vector3::right = {1.0f, 0.0f, 0.0f};
 
 const Vector3 Vector3::up = {0.0f, 1.0f, 0.0f};
 
-const Vector3 operator *(vvalue rhs, const Vector3& lhs) {
-    return Vector3(lhs.x * rhs, lhs.y * rhs, lhs.z * rhs);
+// operator -
+const Vector3 operator -(vvalue lhs, const Vector3 &rhs) {
+    return {lhs - rhs.x, lhs - rhs.y, lhs - rhs.z};
 }
 
-const Vector3 operator *(const Vector3& rhs, vvalue lhs) {
-    return Vector3(rhs.x * lhs, rhs.y * lhs, rhs.z * lhs);
+const Vector3 operator -(const Vector3 &lhs, vvalue rhs) {
+    return {lhs.x - rhs, lhs.y - rhs, lhs.z - rhs};
 }
 
-const Vector3 operator /(vvalue rhs, const Vector3& lhs) {
-    return Vector3(lhs.x / rhs, lhs.y / rhs, lhs.z / rhs);
+const Vector3 operator -(const Vector3 &lhs, const Vector3 &rhs) {
+    return {lhs.x - rhs.x, lhs.y - rhs.y, lhs.z - rhs.z};
 }
 
-const Vector3 operator /(const Vector3& rhs, vvalue lhs) {
-    return Vector3(rhs.x / lhs, rhs.y / lhs, rhs.z / lhs);
+// operator +
+const Vector3 operator +(vvalue lhs, const Vector3 &rhs) {
+    return {lhs + rhs.x, lhs + rhs.y, lhs + rhs.z};
+}
+
+const Vector3 operator +(const Vector3 &lhs, vvalue rhs) {
+    return {lhs.x + rhs, lhs.y + rhs, lhs.z + rhs};
+}
+
+const Vector3 operator +(const Vector3 &lhs, const Vector3 &rhs) {
+    return {lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z};
+}
+
+// operator *
+const Vector3 operator *(vvalue lhs, const Vector3 &rhs) {
+    return {lhs * rhs.x, lhs * rhs.y, lhs * rhs.z};
+}
+
+const Vector3 operator *(const Vector3 &lhs, vvalue rhs) {
+    return {lhs.x * rhs, lhs.y * rhs, lhs.z * rhs};
+}
+
+const Vector3 operator*(const Vector3 &lhs, const Vector3 &rhs) {
+    return {lhs.x * rhs.x, lhs.y * rhs.y, lhs.z * rhs.z};
+}
+
+// operator /
+const Vector3 operator /(vvalue lhs, const Vector3 &rhs) {
+    return {lhs / rhs.x, lhs / rhs.y, lhs / rhs.z};
+}
+
+const Vector3 operator /(const Vector3 &lhs, vvalue rhs) {
+    return {lhs.x / rhs, lhs.y / rhs, lhs.z / rhs};
+}
+
+const Vector3 operator/(const Vector3 &lhs, const Vector3 &rhs) {
+    return {lhs.x / rhs.x, lhs.y / rhs.y, lhs.z / rhs.z};
 }

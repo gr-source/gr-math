@@ -20,4 +20,7 @@ Estou disponibilizando esse sistema matemático que utilizo no meu motor, não �
 
 * Matrix para quaternion: https://www.euclideanspace.com/maths/geometry/rotations/conversions/matrixToQuaternion/
 
+* lhs e rhs: https://blog.jetbrains.com/rscpp/2020/12/10/cpp20-comparisons/
+
+
 

@@ -21,32 +21,29 @@ struct Vector3 {
 
     vvalue& operator[](int index);
 
-    Vector3 operator -(const Vector3& other) const;
-
     Vector3 operator -() const;
 
-    Vector3 operator +(const Vector3& other) const;
+    Vector3& operator /=(const Vector3 &other);
+    Vector3& operator /=(vvalue other);
 
-    Vector3 operator /(const Vector3& other) const;
-    Vector3& operator /=(const Vector3& rhs);
-    Vector3& operator /=(vvalue rhs);
+    Vector3& operator +=(const Vector3 &other);
+    Vector3& operator +=(vvalue other);
 
-    Vector3& operator +=(const Vector3& other);
+    Vector3& operator -=(const Vector3 &other);
+    Vector3& operator -=(vvalue other);
 
-    Vector3& operator -=(const Vector3& other);
-
-    Vector3 operator *(const Vector3& other) const;
-    Vector3& operator *=(const Vector3& other);
+    Vector3& operator *=(const Vector3 &other);
     Vector3& operator *=(vvalue other);
 
-    bool operator==(const Vector3& other) const;
+    Vector3& operator =(const Vector3 &other);
 
-    bool operator!=(const Vector3& other) const;
+    const bool operator==(const Vector3 &other) const;
 
-    Vector3& operator=(const Vector3& other);
+    const bool operator!=(const Vector3 &other) const;
 
-    bool operator>(const Vector3& other) const;
-    bool operator<(const Vector3& other) const;
+    const bool operator>(const Vector3 &other) const;
+
+    const bool operator<(const Vector3 &other) const;
 
     friend std::istream& operator >>(std::istream& is, Vector3& other) {
         is >> other.x >> other.y >> other.z;
@@ -69,12 +66,32 @@ struct Vector3 {
     static const Vector3 up;
 };
 
-const Vector3 operator *(vvalue rhs, const Vector3& lhs);
+// operator -
+const Vector3 operator -(vvalue lhs, const Vector3 &rhs);
 
-const Vector3 operator *(const Vector3& rhs, vvalue lhs);
+const Vector3 operator -(const Vector3 &lhs, vvalue rhs);
 
-const Vector3 operator /(vvalue rhs, const Vector3& lhs);
+const Vector3 operator -(const Vector3 &lhs, const Vector3 &rhs);
 
-const Vector3 operator /(const Vector3& rhs, vvalue lhs);
+// operator +
+const Vector3 operator +(vvalue lhs, const Vector3 &rhs);
+
+const Vector3 operator +(const Vector3 &lhs, vvalue rhs);
+
+const Vector3 operator +(const Vector3 &lhs, const Vector3 &rhs);
+
+// operator *
+const Vector3 operator *(vvalue lhs, const Vector3 &rhs);
+
+const Vector3 operator *(const Vector3 &lhs, vvalue rhs);
+
+const Vector3 operator *(const Vector3 &lhs, const Vector3 &rhs);
+
+// operator /
+const Vector3 operator /(vvalue lhs, const Vector3 &rhs);
+
+const Vector3 operator /(const Vector3 &lhs, vvalue rhs);
+
+const Vector3 operator /(const Vector3 &lhs, const Vector3 & rhs);
 
 

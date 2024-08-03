@@ -54,10 +54,10 @@ namespace Math {
     const T max(const T& rhs, const T& lhs);
 
     template <typename T>
-    const T mix(const T& rhs, const T& lhs, vvalue f);
+    const T mix(const T &lhs, const T &rhs, vvalue f);
 
     template <typename T>
-    const T lerp(const T& rhs, const T& lhs, vvalue t);
+    const T lerp(const T &lhs, const T &rhs, vvalue t);
 
     template <typename T>
     const T abs(const T& rhs);
