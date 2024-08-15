@@ -364,33 +364,12 @@ const Quaternion Math::lookRotation(const Vector3& forward, const Vector3& up) {
 
     vvalue trace = m00 + m11 + m22;
 
-    Quaternion result;
-    if (trace > 0) {
-        vvalue s = std::sqrt(trace + 1.0f) * 2.0f;
-        result.w = 0.25f * s;
-        result.x = (m21 - m12) / s;
-        result.y = (m02 - m20) / s;
-        result.z = (m10 - m01) / s;
-    } else if ((m00 > m11) && (m00 > m22)) {
-        vvalue s = std::sqrt(1.0f + m00 - m11 - m22) * 2.0f;
-        result.w = (m21 - m12) / s;
-        result.x = 0.25f * s;
-        result.y = (m01 + m10) / s;
-        result.z = (m02 + m20) / s;
-    } else if (m11 > m22) {
-        vvalue s = std::sqrt(1.0f + m11 - m00 - m22) * 2.0f;
-        result.w = (m02 - m20) / s;
-        result.x = (m01 + m10) / s;
-        result.y = 0.25f * s;
-        result.z = (m12 + m21) / s;
-    } else {
-        vvalue s = std::sqrt(1.0f + m22 - m00 - m11) * 2.0f;
-        result.w = (m10 - m01) / s;
-        result.x = (m02 + m20) / s;
-        result.y = (m12 + m21) / s;
-        result.z = 0.25f * s;
-    }
-    return result;
+    return Mat4ToQuat({
+        m00,  m01,  m02,  0.0f,
+        m10,  m11,  m12,  0.0f,
+        m20,  m21,  m22,  0.0f,
+        0.0f, 0.0f, 0.0f, 1.0f
+    });
 }
 
 const Quaternion Math::euler(const Vector3& axis, vvalue angle) {
