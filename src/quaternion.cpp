@@ -44,27 +44,6 @@ const bool Quaternion::operator!=(const Quaternion &lhs) {
     return (x != lhs.x) && (y != lhs.y) && (z != lhs.z) && (w != lhs.w);
 }
 
-Vector3 Quaternion::eulerAngles() const {
-    Vector3 angles;
-
-    // Roll (x-axis rotation)
-    float sinr_cosp = 2.0f * ((w * x) + (y * z));
-    float cosr_cosp = 1.0f - 2.0f * ((x * x) + (y * y));
-    angles.x = Math::degree(std::atan2(sinr_cosp, cosr_cosp));
-
-    // pitch (y-axis rotation)
-    float sinp = std::sqrt(1.0f + 2.0f * ((w * y) - (x * z)));
-    float cosp = std::sqrt(1.0f - 2.0f * ((w * y) - (x * z)));
-    angles.y = Math::degree(2 * std::atan2(sinp, cosp) - M_PI / 2.0f);
-
-    // yaw (z-axis rotation)
-    float siny_cosp = 2.0f * ((w * z) + (x * y));
-    float cosy_cosp = 1.0f - 2.0f * ((y * y) + (z * z));
-    angles.z = Math::degree(std::atan2(siny_cosp, cosy_cosp));
-
-    return angles;
-}
-
 const Quaternion Quaternion::identity = {1.0f, 0.0f, 0.0f, 0.0f};
 
 const Quaternion operator*(const Quaternion &lhs, const Quaternion &rhs) noexcept {

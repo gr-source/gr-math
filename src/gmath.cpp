@@ -168,13 +168,6 @@ const Vector4 Math::max(const Vector4& rhs, const Vector4& lhs) {
 template <>
 const Vector3 Math::mix(const Vector3 &lhs, const Vector3 &rhs, vvalue f) {
     return (1.0f - f) * rhs + f * lhs;
-    /*
-    return {
-        (1.0f - f) * rhs.x + f * lhs.x,
-        (1.0f - f) * rhs.y + f * lhs.y,
-        (1.0f - f) * rhs.z + f * lhs.z
-    };
-    */
 }
 
 /* ========== lerp ========== */
@@ -446,3 +439,28 @@ const Quaternion Math::slerp(const Quaternion& lhs, const Quaternion& rhs, vvalu
 	}
 	return result;
 }
+
+const Vector3 Math::eulerAngles(const Quaternion &lhs) {
+    Vector3 angles;
+
+    // Roll (x-axis rotation)
+    float sinr_cosp = 2.0f * ((lhs.w * lhs.x) + (lhs.y * lhs.z));
+    float cosr_cosp = 1.0f - 2.0f * ((lhs.x * lhs.x) + (lhs.y * lhs.y));
+    angles.x = Math::degree(std::atan2(sinr_cosp, cosr_cosp));
+
+    // Falta corrigir, mas não achei nenhuma referencia
+
+    // pitch (y-axis rotation)
+    float sinp = std::sqrt(1.0f + 2.0f * ((lhs.w * lhs.y) - (lhs.x * lhs.z)));
+    float cosp = std::sqrt(1.0f - 2.0f * ((lhs.w * lhs.y) - (lhs.x * lhs.z)));
+    angles.y = Math::degree(-M_PI / 2.0f + 2.0f * std::atan2(sinp, cosp));
+
+    // yaw (z-axis rotation)
+    float siny_cosp = 2.0f * ((lhs.w * lhs.z) + (lhs.x * lhs.y));
+    float cosy_cosp = 1.0f - 2.0f * ((lhs.y * lhs.y) + (lhs.z * lhs.z));
+    angles.z = Math::degree(std::atan2(siny_cosp, cosy_cosp));
+
+    return angles;
+}
+
+

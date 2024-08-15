@@ -95,4 +95,6 @@ namespace Math {
     const Quaternion euler(const Vector3& axis);
 
     const Quaternion slerp(const Quaternion& lhs, const Quaternion& rhs, vvalue t);
+
+    const Vector3 eulerAngles(const Quaternion &lhs);
 };

@@ -37,8 +37,6 @@ struct Quaternion {
 
     const bool operator !=(const Quaternion& lhs);
 
-    Vector3 eulerAngles() const;
-
     static const Quaternion identity;
 
     friend std::istream& operator >>(std::istream& is, Quaternion& rhs) {
