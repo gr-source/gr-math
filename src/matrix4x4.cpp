@@ -149,9 +149,27 @@ const Matrix4x4 Matrix4x4::identityMatrix = Matrix4x4{
     0.0f, 0.0f, 0.0f, 1.0f
 };
 
+Matrix4x4 operator+(const Matrix4x4 &lhs, const Matrix4x4 &rhs) noexcept {
+    return Matrix4x4(
+        lhs.getColumn(0) + rhs.getColumn(0),
+        lhs.getColumn(1) + rhs.getColumn(1),
+        lhs.getColumn(2) + rhs.getColumn(2),
+        lhs.getColumn(3) + rhs.getColumn(3)
+    );
+}
+
 const Matrix4x4 operator*(const Matrix4x4 &lhs, const Matrix4x4 &rhs) noexcept {
     return Matrix4x4( // t * r * s  -  v * p
         lhs.getColumn(0) * rhs, // (lhs.m00 * rhs.m00) + (lhs.m10 * rhs.m01) + (lhs.m20 * rhs.m02) + (lhs.m30 * rhs.m03)
+        lhs.getColumn(1) * rhs,
+        lhs.getColumn(2) * rhs,
+        lhs.getColumn(3) * rhs
+    );
+}
+
+const Matrix4x4 operator*(const Matrix4x4 &lhs, vvalue rhs) noexcept {
+    return Matrix4x4(
+        lhs.getColumn(0) * rhs,
         lhs.getColumn(1) * rhs,
         lhs.getColumn(2) * rhs,
         lhs.getColumn(3) * rhs

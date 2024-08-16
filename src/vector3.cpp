@@ -23,9 +23,7 @@ Vector3& Vector3::operator /=(const Vector3& rhs) {
     if (this == &rhs) {
         return *this;
     }
-    x /= rhs.x;
-    y /= rhs.y;
-    z /= rhs.z;
+    *this = *this / rhs;
     return *this;
 }
 
@@ -40,13 +38,11 @@ Vector3& Vector3::operator +=(const Vector3& other) {
     if (this == &other) {
         return *this;
     }
-    x += other.x;
-    y += other.y;
-    z += other.z;
+    *this = *this + other;
     return *this;
 }
 
-Vector3 &Vector3::operator+=(vvalue other) {
+Vector3 &Vector3::operator +=(vvalue other) {
     x += other;
     y += other;
     z += other;
@@ -57,13 +53,11 @@ Vector3& Vector3::operator -=(const Vector3& other) {
     if (this == &other) {
         return *this;
     }
-    x -= other.x;
-    y -= other.y;
-    z -= other.z;
+    *this = *this - other;
     return *this;
 }
 
-Vector3 &Vector3::operator-=(vvalue other) {
+Vector3 &Vector3::operator -=(vvalue other) {
     x -= other;
     y -= other;
     z -= other;
@@ -74,9 +68,7 @@ Vector3& Vector3::operator *=(const Vector3& other) {
     if (this == &other) {
         return *this;
     }
-    x *= other.x;
-    y *= other.y;
-    z *= other.z;
+    *this = *this * other;
     return *this;
 }
 
@@ -96,7 +88,6 @@ Vector3& Vector3::operator =(const Vector3& other) {
     z = other.z;
     return *this;
 }
-
 
 const bool Vector3::operator ==(const Vector3& other) const {
     return ((x == other.x) && (y == other.y) && (z == other.z));
@@ -125,53 +116,64 @@ const Vector3 Vector3::right = {1.0f, 0.0f, 0.0f};
 const Vector3 Vector3::up = {0.0f, 1.0f, 0.0f};
 
 // operator -
-const Vector3 operator -(vvalue lhs, const Vector3 &rhs) {
+Vector3 operator -(vvalue lhs, const Vector3 &rhs) noexcept {
     return {lhs - rhs.x, lhs - rhs.y, lhs - rhs.z};
 }
 
-const Vector3 operator -(const Vector3 &lhs, vvalue rhs) {
+Vector3 operator -(const Vector3 &lhs, vvalue rhs) noexcept {
     return {lhs.x - rhs, lhs.y - rhs, lhs.z - rhs};
 }
 
-const Vector3 operator -(const Vector3 &lhs, const Vector3 &rhs) {
+Vector3 operator -(const Vector3 &lhs, const Vector3 &rhs) noexcept {
     return {lhs.x - rhs.x, lhs.y - rhs.y, lhs.z - rhs.z};
 }
 
 // operator +
-const Vector3 operator +(vvalue lhs, const Vector3 &rhs) {
+Vector3 operator +(vvalue lhs, const Vector3 &rhs) noexcept {
     return {lhs + rhs.x, lhs + rhs.y, lhs + rhs.z};
 }
 
-const Vector3 operator +(const Vector3 &lhs, vvalue rhs) {
+Vector3 operator +(const Vector3 &lhs, vvalue rhs) noexcept {
     return {lhs.x + rhs, lhs.y + rhs, lhs.z + rhs};
 }
 
-const Vector3 operator +(const Vector3 &lhs, const Vector3 &rhs) {
+Vector3 operator +(const Vector3 &lhs, const Vector3 &rhs) noexcept {
     return {lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z};
 }
 
 // operator *
-const Vector3 operator *(vvalue lhs, const Vector3 &rhs) {
+Vector3 operator *(vvalue lhs, const Vector3 &rhs) noexcept {
     return {lhs * rhs.x, lhs * rhs.y, lhs * rhs.z};
 }
 
-const Vector3 operator *(const Vector3 &lhs, vvalue rhs) {
+Vector3 operator *(const Vector3 &lhs, vvalue rhs) noexcept {
     return {lhs.x * rhs, lhs.y * rhs, lhs.z * rhs};
 }
 
-const Vector3 operator*(const Vector3 &lhs, const Vector3 &rhs) {
+Vector3 operator*(const Vector3 &lhs, const Vector3 &rhs) noexcept {
     return {lhs.x * rhs.x, lhs.y * rhs.y, lhs.z * rhs.z};
 }
 
 // operator /
-const Vector3 operator /(vvalue lhs, const Vector3 &rhs) {
+Vector3 operator /(vvalue lhs, const Vector3 &rhs) noexcept {
     return {lhs / rhs.x, lhs / rhs.y, lhs / rhs.z};
 }
 
-const Vector3 operator /(const Vector3 &lhs, vvalue rhs) {
+Vector3 operator /(const Vector3 &lhs, vvalue rhs) noexcept {
     return {lhs.x / rhs, lhs.y / rhs, lhs.z / rhs};
 }
 
-const Vector3 operator/(const Vector3 &lhs, const Vector3 &rhs) {
+Vector3 operator/(const Vector3 &lhs, const Vector3 &rhs) noexcept {
     return {lhs.x / rhs.x, lhs.y / rhs.y, lhs.z / rhs.z};
+}
+
+// stream
+std::istream &operator >>(std::istream &is, Vector3 &other) {
+    is >> other.x >> other.y >> other.z;
+    return is;
+}
+
+std::ostream &operator <<(std::ostream &os, const Vector3 &other) {
+    os << other.x << " " << other.y << " " << other.z;
+    return os;
 }

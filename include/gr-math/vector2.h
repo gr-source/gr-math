@@ -28,29 +28,33 @@ struct Vector2 {
 
     static const Vector2 one;
 
-    friend std::istream& operator >>(std::istream& is, Vector2& other) {
-        is >> other.x >> other.y;
-        return is;
-    }
+    friend std::istream &operator >>(std::istream &is, Vector2 &other);
 
-    friend std::ostream& operator <<(std::ostream& os, const Vector2& other) {
-        os << other.x << " " << other.y;
-        return os;
-    }
+    friend std::ostream &operator <<(std::ostream &os, const Vector2 &other);
 };
 
-const Vector2 operator-(const Vector2& lhs, const Vector2& rhs);
+// operator -
+Vector2 operator -(const Vector2 &lhs, const Vector2 &rhs) noexcept;
 
-const Vector2 operator+(const Vector2& lhs, const Vector2& rhs);
+// operator +
+Vector2 operator +(const Vector2 &lhs, const Vector2 &rhs) noexcept;
 
-const Vector2 operator*(const Vector2& lhs, const Vector2& rhs);
+// operator *
+Vector2 operator *(const Vector2 &lhs, const Vector2 &rhs) noexcept;
 
-const Vector2 operator*(const Vector2& lhs, vvalue rhs);
+Vector2 operator *(const Vector2& lhs, vvalue rhs) noexcept;
 
-const Vector2 operator*(vvalue lhs, const Vector2& rhs);
+Vector2 operator *(vvalue lhs, const Vector2& rhs) noexcept;
 
-const Vector2 operator/(const Vector2& lhs, const Vector2& rhs);
+// operator /
+Vector2 operator /(const Vector2& lhs, const Vector2& rhs) noexcept;
 
-const Vector2 operator/(const Vector2& lhs, vvalue rhs);
+Vector2 operator /(const Vector2& lhs, vvalue rhs) noexcept;
 
-const Vector2 operator/(vvalue lhs, const Vector2& rhs);
+Vector2 operator /(vvalue lhs, const Vector2& rhs) noexcept;
+
+// stream
+std::istream &operator >>(std::istream &is, Vector2 &other);
+
+std::ostream &operator <<(std::ostream &os, const Vector2 &other);
+

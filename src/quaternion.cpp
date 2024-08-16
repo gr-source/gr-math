@@ -46,7 +46,7 @@ const bool Quaternion::operator!=(const Quaternion &lhs) {
 
 const Quaternion Quaternion::identity = {1.0f, 0.0f, 0.0f, 0.0f};
 
-const Quaternion operator*(const Quaternion &lhs, const Quaternion &rhs) noexcept {
+Quaternion operator *(const Quaternion &lhs, const Quaternion &rhs) noexcept {
     return {
         (lhs.w * rhs.w) - (lhs.x * rhs.x) - (lhs.y * rhs.y) - (lhs.z * rhs.z),
         (lhs.w * rhs.x) + (lhs.x * rhs.w) + (lhs.y * rhs.z) - (lhs.z * rhs.y),
@@ -55,13 +55,16 @@ const Quaternion operator*(const Quaternion &lhs, const Quaternion &rhs) noexcep
     };
 }
 
-const Vector3 operator*(const Quaternion &lhs, const Vector3 &rhs) noexcept {
-    const auto m = Math::rotate<Matrix4x4>(lhs);
-    const Vector4 result = m * Vector4(rhs, 1.0f);
+Vector3 operator *(const Quaternion &lhs, const Vector3 &rhs) noexcept {
+    // cria uma matriz de rotação
+    auto m = Math::rotate<Matrix4x4>(lhs);
+
+    // multiplica para um ponto no mundo
+    auto result = m * Vector4(rhs, 1.0f);
 
     return {result.x, result.y, result.z};
 }
 
-const Quaternion operator*(const Quaternion &lhs, vvalue rhs) noexcept {
-    return Quaternion(lhs.w * rhs, lhs.x * rhs, lhs.y * rhs, lhs.z * rhs);
+Quaternion operator*(const Quaternion &lhs, vvalue rhs) noexcept {
+    return {lhs.w * rhs, lhs.x * rhs, lhs.y * rhs, lhs.z * rhs};
 }

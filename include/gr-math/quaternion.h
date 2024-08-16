@@ -50,11 +50,12 @@ struct Quaternion {
     }
 };
 
-const Quaternion operator*(const Quaternion& lhs, const Quaternion& rhs) noexcept;
+// operator *
+Quaternion operator *(const Quaternion &lhs, const Quaternion &rhs) noexcept;
 
-const Vector3 operator*(const Quaternion& lhs, const Vector3& rhs) noexcept;
+Quaternion operator *(const Quaternion &lhs, vvalue rhs) noexcept;
 
-const Quaternion operator*(const Quaternion& lhs, vvalue rhs) noexcept;
+Vector3 operator *(const Quaternion &lhs, const Vector3 &rhs) noexcept;
 
 
 

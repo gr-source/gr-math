@@ -23,27 +23,38 @@ struct Vector4 {
 
     Vector4(vvalue x = 0.0f, vvalue y = 0.0f, vvalue z = 0.0f, vvalue w = 1.0f);
 
-    const Vector4 operator*(const Vector4& rhs) const;
-    const Vector4 operator-(const Vector4& rhs) const;
-    const Vector4 operator/(const Vector4& rhs) const;
-
-    Vector4& operator=(const Vector4& rhs);
     Vector4& operator /=(vvalue rhs);
+    
+    Vector4& operator =(const Vector4& rhs);
 
-    const bool operator>(const Vector4& rhs) const;
+    const bool operator >(const Vector4& rhs) const;
 
-    const bool operator!=(const Vector4& lhs) const;
-
-    friend std::istream& operator >>(std::istream& is, Vector4& rhs) {
-        is >> rhs.x >> rhs.y >> rhs.z >> rhs.w;
-        return is;
-    }
-
-    friend std::ostream& operator <<(std::ostream& os, const Vector4& rhs) {
-        os << rhs.x << " " << rhs.y << " " << rhs.z << " " << rhs.w;
-        return os;
-    }
+    const bool operator !=(const Vector4& lhs) const;
 
     static const Vector4 zero;
+
+    friend std::istream &operator >>(std::istream &is, Vector4 &rhs);
+
+    friend std::ostream &operator <<(std::ostream &os, const Vector4 &rhs);
 };
 
+// operator -
+Vector4 operator -(const Vector4 &lhs, const Vector4 &rhs) noexcept;
+
+// operator +
+Vector4 operator +(const Vector4 &lhs, const Vector4 &rhs) noexcept;
+
+// operator *
+Vector4 operator *(const Vector4 &lhs, const Vector4 &rhs) noexcept;
+
+Vector4 operator *(const Vector4 &lhs, vvalue rhs) noexcept;
+
+Vector4 operator *(vvalue lhs, const Vector4 &rhs) noexcept;
+
+// operator /
+Vector4 operator /(const Vector4 &lhs, const Vector4 &rhs) noexcept;
+
+// stream
+std::istream &operator >>(std::istream &is, Vector4 &rhs);
+
+std::ostream &operator <<(std::ostream &os, const Vector4 &rhs);

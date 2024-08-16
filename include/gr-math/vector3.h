@@ -37,24 +37,14 @@ struct Vector3 {
 
     Vector3& operator =(const Vector3 &other);
 
-    const bool operator==(const Vector3 &other) const;
+    const bool operator ==(const Vector3 &other) const;
 
-    const bool operator!=(const Vector3 &other) const;
+    const bool operator !=(const Vector3 &other) const;
 
-    const bool operator>(const Vector3 &other) const;
+    const bool operator >(const Vector3 &other) const;
 
-    const bool operator<(const Vector3 &other) const;
+    const bool operator <(const Vector3 &other) const;
 
-    friend std::istream& operator >>(std::istream& is, Vector3& other) {
-        is >> other.x >> other.y >> other.z;
-        return is;
-    }
-    
-    friend std::ostream& operator <<(std::ostream& os, const Vector3& other) {
-        os << other.x << " " << other.y << " " << other.z;
-        return os;
-    }
-    
     static const Vector3 zero;
 
     static const Vector3 one;
@@ -64,34 +54,41 @@ struct Vector3 {
     static const Vector3 right;
 
     static const Vector3 up;
+
+    friend std::istream &operator >>(std::istream &is, Vector3 &other);
+
+    friend std::ostream &operator <<(std::ostream &os, const Vector3 &other);
 };
 
 // operator -
-const Vector3 operator -(vvalue lhs, const Vector3 &rhs);
+Vector3 operator -(vvalue lhs, const Vector3 &rhs) noexcept;
 
-const Vector3 operator -(const Vector3 &lhs, vvalue rhs);
+Vector3 operator -(const Vector3 &lhs, vvalue rhs) noexcept;
 
-const Vector3 operator -(const Vector3 &lhs, const Vector3 &rhs);
+Vector3 operator -(const Vector3 &lhs, const Vector3 &rhs) noexcept;
 
 // operator +
-const Vector3 operator +(vvalue lhs, const Vector3 &rhs);
+Vector3 operator +(vvalue lhs, const Vector3 &rhs) noexcept;
 
-const Vector3 operator +(const Vector3 &lhs, vvalue rhs);
+Vector3 operator +(const Vector3 &lhs, vvalue rhs) noexcept;
 
-const Vector3 operator +(const Vector3 &lhs, const Vector3 &rhs);
+Vector3 operator +(const Vector3 &lhs, const Vector3 &rhs) noexcept;
 
 // operator *
-const Vector3 operator *(vvalue lhs, const Vector3 &rhs);
+Vector3 operator *(vvalue lhs, const Vector3 &rhs) noexcept;
 
-const Vector3 operator *(const Vector3 &lhs, vvalue rhs);
+Vector3 operator *(const Vector3 &lhs, vvalue rhs) noexcept;
 
-const Vector3 operator *(const Vector3 &lhs, const Vector3 &rhs);
+Vector3 operator *(const Vector3 &lhs, const Vector3 &rhs) noexcept;
 
 // operator /
-const Vector3 operator /(vvalue lhs, const Vector3 &rhs);
+Vector3 operator /(vvalue lhs, const Vector3 &rhs) noexcept;
 
-const Vector3 operator /(const Vector3 &lhs, vvalue rhs);
+Vector3 operator /(const Vector3 &lhs, vvalue rhs) noexcept;
 
-const Vector3 operator /(const Vector3 &lhs, const Vector3 & rhs);
+Vector3 operator /(const Vector3 &lhs, const Vector3 &rhs) noexcept;
 
+// stream 
+std::istream &operator >>(std::istream &is, Vector3 &other);
 
+std::ostream &operator <<(std::ostream &os, const Vector3 &other);
