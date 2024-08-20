@@ -62,57 +62,45 @@ const vvalue Math::dot(const Quaternion& rhs, const Quaternion& lhs) {
 
 /* ========== normalize ========== */
 template <>
-const Vector2 Math::normalize(const Vector2& rhs) {
+const Vector2 Math::normalize(Vector2 rhs) {
     vvalue mag = magnitude(rhs);
 
-    if (mag != 0.0f) {
-        return {
-            rhs.x / mag,
-            rhs.y / mag,
-        };
+    if (mag > 1e-5f) {
+        rhs /= mag;
+        return rhs;
     }
     return {0.0f, 0.0f};
 }
 
 template <>
-const Vector3 Math::normalize(const Vector3& rhs) {
+const Vector3 Math::normalize(Vector3 rhs) {
     vvalue mag = magnitude(rhs);
 
-    if (mag != 0.0f) {
-        return {
-            rhs.x / mag,
-            rhs.y / mag,
-            rhs.z / mag
-        };
+    if (mag > 1e-5f) {
+        rhs /= mag;
+        return rhs;
     }
     return {0.0f, 0.0f, 0.0f};
 }
 
 template <>
-const Vector4 Math::normalize(const Vector4& rhs) {
+const Vector4 Math::normalize(Vector4 rhs) {
     vvalue mag = magnitude(rhs);
 
-    if (mag != 0.0f) {
-        return {
-            rhs.x / mag,
-            rhs.y / mag,
-            rhs.z / mag,
-            rhs.w / mag
-        };
+    if (mag > 1e-5f) {
+        rhs /= mag;
+        return rhs;
     }
     return {0.0f, 0.0f, 0.0f, 0.0f};
 }
 
 template <>
-const Quaternion Math::normalize(const Quaternion& rhs) {
+const Quaternion Math::normalize(Quaternion rhs) {
     vvalue mag = magnitude(rhs);
-    if (mag >  0.00001f) {
-        return {
-            rhs.w / mag,
-            rhs.x / mag,
-            rhs.y / mag,
-            rhs.z / mag
-        };
+    
+    if (mag > 1e-5f) {
+        rhs /= mag;
+        return rhs;
     }
     return Quaternion::identity;
 }
@@ -172,7 +160,12 @@ const Vector3 Math::mix(const Vector3 &lhs, const Vector3 &rhs, vvalue f) {
 
 /* ========== lerp ========== */
 template <>
-const Vector3 Math::lerp(const Vector3 &lhs, const Vector3 &rhs, vvalue t) {
+vvalue Math::lerp(vvalue lhs, vvalue rhs, vvalue t) {
+    return rhs + (lhs - rhs) * t;
+}
+
+template <>
+Vector3 Math::lerp(Vector3 lhs, Vector3 rhs, vvalue t) {
     return rhs + (lhs - rhs) * t;
 }
 

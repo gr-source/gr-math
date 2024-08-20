@@ -25,6 +25,8 @@ struct Quaternion {
 
     Quaternion& operator *=(const Quaternion& rhs);
 
+    Quaternion& operator /=(vvalue rhs);
+
     Quaternion operator +(const Quaternion& lhs) const;
 
     Quaternion operator -(const Quaternion& lhs) const;

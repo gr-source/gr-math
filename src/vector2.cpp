@@ -22,6 +22,18 @@ Vector2 &Vector2::operator +=(const Vector2 &lhs) {
     return *this;
 }
 
+Vector2 &Vector2::operator *=(vvalue lhs) {
+    x *= lhs;
+    y *= lhs;
+    return *this;
+}
+
+Vector2 & Vector2::operator /=(vvalue lhs) {
+    x /= lhs;
+    y /= lhs;
+    return *this;
+}
+
 const bool Vector2::operator ==(const Vector2 &other) const {
     return ((x == other.x) || (y == other.y));
 }

@@ -19,7 +19,11 @@ struct Vector2 {
 
     Vector2& operator =(const Vector2& other);
 
-    Vector2& operator+=(const Vector2& lhs);
+    Vector2& operator +=(const Vector2& lhs);
+
+    Vector2& operator *=(vvalue lhs);
+
+    Vector2& operator /=(vvalue lhs);
 
     const bool operator==(const Vector2& other) const;
     const bool operator!=(const Vector2& other) const;

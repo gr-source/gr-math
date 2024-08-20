@@ -42,7 +42,7 @@ namespace Math {
     const vvalue dot(const T& rhs, const T& lhs);
 
     template <typename T>
-    const T normalize(const T& rhs);
+    const T normalize(T rhs);
 
     template <typename T>
     const vvalue distance(const T& rhs, const T& lhs);
@@ -57,7 +57,7 @@ namespace Math {
     const T mix(const T &lhs, const T &rhs, vvalue f);
 
     template <typename T>
-    const T lerp(const T &lhs, const T &rhs, vvalue t);
+    T lerp(T lhs, T rhs, vvalue t);
 
     template <typename T>
     const T abs(const T& rhs);

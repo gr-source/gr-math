@@ -10,6 +10,14 @@ Quaternion& Quaternion::operator *=(const Quaternion& rhs) {
     return *this;
 }
 
+Quaternion &Quaternion::operator /=(vvalue rhs) {
+    w /= rhs;
+    x /= rhs;
+    y /= rhs;
+    z /= rhs;
+    return *this;
+}
+
 Quaternion Quaternion::operator +(const Quaternion& lhs) const {
     return {w + lhs.w, x + lhs.x, y + lhs.y, z + lhs.z};
 }
