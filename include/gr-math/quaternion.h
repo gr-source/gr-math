@@ -59,6 +59,7 @@ Quaternion operator *(const Quaternion &lhs, vvalue rhs) noexcept;
 
 Vector3 operator *(const Quaternion &lhs, const Vector3 &rhs) noexcept;
 
+Quaternion operator /(const Quaternion &lhs, vvalue rhs) noexcept;
 
 
 

@@ -76,3 +76,9 @@ Vector3 operator *(const Quaternion &lhs, const Vector3 &rhs) noexcept {
 Quaternion operator*(const Quaternion &lhs, vvalue rhs) noexcept {
     return {lhs.w * rhs, lhs.x * rhs, lhs.y * rhs, lhs.z * rhs};
 }
+
+Quaternion operator /(const Quaternion &lhs, vvalue rhs) noexcept {
+    return {lhs.w / rhs, lhs.x / rhs, lhs.y / rhs, lhs.z / rhs};
+}
+
+

@@ -22,10 +22,16 @@
 
 namespace Math {
     /* converte graus para radianos */
-    const vvalue rad(vvalue degrees);
+    template <typename T>
+    inline T rad(T degrees) {
+        return degrees * (M_PI / 180.0f);
+    }
 
     /* convert radianos para graus */
-    const vvalue degree(vvalue rad);
+    template <typename T>
+    inline T degree(T rad) {
+        return rad * (180.0f / M_PI);
+    }
 
     template <typename T>
     const T cross(const T& rhs, const T& lhs);
@@ -34,27 +40,22 @@ namespace Math {
     const vvalue magnitude(const T& rhs);
 
     template <typename T>
-    inline const T Magnitude(const gVector2<T>& lhs) {
-        return std::sqrt((lhs.x * lhs.x) + (lhs.y * lhs.y));
-    }
-
-    template <typename T>
     const vvalue dot(const T& rhs, const T& lhs);
 
     template <typename T>
-    const T normalize(T rhs);
+    T normalize(T rhs);
 
     template <typename T>
-    const vvalue distance(const T& rhs, const T& lhs);
+    vvalue distance(const T& rhs, const T& lhs);
 
     template <typename T>
-    const T min(const T& rhs, const T& lhs);
+    T min(T lhs, T rhs);
 
     template <typename T>
-    const T max(const T& rhs, const T& lhs);
+    T max(T lhs, T rhs);
 
     template <typename T>
-    const T mix(const T &lhs, const T &rhs, vvalue f);
+    T mix(const T &lhs, const T &rhs, vvalue f);
 
     template <typename T>
     T lerp(T lhs, T rhs, vvalue t);

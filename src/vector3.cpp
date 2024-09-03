@@ -3,10 +3,6 @@
 
 Vector3::Vector3(vvalue x, vvalue y, vvalue z) : x(x), y(y), z(z) {}
 
-Vector3::Vector3(const Vector2& rhs, vvalue z) : x(rhs.x), y(rhs.y), z(z) {}
-
-Vector3::Vector3(const Vector4& rhs) : x(rhs.x), y(rhs.y), z(rhs.z) {}
-
 vvalue Vector3::operator[](int index) const {
     return data[index];
 }
@@ -89,20 +85,24 @@ Vector3& Vector3::operator =(const Vector3& other) {
     return *this;
 }
 
-const bool Vector3::operator ==(const Vector3& other) const {
-    return ((x == other.x) && (y == other.y) && (z == other.z));
+bool Vector3::operator ==(const Vector3& rhs) const {
+    return Math::magnitude(*this - rhs) < 1.0e-6;
 }
 
-const bool Vector3::operator !=(const Vector3& other) const {
-    return ((x != other.x) || (y != other.y) || (z != other.z));
+bool Vector3::operator !=(const Vector3& rhs) const {
+    return Math::magnitude(*this - rhs) >= 1.0e-6;
 }
 
-const bool Vector3::operator >(const Vector3& other) const {
-    return (x > other.x) && (y > other.y) && (z > other.z);
+bool Vector3::operator >(const Vector3 &rhs) const {
+    return Math::magnitude(*this) > Math::magnitude(rhs);
 }
 
-const bool Vector3::operator <(const Vector3& other) const {
-    return (x < other.x) && (y < other.y) && (z < other.z);
+bool Vector3::operator <(const Vector3 &rhs) const {
+    return Math::magnitude(*this) < Math::magnitude(rhs);
+}
+
+Vector3::operator Vector4() const {
+    return {x, y, z, 1.0f};
 }
 
 const Vector3 Vector3::zero = {0.0f, 0.0f, 0.0f};

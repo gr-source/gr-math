@@ -14,9 +14,6 @@ struct Vector3 {
 
     Vector3(vvalue x = 0.0f, vvalue y = 0.0f, vvalue z = 0.0f);
 
-    Vector3(const Vector2& rhs, vvalue z = 1.0f);
-    Vector3(const Vector4& rhs);
-
     vvalue operator[](int index) const;
 
     vvalue& operator[](int index);
@@ -37,13 +34,15 @@ struct Vector3 {
 
     Vector3& operator =(const Vector3 &other);
 
-    const bool operator ==(const Vector3 &other) const;
+    bool operator ==(const Vector3 &other) const;
 
-    const bool operator !=(const Vector3 &other) const;
+    bool operator !=(const Vector3 &other) const;
 
-    const bool operator >(const Vector3 &other) const;
+    bool operator >(const Vector3 &rhs) const;
 
-    const bool operator <(const Vector3 &other) const;
+    bool operator <(const Vector3 &rhs) const;
+
+    operator Vector4() const;
 
     static const Vector3 zero;
 

@@ -36,13 +36,13 @@ const Vector3 Matrix3x3::getColumn(int index) const {
 const Vector3 Matrix3x3::getRow(int index) const {
     switch (index) {
         case 0:
-            return Vector4(m00, m01, m02);
+            return {m00, m01, m02};
         case 1:
-            return Vector4(m10, m11, m12);
+            return {m10, m11, m12};
         case 2:
-            return Vector4(m20, m21, m22);
+            return {m20, m21, m22};
         default:
-            return Vector4(0.0f, 0.0f, 0.0f, 0.0f);
+            return {0.0f, 0.0f, 0.0f};
     }
 }
 

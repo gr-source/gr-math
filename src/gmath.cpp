@@ -1,13 +1,5 @@
 #include "gmath.h"
 
-const vvalue Math::rad(vvalue degrees) {
-    return degrees * (M_PI / 180.0f);
-}
-
-const vvalue Math::degree(vvalue rad) {
-    return rad * (180.0f / M_PI);
-}
-
 /* ========== cross ========== */
 template <>
 const Vector3 Math::cross(const Vector3& rhs, const Vector3& lhs) {
@@ -62,99 +54,62 @@ const vvalue Math::dot(const Quaternion& rhs, const Quaternion& lhs) {
 
 /* ========== normalize ========== */
 template <>
-const Vector2 Math::normalize(Vector2 rhs) {
+Vector2 Math::normalize(Vector2 rhs) {
     vvalue mag = magnitude(rhs);
 
-    if (mag > 1e-5f) {
-        rhs /= mag;
-        return rhs;
-    }
-    return {0.0f, 0.0f};
+    return mag > 1e-5f ? rhs / mag : Vector2::zero;
 }
 
 template <>
-const Vector3 Math::normalize(Vector3 rhs) {
+Vector3 Math::normalize(Vector3 rhs) {
     vvalue mag = magnitude(rhs);
 
-    if (mag > 1e-5f) {
-        rhs /= mag;
-        return rhs;
-    }
-    return {0.0f, 0.0f, 0.0f};
+    return mag > 1e-5f ? rhs / mag : Vector3::zero;
 }
 
 template <>
-const Vector4 Math::normalize(Vector4 rhs) {
+Vector4 Math::normalize(Vector4 rhs) {
     vvalue mag = magnitude(rhs);
 
-    if (mag > 1e-5f) {
-        rhs /= mag;
-        return rhs;
-    }
-    return {0.0f, 0.0f, 0.0f, 0.0f};
+    return mag > 1e-5f ? rhs / mag : Vector4::zero;
 }
 
 template <>
-const Quaternion Math::normalize(Quaternion rhs) {
+Quaternion Math::normalize(Quaternion rhs) {
     vvalue mag = magnitude(rhs);
     
-    if (mag > 1e-5f) {
-        rhs /= mag;
-        return rhs;
-    }
-    return Quaternion::identity;
+    return mag > 1e-5f ? rhs / mag : Quaternion::identity;
 }
 
 /* ========== distance ========== */
 template <>
-const vvalue Math::distance(const Vector3& rhs, const Vector3& lhs) {
-    Vector3 ab = lhs - rhs;
-    return magnitude(ab);
+vvalue Math::distance(const Vector3& rhs, const Vector3& lhs) {
+    return magnitude(lhs - rhs);
 }
 
 /* ========== min ========== */
 template <>
-const Vector3 Math::min(const Vector3& rhs, const Vector3& lhs) {
+Vector3 Math::min(Vector3 lhs, Vector3 rhs) {
     return {
-        std::min(rhs.x, lhs.x),
-        std::min(rhs.y, lhs.y),
-        std::min(rhs.z, lhs.z)
-    };
-}
-
-template <>
-const Vector4 Math::min(const Vector4& rhs, const Vector4& lhs) {
-    return {
-        std::min(rhs.x, lhs.x),
-        std::min(rhs.y, lhs.y),
-        std::min(rhs.z, lhs.z),
-        std::min(rhs.w, lhs.w)
+        rhs.x < lhs.x ? rhs.x : lhs.x,
+        rhs.y < lhs.y ? rhs.y : lhs.y,
+        rhs.z < lhs.z ? rhs.z : lhs.z
     };
 }
 
 /* ========== max ========== */
 template <>
-const Vector3 Math::max(const Vector3& rhs, const Vector3& lhs) {
+Vector3 Math::max(Vector3 lhs, Vector3 rhs) {
     return {
-        std::max(rhs.x, lhs.x),
-        std::max(rhs.y, lhs.y),
-        std::max(rhs.z, lhs.z)
-    };
-}
-
-template <>
-const Vector4 Math::max(const Vector4& rhs, const Vector4& lhs) {
-    return {
-        std::max(rhs.x, lhs.x),
-        std::max(rhs.y, lhs.y),
-        std::max(rhs.z, lhs.z),
-        std::max(rhs.w, lhs.w)
+        lhs.x < rhs.x ? rhs.x : lhs.x,
+        lhs.y < rhs.y ? rhs.y : lhs.y,
+        lhs.z < rhs.z ? rhs.z : lhs.z
     };
 }
 
 /* ========== mix ========== */
 template <>
-const Vector3 Math::mix(const Vector3 &lhs, const Vector3 &rhs, vvalue f) {
+Vector3 Math::mix(const Vector3 &lhs, const Vector3 &rhs, vvalue f) {
     return (1.0f - f) * rhs + f * lhs;
 }
 
@@ -404,6 +359,7 @@ const Quaternion Math::slerp(const Quaternion& lhs, const Quaternion& rhs, vvalu
 		c = -c;
 		result = -result;
 	}
+    
 	float phi = std::cos(c);
 	if (phi > 0.001f) {
 		float s = std::sin(phi);
