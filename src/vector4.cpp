@@ -1,7 +1,7 @@
 #include "vector4.h"
 #include "vector3.h"
 
-Vector4::Vector4(const Vector3 &rhs, vvalue w) : x(rhs.x), y(rhs.y), z(rhs.z) {}
+Vector4::Vector4(const Vector3 &rhs, vvalue w) : x(rhs.x), y(rhs.y), z(rhs.z), w(w) {}
 
 Vector4::Vector4(vvalue x, vvalue y, vvalue z, vvalue w) : x(x), y(y), z(z), w(w) {}
 
