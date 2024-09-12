@@ -32,11 +32,11 @@ Vector2 & Vector2::operator /=(vvalue lhs) {
     return *this;
 }
 
-const bool Vector2::operator ==(const Vector2 &other) const {
-    return ((x == other.x) || (y == other.y));
+bool Vector2::operator ==(const Vector2 &rhs) const {
+    return Math::magnitude(*this - rhs) < 1e-6f;
 }
 
-const bool Vector2::operator !=(const Vector2 &other) const {
+bool Vector2::operator !=(const Vector2 &other) const {
     return ((x != other.x) || (y != other.y));
 }
 

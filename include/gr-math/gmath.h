@@ -37,16 +37,16 @@ namespace Math {
     const T cross(const T& rhs, const T& lhs);
 
     template <typename T>
-    const vvalue magnitude(const T& rhs);
+    vvalue magnitude(const T &rhs);
 
     template <typename T>
-    const vvalue dot(const T& rhs, const T& lhs);
+    vvalue dot(const T &lhs, const T& rhs);
 
     template <typename T>
     T normalize(T rhs);
 
     template <typename T>
-    vvalue distance(const T& rhs, const T& lhs);
+    vvalue distance(const T &lhs, const T &rhs);
 
     template <typename T>
     T min(T lhs, T rhs);
@@ -71,6 +71,8 @@ namespace Math {
 
     template <typename T, typename V>
     const T scale(const V& vector);
+
+    Matrix4x4 CreateTRS(const Vector3 &scale, const Quaternion &rotate, const Vector3 &position);
 
     /* perspectiva calcula a view com profundidade de um plano de fundo, ideal pra render 3d
     * @param far plano distante

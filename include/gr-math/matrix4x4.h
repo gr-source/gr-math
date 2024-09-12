@@ -65,10 +65,10 @@ struct Matrix4x4 {
 Matrix4x4 operator +(const Matrix4x4& lhs, const Matrix4x4& rhs) noexcept;
 
 // operator *
-const Matrix4x4 operator*(const Matrix4x4& lhs, const Matrix4x4& rhs) noexcept;
+Matrix4x4 operator *(const Matrix4x4& lhs, const Matrix4x4& rhs) noexcept;
 
-const Matrix4x4 operator*(const Matrix4x4& lhs, vvalue rhs) noexcept;
+Matrix4x4 operator *(const Matrix4x4& lhs, vvalue rhs) noexcept;
 
-const Vector4 operator*(const Matrix4x4& lhs, const Vector4& rhs) noexcept;
+Vector4 operator *(const Matrix4x4& lhs, const Vector4& rhs) noexcept;
 
-const Vector4 operator*(const Vector4& lhs, const Matrix4x4& rhs) noexcept;
+Vector4 operator *(const Vector4& lhs, const Matrix4x4& rhs) noexcept;

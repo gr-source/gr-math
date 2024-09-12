@@ -12,44 +12,44 @@ const Vector3 Math::cross(const Vector3& rhs, const Vector3& lhs) {
 
 /* ========== magnitude ========== */
 template <>
-const vvalue Math::magnitude(const Vector2& rhs) {
+vvalue Math::magnitude(const Vector2 &rhs) {
     return std::sqrt((rhs.x * rhs.x) + (rhs.y * rhs.y));
 }
 
 template <>
-const vvalue Math::magnitude(const Vector3& rhs) {
+vvalue Math::magnitude(const Vector3 &rhs) {
     return std::sqrt((rhs.x * rhs.x) + (rhs.y * rhs.y) + (rhs.z * rhs.z));
 }
 
 template <>
-const vvalue Math::magnitude(const Vector4& rhs) {
+vvalue Math::magnitude(const Vector4 &rhs) {
     return std::sqrt((rhs.x * rhs.x) + (rhs.y * rhs.y) + (rhs.z * rhs.z) + (rhs.w * rhs.w));
 }
 
 template <>
-const vvalue Math::magnitude(const Quaternion& rhs) {
+vvalue Math::magnitude(const Quaternion &rhs) {
     return std::sqrt((rhs.w * rhs.w) + (rhs.x * rhs.x) + (rhs.y * rhs.y) + (rhs.z * rhs.z));
 }
 
 /* ========== dot product ========== */
 template <>
-const vvalue Math::dot(const Vector2& rhs, const Vector2& lhs) {
-    return (rhs.x * lhs.x) + (rhs.y * lhs.y);
+vvalue Math::dot(const Vector2 &lhs, const Vector2 &rhs) {
+    return (lhs.x * rhs.x) + (lhs.y * rhs.y);
 }
 
 template <>
-const vvalue Math::dot(const Vector3& rhs, const Vector3& lhs) {
-    return (rhs.x * lhs.x) + (rhs.y * lhs.y) + (rhs.z * lhs.z);
+vvalue Math::dot(const Vector3 &lhs, const Vector3 &rhs) {
+    return (lhs.x * rhs.x) + (lhs.y * rhs.y) + (lhs.z * rhs.z);
 }
 
 template <>
-const vvalue Math::dot(const Vector4& rhs, const Vector4& lhs) {
-    return (rhs.x * lhs.x) + (rhs.y * lhs.y) + (rhs.z * lhs.z) + (rhs.w * lhs.w);
+vvalue Math::dot(const Vector4 &lhs, const Vector4 &rhs) {
+    return (lhs.x * rhs.x) + (lhs.y * rhs.y) + (lhs.z * rhs.z) + (lhs.w * rhs.w);
 }
 
 template <>
-const vvalue Math::dot(const Quaternion& rhs, const Quaternion& lhs) {
-    return (rhs.w * lhs.w) + (rhs.x * lhs.x) + (rhs.y * lhs.y) + (rhs.z * lhs.z);
+vvalue Math::dot(const Quaternion &lhs, const Quaternion &rhs) {
+    return (lhs.w * rhs.w) + (lhs.x * rhs.x) + (lhs.y * rhs.y) + (lhs.z * rhs.z);
 }
 
 /* ========== normalize ========== */
@@ -83,8 +83,8 @@ Quaternion Math::normalize(Quaternion rhs) {
 
 /* ========== distance ========== */
 template <>
-vvalue Math::distance(const Vector3& rhs, const Vector3& lhs) {
-    return magnitude(lhs - rhs);
+vvalue Math::distance(const Vector3& lhs, const Vector3& rhs) {
+    return magnitude(rhs - lhs);
 }
 
 /* ========== min ========== */
@@ -131,7 +131,6 @@ const Vector3 Math::abs(const Vector3& rhs) {
 }
 
 /* ========== Matrix ========== */
-
 template <>
 const Matrix4x4 Math::translate(const Vector3& vector) {
     Matrix4x4 result = Matrix4x4::identityMatrix;
@@ -201,6 +200,43 @@ const Matrix3x3 Math::scale(const Vector2& vector) {
 
     result.m00 = vector.x;
     result.m11 = vector.y;
+
+    return result;
+}
+
+Matrix4x4 Math::CreateTRS(const Vector3 &scale, const Quaternion &rotate, const Vector3 &position) {
+    Matrix4x4 result = Matrix4x4::identityMatrix;
+
+    // translate
+    result.m30 = position.x;
+    result.m31 = position.y;
+    result.m32 = position.z;
+
+    //rotate
+    result.m00 = 1.0f - 2.0f * ((rotate.y * rotate.y) + (rotate.z * rotate.z));
+    result.m01 = 2.0f * ((rotate.x * rotate.y) + (rotate.z * rotate.w));
+    result.m02 = 2.0f * ((rotate.x * rotate.z) - (rotate.y * rotate.w));
+
+    result.m10 = 2.0f * ((rotate.x * rotate.y) - (rotate.z * rotate.w));
+    result.m11 = 1.0f - 2.0f * ((rotate.x * rotate.x) + (rotate.z * rotate.z));
+    result.m12 = 2.0f * ((rotate.y * rotate.z) + (rotate.x * rotate.w));
+
+    result.m20 = 2.0f * ((rotate.x * rotate.z) + (rotate.y * rotate.w));
+    result.m21 = 2.0f * ((rotate.y * rotate.z) - (rotate.x * rotate.w));
+    result.m22 = 1.0f - 2.0f * ((rotate.x * rotate.x) + (rotate.y * rotate.y));
+
+    // scale
+    result.m00 *= scale.x;
+    result.m01 *= scale.x;
+    result.m02 *= scale.x;
+
+    result.m10 *= scale.y;
+    result.m11 *= scale.y;
+    result.m12 *= scale.y;
+
+    result.m20 *= scale.z;
+    result.m21 *= scale.z;
+    result.m22 *= scale.z;
 
     return result;
 }

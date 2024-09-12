@@ -23,8 +23,8 @@ struct Vector2 {
 
     Vector2& operator /=(vvalue lhs);
 
-    const bool operator==(const Vector2& other) const;
-    const bool operator!=(const Vector2& other) const;
+    bool operator==(const Vector2& other) const;
+    bool operator!=(const Vector2& other) const;
 
     static const Vector2 zero;
 

@@ -158,7 +158,7 @@ Matrix4x4 operator+(const Matrix4x4 &lhs, const Matrix4x4 &rhs) noexcept {
     );
 }
 
-const Matrix4x4 operator*(const Matrix4x4 &lhs, const Matrix4x4 &rhs) noexcept {
+Matrix4x4 operator *(const Matrix4x4 &lhs, const Matrix4x4 &rhs) noexcept {
     return Matrix4x4( // t * r * s  -  v * p
         lhs.getColumn(0) * rhs, // (lhs.m00 * rhs.m00) + (lhs.m10 * rhs.m01) + (lhs.m20 * rhs.m02) + (lhs.m30 * rhs.m03)
         lhs.getColumn(1) * rhs,
@@ -167,7 +167,7 @@ const Matrix4x4 operator*(const Matrix4x4 &lhs, const Matrix4x4 &rhs) noexcept {
     );
 }
 
-const Matrix4x4 operator*(const Matrix4x4 &lhs, vvalue rhs) noexcept {
+Matrix4x4 operator *(const Matrix4x4 &lhs, vvalue rhs) noexcept {
     return Matrix4x4(
         lhs.getColumn(0) * rhs,
         lhs.getColumn(1) * rhs,
@@ -176,7 +176,7 @@ const Matrix4x4 operator*(const Matrix4x4 &lhs, vvalue rhs) noexcept {
     );
 }
 
-const Vector4 operator*(const Matrix4x4 &lhs, const Vector4 &rhs) noexcept {
+Vector4 operator *(const Matrix4x4 &lhs, const Vector4 &rhs) noexcept {
     return {
         Math::dot(lhs.getColumn(0), rhs), // (lhs.m00 * rhs.x) + (lhs.m10 * rhs.y) + (lhs.m20 * rhs.z) + (lhs.m30 * rhs.w)
         Math::dot(lhs.getColumn(1), rhs),
@@ -185,7 +185,7 @@ const Vector4 operator*(const Matrix4x4 &lhs, const Vector4 &rhs) noexcept {
     };
 }
 
-const Vector4 operator*(const Vector4 &lhs, const Matrix4x4 &rhs) noexcept {
+Vector4 operator *(const Vector4 &lhs, const Matrix4x4 &rhs) noexcept {
     return {
         Math::dot(lhs, rhs.getRow(0)), // (lhs.x * rhs.m00) + (lhs.y * rhs.m01) + (lhs.z * rhs.m02) + (lhs.w * rhs.m03)
         Math::dot(lhs, rhs.getRow(1)),
