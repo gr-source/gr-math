@@ -30,6 +30,7 @@ struct gVector2 {
 
     const bool operator ==(const gVector2<T> &rhs) const;
 
+    /*
     inline friend std::istream &operator >>(std::istream& is, gVector2<T>& other) {
         is >> other.x >> other.y;
     }
@@ -38,6 +39,7 @@ struct gVector2 {
         os << other.x << " " << other.y;
         return os;
     }
+    */
 };
 
 template <typename T>
