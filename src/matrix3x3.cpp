@@ -12,9 +12,9 @@ Matrix3x3::Matrix3x3(const Vector3& column0, const Vector3& column1, const Vecto
     m20(column0.z), m21(column1.z), m22(column2.z) {}
 
 Matrix3x3::Matrix3x3(const Matrix4x4& rhs) :
-    m00(rhs.m00), m01(rhs.m01), m02(rhs.m02),
-    m10(rhs.m10), m11(rhs.m11), m12(rhs.m12),
-    m20(rhs.m20), m21(rhs.m21), m22(rhs.m22) {}
+    m00(rhs[0][0]), m01(rhs[0][1]), m02(rhs[0][2]),
+    m10(rhs[1][0]), m11(rhs[1][1]), m12(rhs[1][2]),
+    m20(rhs[2][0]), m21(rhs[2][1]), m22(rhs[2][2]) {}
 
 const Matrix3x3 Matrix3x3::transpose() const {
     return Matrix3x3(getRow(0), getRow(1), getRow(2));

@@ -1,6 +1,8 @@
 #include "vector4.h"
 #include "vector3.h"
 
+#include "gmath.h"
+
 Vector4::Vector4(const Vector3 &rhs, vvalue w) : x(rhs.x), y(rhs.y), z(rhs.z), w(w) {}
 
 Vector4::Vector4(vvalue x, vvalue y, vvalue z, vvalue w) : x(x), y(y), z(z), w(w) {}
@@ -34,6 +36,18 @@ const bool Vector4::operator !=(const Vector4 &lhs) const {
 
 Vector4::operator Vector3() const {
     return {x, y, z};
+}
+
+bool Vector4::operator==(const Vector4 &rhs) const {
+    return Math::magnitude(*this - rhs) > 0.0f;
+}
+
+const float &Vector4::operator[](int index) const {
+    return data[index];
+}
+
+float &Vector4::operator[](int index) {
+    return data[index];
 }
 
 const Vector4 Vector4::zero = {0.0f, 0.0f, 0.0f, 0.0f};

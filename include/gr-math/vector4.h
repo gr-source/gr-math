@@ -32,6 +32,12 @@ struct Vector4 {
 
     operator Vector3() const;
 
+    bool operator ==(const Vector4 &rhs) const;
+
+    const float &operator [](int index) const;
+
+    float &operator [](int index);
+
     static const Vector4 zero;
 
     friend std::istream &operator >>(std::istream &is, Vector4 &rhs);

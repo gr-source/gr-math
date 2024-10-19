@@ -135,9 +135,9 @@ template <>
 const Matrix4x4 Math::translate(const Vector3& vector) {
     Matrix4x4 result = Matrix4x4::identityMatrix;
 
-    result.m30 = vector.x;
-    result.m31 = vector.y;
-    result.m32 = vector.z;
+    result[3][0] = vector.x;
+    result[3][1] = vector.y;
+    result[3][2] = vector.z;
 
     return result;
 }
@@ -156,17 +156,17 @@ template <>
 const Matrix4x4 Math::rotate(const Quaternion& q) {
     Matrix4x4 result = Matrix4x4::identityMatrix;
 
-    result.m00 = 1.0f - 2.0f * ((q.y * q.y) + (q.z * q.z));
-    result.m01 = 2.0f * ((q.x * q.y) + (q.z * q.w));
-    result.m02 = 2.0f * ((q.x * q.z) - (q.y * q.w));
+    result[0][0] = 1.0f - 2.0f * ((q.y * q.y) + (q.z * q.z));
+    result[0][1] = 2.0f * ((q.x * q.y) + (q.z * q.w));
+    result[0][2] = 2.0f * ((q.x * q.z) - (q.y * q.w));
 
-    result.m10 = 2.0f * ((q.x * q.y) - (q.z * q.w));
-    result.m11 = 1.0f - 2.0f * ((q.x * q.x) + (q.z * q.z));
-    result.m12 = 2.0f * ((q.y * q.z) + (q.x * q.w));
+    result[1][0] = 2.0f * ((q.x * q.y) - (q.z * q.w));
+    result[1][1] = 1.0f - 2.0f * ((q.x * q.x) + (q.z * q.z));
+    result[1][2] = 2.0f * ((q.y * q.z) + (q.x * q.w));
 
-    result.m20 = 2.0f * ((q.x * q.z) + (q.y * q.w));
-    result.m21 = 2.0f * ((q.y * q.z) - (q.x * q.w));
-    result.m22 = 1.0f - 2.0f * ((q.x * q.x) + (q.y * q.y));
+    result[2][0] = 2.0f * ((q.x * q.z) + (q.y * q.w));
+    result[2][1] = 2.0f * ((q.y * q.z) - (q.x * q.w));
+    result[2][2] = 1.0f - 2.0f * ((q.x * q.x) + (q.y * q.y));
 
     return result;
 }
@@ -187,9 +187,9 @@ template <>
 const Matrix4x4 Math::scale(const Vector3& vector) {
     Matrix4x4 result = Matrix4x4::identityMatrix;
 
-    result.m00 = vector.x;
-    result.m11 = vector.y;
-    result.m22 = vector.z;
+    result[0][0] = vector.x;
+    result[1][1] = vector.y;
+    result[2][2] = vector.z;
 
     return result;
 }
@@ -208,35 +208,35 @@ Matrix4x4 Math::CreateTRS(const Vector3 &scale, const Quaternion &rotate, const 
     Matrix4x4 result = Matrix4x4::identityMatrix;
 
     // translate
-    result.m30 = position.x;
-    result.m31 = position.y;
-    result.m32 = position.z;
+    result[3][0] = position.x;
+    result[3][1] = position.y;
+    result[3][2] = position.z;
 
     //rotate
-    result.m00 = 1.0f - 2.0f * ((rotate.y * rotate.y) + (rotate.z * rotate.z));
-    result.m01 = 2.0f * ((rotate.x * rotate.y) + (rotate.z * rotate.w));
-    result.m02 = 2.0f * ((rotate.x * rotate.z) - (rotate.y * rotate.w));
+    result[0][0] = 1.0f - 2.0f * ((rotate.y * rotate.y) + (rotate.z * rotate.z));
+    result[0][1] = 2.0f * ((rotate.x * rotate.y) + (rotate.z * rotate.w));
+    result[0][2] = 2.0f * ((rotate.x * rotate.z) - (rotate.y * rotate.w));
 
-    result.m10 = 2.0f * ((rotate.x * rotate.y) - (rotate.z * rotate.w));
-    result.m11 = 1.0f - 2.0f * ((rotate.x * rotate.x) + (rotate.z * rotate.z));
-    result.m12 = 2.0f * ((rotate.y * rotate.z) + (rotate.x * rotate.w));
+    result[1][0] = 2.0f * ((rotate.x * rotate.y) - (rotate.z * rotate.w));
+    result[1][1] = 1.0f - 2.0f * ((rotate.x * rotate.x) + (rotate.z * rotate.z));
+    result[1][2] = 2.0f * ((rotate.y * rotate.z) + (rotate.x * rotate.w));
 
-    result.m20 = 2.0f * ((rotate.x * rotate.z) + (rotate.y * rotate.w));
-    result.m21 = 2.0f * ((rotate.y * rotate.z) - (rotate.x * rotate.w));
-    result.m22 = 1.0f - 2.0f * ((rotate.x * rotate.x) + (rotate.y * rotate.y));
+    result[2][0] = 2.0f * ((rotate.x * rotate.z) + (rotate.y * rotate.w));
+    result[2][1] = 2.0f * ((rotate.y * rotate.z) - (rotate.x * rotate.w));
+    result[2][2] = 1.0f - 2.0f * ((rotate.x * rotate.x) + (rotate.y * rotate.y));
 
     // scale
-    result.m00 *= scale.x;
-    result.m01 *= scale.x;
-    result.m02 *= scale.x;
+    result[0][0] *= scale.x;
+    result[0][1] *= scale.x;
+    result[0][2] *= scale.x;
 
-    result.m10 *= scale.y;
-    result.m11 *= scale.y;
-    result.m12 *= scale.y;
+    result[1][0] *= scale.y;
+    result[1][1] *= scale.y;
+    result[1][2] *= scale.y;
 
-    result.m20 *= scale.z;
-    result.m21 *= scale.z;
-    result.m22 *= scale.z;
+    result[2][0] *= scale.z;
+    result[2][1] *= scale.z;
+    result[2][2] *= scale.z;
 
     return result;
 }
@@ -246,13 +246,13 @@ const Matrix4x4 Math::perspective(vvalue fovy, vvalue aspect, vvalue far, vvalue
     
     Matrix4x4 result = Matrix4x4::zeroMatrix;
 
-    result.m00 = 1.0f / (aspect * tanHalfFovy);
-    result.m11 = 1.0f / tanHalfFovy;
-    result.m22 = -((far + near) / (far - near));
+    result[0][0] = 1.0f / (aspect * tanHalfFovy);
+    result[1][1] = 1.0f / tanHalfFovy;
+    result[2][2] = -((far + near) / (far - near));
 
-    result.m23 = -1.0f;
+    result[2][3] = -1.0f;
 
-    result.m32 = -(2.0f * (far * near) / (far - near));
+    result[3][2] = -(2.0f * (far * near) / (far - near));
 
     return result;
 }
@@ -260,13 +260,13 @@ const Matrix4x4 Math::perspective(vvalue fovy, vvalue aspect, vvalue far, vvalue
 const Matrix4x4 Math::orthographic(vvalue left, vvalue right, vvalue bottom, vvalue top, vvalue near, vvalue far) {
     Matrix4x4 result = Matrix4x4::identityMatrix;
 
-    result.m00 =  2.0f / (right - left);
-    result.m11 =  2.0f / (top   - bottom);
-    result.m22 = -2.0f / (far   - near);
+    result[0][0] =  2.0f / (right - left);
+    result[1][1] =  2.0f / (top   - bottom);
+    result[2][2] = -2.0f / (far   - near);
 
-    result.m30 = -((right + left)   / (right - left));
-    result.m31 = -((top   + bottom) / (top   - bottom));
-    result.m32 = -((far   + near)   / (far   - near));
+    result[3][0] = -((right + left)   / (right - left));
+    result[3][1] = -((top   + bottom) / (top   - bottom));
+    result[3][2] = -((far   + near)   / (far   - near));
 
     return result;
 }
@@ -277,54 +277,54 @@ const Matrix4x4 Math::lookAt(const Vector3& eye, const Vector3& center, const Ve
     const Vector3 up = Math::cross(right, forward);
 
     Matrix4x4 result = Matrix4x4::identityMatrix;
-    result.m00 = right.x;
-    result.m10 = right.y;
-    result.m20 = right.z;
+    result[0][0] = right.x;
+    result[1][0] = right.y;
+    result[2][0] = right.z;
     
-    result.m01 = up.x;
-    result.m11 = up.y;
-    result.m21 = up.z;
+    result[0][1] = up.x;
+    result[1][1] = up.y;
+    result[2][1] = up.z;
 
-    result.m02 = -forward.x;
-    result.m12 = -forward.y;
-    result.m22 = -forward.z;
+    result[0][2] = -forward.x;
+    result[1][2] = -forward.y;
+    result[2][2] = -forward.z;
 
-    result.m30 = -Math::dot(right, eye);
-    result.m31 = -Math::dot(up, eye);
-    result.m32 =  Math::dot(forward, eye);
+    result[3][0] = -Math::dot(right, eye);
+    result[3][1] = -Math::dot(up, eye);
+    result[3][2] =  Math::dot(forward, eye);
 
     return result;
 }
 
 /*********** Quaternion ***********/
 const Quaternion Math::Mat4ToQuat(const Matrix4x4 &lhs) {
-    vvalue trace = lhs.m00 + lhs.m11 + lhs.m22;
+    vvalue trace = lhs[0][0] + lhs[1][1] + lhs[2][2];
 
     Quaternion q;
 
     if (trace > 0) {
         vvalue s = std::sqrt(trace + 1.0f) * 2.0f;
         q.w = 0.25f * s;
-        q.x = (lhs.m21 - lhs.m12) / s;
-        q.y = (lhs.m02 - lhs.m20) / s;
-        q.z = (lhs.m10 - lhs.m01) / s;
-    } else if ((lhs.m00 > lhs.m11) && (lhs.m00 > lhs.m22)) {
-        vvalue s = std::sqrt(1.0f + lhs.m00 - lhs.m11 - lhs.m22) * 2.0f;
-        q.w = (lhs.m21 - lhs.m12) / s;
+        q.x = (lhs[2][1] - lhs[1][2]) / s;
+        q.y = (lhs[0][2] - lhs[2][0]) / s;
+        q.z = (lhs[1][0] - lhs[0][1]) / s;
+    } else if ((lhs[0][0] > lhs[1][1]) && (lhs[0][0] > lhs[2][2])) {
+        vvalue s = std::sqrt(1.0f + lhs[0][0] - lhs[1][1] - lhs[2][2]) * 2.0f;
+        q.w = (lhs[2][1] - lhs[1][2]) / s;
         q.x = 0.25f * s;
-        q.y = (lhs.m01 + lhs.m10) / s;
-        q.z = (lhs.m02 + lhs.m20) / s;
-    } else if (lhs.m11 > lhs.m22) {
-        vvalue s = std::sqrt(1.0f + lhs.m11 - lhs.m00 - lhs.m22) * 2.0f;
-        q.w = (lhs.m02 - lhs.m20) / s;
-        q.x = (lhs.m01 + lhs.m10) / s;
+        q.y = (lhs[0][1] + lhs[1][0]) / s;
+        q.z = (lhs[0][2] + lhs[2][0]) / s;
+    } else if (lhs[1][1] > lhs[2][2]) {
+        vvalue s = std::sqrt(1.0f + lhs[1][1] - lhs[0][0] - lhs[2][2]) * 2.0f;
+        q.w = (lhs[0][2] - lhs[2][0]) / s;
+        q.x = (lhs[0][1] + lhs[1][0]) / s;
         q.y = 0.25f * s;
-        q.z = (lhs.m12 + lhs.m21) / s;
+        q.z = (lhs[1][2] + lhs[2][1]) / s;
     } else {
-        vvalue s = std::sqrt(1.0f + lhs.m22 - lhs.m00 - lhs.m11) * 2.0f;
-        q.w = (lhs.m10 - lhs.m01) / s;
-        q.x = (lhs.m02 + lhs.m20) / s;
-        q.y = (lhs.m12 + lhs.m21) / s;
+        vvalue s = std::sqrt(1.0f + lhs[2][2] - lhs[0][0] - lhs[1][1]) * 2.0f;
+        q.w = (lhs[1][0] - lhs[0][1]) / s;
+        q.x = (lhs[0][2] + lhs[2][0]) / s;
+        q.y = (lhs[1][2] + lhs[2][1]) / s;
         q.z = 0.25f * s;
     }
     return q;
@@ -349,10 +349,10 @@ const Quaternion Math::lookRotation(const Vector3& forward, const Vector3& up) {
     vvalue trace = m00 + m11 + m22;
 
     return Mat4ToQuat({
-        m00,  m01,  m02,  0.0f,
-        m10,  m11,  m12,  0.0f,
-        m20,  m21,  m22,  0.0f,
-        0.0f, 0.0f, 0.0f, 1.0f
+        {m00,  m01,  m02,  0.0f},
+        {m10,  m11,  m12,  0.0f},
+        {m20,  m21,  m22,  0.0f},
+        {0.0f, 0.0f, 0.0f, 1.0f}
     });
 }
 
