@@ -346,12 +346,10 @@ const Quaternion Math::lookRotation(const Vector3& forward, const Vector3& up) {
     vvalue m12 = -forward.y;
     vvalue m22 = -forward.z;
 
-    vvalue trace = m00 + m11 + m22;
-
     return Mat4ToQuat({
-        {m00,  m01,  m02,  0.0f},
-        {m10,  m11,  m12,  0.0f},
-        {m20,  m21,  m22,  0.0f},
+        {m00,  m10,  m20,  0.0f},
+        {m01,  m11,  m21,  0.0f},
+        {m02,  m12,  m22,  0.0f},
         {0.0f, 0.0f, 0.0f, 1.0f}
     });
 }

@@ -200,12 +200,13 @@ Vector4 operator *(const Vector4 &lhs, const Matrix4x4 &rhs) noexcept {
 }
 
 Matrix4x4 operator *(const Matrix4x4 &lhs, vvalue rhs) noexcept {
-    return Matrix4x4(
-        lhs.getColumn(0) * rhs,
-        lhs.getColumn(1) * rhs,
-        lhs.getColumn(2) * rhs,
-        lhs.getColumn(3) * rhs
-    );
+    return Matrix4x4::identityMatrix;
+    // (
+    //     lhs.getColumn(0) * rhs,
+    //     lhs.getColumn(1) * rhs,
+    //     lhs.getColumn(2) * rhs,
+    //     lhs.getColumn(3) * rhs
+    // );
 }
 
 
