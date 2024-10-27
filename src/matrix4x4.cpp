@@ -9,10 +9,10 @@ Matrix4x4::Matrix4x4(const Vector4& row0, const Vector4& row1, const Vector4& ro
 }
 
 Matrix4x4::Matrix4x4(const Matrix3x3& rhs) {
-    data[0] = {rhs.m00, rhs.m01, rhs.m02};
-    data[1] = {rhs.m10, rhs.m11, rhs.m12};
-    data[2] = {rhs.m20, rhs.m21, rhs.m22};
-    data[3] = {0.0f,    0.0f,    1.0f};
+    data[0] = {rhs[0][0], rhs[0][1], rhs[0][2], 0.0f};
+    data[1] = {rhs[1][0], rhs[1][1], rhs[1][2], 0.0f};
+    data[2] = {rhs[2][0], rhs[2][1], rhs[2][2], 0.0f};
+    data[3] = {0.0f,      0.0f,      0.0f,      1.0f};
 }
 
 /* ========================================= */
@@ -20,11 +20,11 @@ Matrix4x4::Matrix4x4(const Matrix3x3& rhs) {
 void Matrix4x4::decompose(Vector3& scale, Quaternion& rotation, Vector3& position) const {
     position = Vector3(getRow(3));
 
-    scale = Vector3(
+    scale = {
         Math::magnitude(getRow(0)),
         Math::magnitude(getRow(1)),
         Math::magnitude(getRow(2))
-    );
+    };
 
     Matrix3x3 matrix(
         Vector3(getRow(0)) / scale.x,
@@ -45,13 +45,10 @@ const Vector4 Matrix4x4::getColumn(int index) const {
             return {data[0][0], data[1][0], data[2][0], data[3][0]};
         case 1:
             return {data[0][1], data[1][1], data[2][1], data[3][1]};
-            // return {m01, m11, m21, m31};
         case 2:
             return {data[0][2], data[1][2], data[2][2], data[3][2]};
-            // return {m02, m12, m22, m32};
         case 3:
             return {data[0][3], data[1][3], data[2][3], data[3][3]};
-            // return {m03, m13, m23, m33};
         default:
             return {0.0f, 0.0f, 0.0f, 0.0f};
     }

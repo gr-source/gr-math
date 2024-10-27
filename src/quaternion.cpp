@@ -68,7 +68,7 @@ Vector3 operator *(const Quaternion &lhs, const Vector3 &rhs) noexcept {
     auto m = Math::rotate<Matrix4x4>(lhs);
 
     // multiplica para um ponto no mundo
-    auto result = m * Vector4(rhs, 1.0f);
+    auto result = m * Vector4({rhs.x, rhs.y, rhs.z, 1.0f});
 
     return {result.x, result.y, result.z};
 }

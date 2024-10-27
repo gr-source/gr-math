@@ -8,7 +8,15 @@
         s.z t.z
 */
 struct Matrix4x4 {
-    Vector4 data[4];
+    union {
+        struct {
+            Vector4 row0;
+            Vector4 row1;
+            Vector4 row2;
+            Vector4 row3;
+        };
+        Vector4 data[3];
+    };
 
     Matrix4x4(const Vector4& row0, const Vector4& row1, const Vector4& row2, const Vector4& row3);
 

@@ -146,8 +146,8 @@ template <>
 const Matrix3x3 Math::translate(const Vector2& vector) {
     Matrix3x3 result = Matrix3x3::identityMatrix;
 
-    result.m20 = vector.x;
-    result.m21 = vector.y;
+    result[2][0] = vector.x;
+    result[2][1] = vector.y;
 
     return result;
 }
@@ -175,11 +175,11 @@ template <>
 const Matrix3x3 Math::rotate(const Quaternion& q) {
     Matrix3x3 result = Matrix3x3::identityMatrix;
     
-    result.m00 = 1.0f - 2.0f * ((q.y * q.y) + (q.z * q.z));
-    result.m01 = 2.0f * ((q.x * q.y) + (q.z * q.w));
+    result[0][0] = 1.0f - 2.0f * ((q.y * q.y) + (q.z * q.z));
+    result[0][1] = 2.0f * ((q.x * q.y) + (q.z * q.w));
 
-    result.m10 = 2.0f * ((q.x * q.y) - (q.z * q.w));
-    result.m11 = 1.0f - 2.0f * ((q.x * q.x) + (q.z * q.z));
+    result[1][0] = 2.0f * ((q.x * q.y) - (q.z * q.w));
+    result[1][1] = 1.0f - 2.0f * ((q.x * q.x) + (q.z * q.z));
     return result;
 }
 
@@ -198,8 +198,8 @@ template <>
 const Matrix3x3 Math::scale(const Vector2& vector) {
     Matrix3x3 result = Matrix3x3::identityMatrix;
 
-    result.m00 = vector.x;
-    result.m11 = vector.y;
+    result[0][0] = vector.x;
+    result[1][1] = vector.y;
 
     return result;
 }

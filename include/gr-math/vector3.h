@@ -12,7 +12,7 @@ struct Vector3 {
         vvalue data[3];
     };
 
-    Vector3(vvalue x = 0.0f, vvalue y = 0.0f, vvalue z = 0.0f);
+    // Vector3(vvalue x = 0.0f, vvalue y = 0.0f, vvalue z = 0.0f);
 
     vvalue operator[](int index) const;
 
@@ -32,7 +32,7 @@ struct Vector3 {
     Vector3& operator *=(const Vector3 &other);
     Vector3& operator *=(vvalue other);
 
-    Vector3& operator =(const Vector3 &other);
+    // Vector3& operator =(const Vector3 &other);
 
     bool operator ==(const Vector3 &other) const;
 

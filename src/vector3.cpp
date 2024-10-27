@@ -1,7 +1,7 @@
 #include "vector3.h"
 #include "gmath.h"
 
-Vector3::Vector3(vvalue x, vvalue y, vvalue z) : x(x), y(y), z(z) {}
+// Vector3::Vector3(vvalue x, vvalue y, vvalue z) : x(x), y(y), z(z) {}
 
 vvalue Vector3::operator[](int index) const {
     return data[index];
@@ -75,6 +75,7 @@ Vector3& Vector3::operator *=(vvalue other) {
     return *this;
 }
 
+/*
 Vector3& Vector3::operator =(const Vector3& other) {
     if (this == &other) {
         return *this;
@@ -84,6 +85,7 @@ Vector3& Vector3::operator =(const Vector3& other) {
     z = other.z;
     return *this;
 }
+*/
 
 bool Vector3::operator ==(const Vector3& rhs) const {
     return Math::magnitude(*this - rhs) < 1.0e-6;

@@ -16,19 +16,14 @@ struct Vector4 {
             vvalue z;
             vvalue w;
         };
-        vvalue data[4];
+        vvalue data[3];
     };
-
-    Vector4(const Vector3 &rhs, vvalue w);
-    Vector4(vvalue x = 0.0f, vvalue y = 0.0f, vvalue z = 0.0f, vvalue w = 1.0f);
 
     Vector4& operator /=(vvalue rhs);
     
-    Vector4& operator =(const Vector4& rhs);
+    bool operator >(const Vector4& rhs) const;
 
-    const bool operator >(const Vector4& rhs) const;
-
-    const bool operator !=(const Vector4& lhs) const;
+    bool operator !=(const Vector4& lhs) const;
 
     operator Vector3() const;
 
@@ -69,3 +64,6 @@ Vector4 operator /(const Vector4 &lhs, vvalue rhs) noexcept;
 std::istream &operator >>(std::istream &is, Vector4 &rhs);
 
 std::ostream &operator <<(std::ostream &os, const Vector4 &rhs);
+
+
+
