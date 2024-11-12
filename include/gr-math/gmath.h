@@ -21,6 +21,9 @@
 #include "color.h"
 
 namespace Math {
+    template <typename T>
+    T rand(T max, T min);
+
     /* converte graus para radianos */
     template <typename T>
     inline T rad(T degrees) {

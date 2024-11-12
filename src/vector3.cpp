@@ -75,18 +75,6 @@ Vector3& Vector3::operator *=(vvalue other) {
     return *this;
 }
 
-/*
-Vector3& Vector3::operator =(const Vector3& other) {
-    if (this == &other) {
-        return *this;
-    }
-    x = other.x;
-    y = other.y;
-    z = other.z;
-    return *this;
-}
-*/
-
 bool Vector3::operator ==(const Vector3& rhs) const {
     return Math::magnitude(*this - rhs) < 1.0e-6;
 }

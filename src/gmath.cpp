@@ -1,5 +1,10 @@
 #include "gmath.h"
 
+template <>
+float Math::rand(float min, float max) {
+    return  (max - min) * (((static_cast<float>(std::rand())) / static_cast<float>(RAND_MAX))) + min;
+}
+
 /* ========== cross ========== */
 template <>
 const Vector3 Math::cross(const Vector3& rhs, const Vector3& lhs) {
