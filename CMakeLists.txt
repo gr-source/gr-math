@@ -3,9 +3,12 @@ project(gr-math VERSION 0.1.0 LANGUAGES C CXX)
 
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
+set(GR_MATH_LIB "${CMAKE_SOURCE_DIR}/lib/lib${PROJECT_NAME}.so")
 
 option(GR_COMPILE_LINUX "Compile on Linux" ON)
 option(GR_COMPILE_STATIC_LIBRARY "Compile static library" OFF)
+option(GR_BUILD_TEST "Build test" ON)
 
 set(math_src
     src/gmath.cpp
@@ -23,7 +26,10 @@ if(GR_COMPILE_STATIC_LIBRARY)
 else()
     add_library(${PROJECT_NAME} SHARED ${math_src})
 endif()
-unset(GR_COMPILE_STATIC_LIBRARY CACHE)
+
+if(GR_BUILD_TEST)
+    add_subdirectory(tests)
+endif()
 
 target_include_directories(${PROJECT_NAME} PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/${PROJECT_NAME}>
@@ -68,7 +74,6 @@ if(GR_COMPILE_LINUX)
         "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake" DESTINATION lib/${PROJECT_NAME}/cmake
     )
 endif()
-unset(GR_COMPILE_LINUX CACHE)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

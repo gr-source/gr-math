@@ -87,8 +87,17 @@ bool Vector3::operator >(const Vector3 &rhs) const {
     return Math::magnitude(*this) > Math::magnitude(rhs);
 }
 
+bool Vector3::operator >=(const Vector3 &rhs) const {
+    return Math::magnitude(*this) >= Math::magnitude(rhs);
+}
+
+
 bool Vector3::operator <(const Vector3 &rhs) const {
     return Math::magnitude(*this) < Math::magnitude(rhs);
+}
+
+bool Vector3::operator <=(const Vector3 &rhs) const {
+    return Math::magnitude(*this) <= Math::magnitude(rhs);
 }
 
 Vector3::operator Vector4() const {

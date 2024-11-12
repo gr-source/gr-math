@@ -39,8 +39,10 @@ struct Vector3 {
     bool operator !=(const Vector3 &other) const;
 
     bool operator >(const Vector3 &rhs) const;
+    bool operator >=(const Vector3 &rhs) const;
 
     bool operator <(const Vector3 &rhs) const;
+    bool operator <=(const Vector3 &rhs) const;
 
     operator Vector4() const;
 
