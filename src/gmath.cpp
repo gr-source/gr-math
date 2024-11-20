@@ -246,7 +246,7 @@ Matrix4x4 Math::CreateTRS(const Vector3 &scale, const Quaternion &rotate, const 
     return result;
 }
 
-const Matrix4x4 Math::perspective(vvalue fovy, vvalue aspect, vvalue far, vvalue near) {
+const Matrix4x4 Math::perspective(vvalue fovy, vvalue aspect, vvalue near, vvalue far) {
     vvalue tanHalfFovy = std::tan(fovy / 2.0f);
     
     Matrix4x4 result = Matrix4x4::zeroMatrix;

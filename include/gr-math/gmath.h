@@ -81,7 +81,7 @@ namespace Math {
     * @param far plano distante
     * @param near plano proximo
     */
-    const Matrix4x4 perspective(vvalue fovy, vvalue aspect, vvalue far, vvalue near);
+    const Matrix4x4 perspective(vvalue fovy, vvalue aspect, vvalue near, vvalue far);
 
     /* orthographic calcula a view sem fundo Ideal para render 2d
     * @param far plano distante
