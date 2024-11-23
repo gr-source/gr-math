@@ -14,21 +14,15 @@ struct Color {
         float data[4];
     };
 
-    Color(float r = 1.0f, float g = 1.0f, float b = 1.0f, float a = 1.0f) : r(r), g(g), b(b), a(a) {}
+    static Color red;
 
-    Color(const Color& other) : r(other.r), g(other.g), b(other.b), a(other.a) {}
+    static Color green;
 
-    static const Color red;
+    static Color blue;
 
-    static const Color green;
+    static Color white;
 
-    static const Color blue;
-
-    static const Color white;
-
-    static const Color black;
-
-    Color& operator=(const Color& other);
+    static Color black;
 
     friend std::istream& operator>>(std::istream& is, Color& color) {
         is >> color.r >> color.g >> color.b >> color.a;

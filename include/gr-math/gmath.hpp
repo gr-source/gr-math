@@ -5,20 +5,20 @@
 #include <ostream>
 #include <iostream>
 
-#include "types.h"
+#include "types.hpp"
 
-#include "matrix3x3.h"
-#include "matrix4x4.h"
+#include "matrix3x3.hpp"
+#include "matrix4x4.hpp"
 
-#include "quaternion.h"
+#include "quaternion.hpp"
 
-#include "vector2.h"
-#include "vector3.h"
-#include "vector4.h"
+#include "vector2.hpp"
+#include "vector3.hpp"
+#include "vector4.hpp"
 
 #include "gVector2.hpp"
 
-#include "color.h"
+#include "color.hpp"
 
 namespace Math {
     template <typename T>

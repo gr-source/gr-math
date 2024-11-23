@@ -1,4 +1,4 @@
-#include "gmath.h"
+#include "gmath.hpp"
 
 template <>
 float Math::rand(float min, float max) {

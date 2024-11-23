@@ -1,6 +1,6 @@
 #pragma once
 
-#include "vector3.h"
+#include "vector3.hpp"
 
 /* === Matrix3x3===
 * ordem de multiplicação:
@@ -13,7 +13,7 @@ struct Matrix3x3 {
             Vector3 row1;
             Vector3 row2;
         };
-        Vector3 data[2];
+        Vector3 data[3];
     };
 
     Matrix3x3(const Vector3& row0, const Vector3& row1, const Vector3& row2);

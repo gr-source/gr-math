@@ -1,6 +1,6 @@
 #pragma once
 
-#include "types.h"
+#include "types.hpp"
 
 /*
 * (X) O componente x do Vector.
@@ -16,7 +16,7 @@ struct Vector4 {
             vvalue z;
             vvalue w;
         };
-        vvalue data[3];
+        vvalue data[4];
     };
 
     Vector4& operator /=(vvalue rhs);

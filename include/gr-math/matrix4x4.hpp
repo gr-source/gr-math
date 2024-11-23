@@ -1,6 +1,6 @@
 #pragma once
 
-#include "vector4.h"
+#include "vector4.hpp"
 
 /*
  s.x        t.x
@@ -15,7 +15,7 @@ struct Matrix4x4 {
             Vector4 row2;
             Vector4 row3;
         };
-        Vector4 data[3];
+        Vector4 data[4];
     };
 
     Matrix4x4(const Vector4& row0, const Vector4& row1, const Vector4& row2, const Vector4& row3);

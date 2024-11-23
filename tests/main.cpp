@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "../include/gr-math/gmath.h"
+#include "../include/gr-math/gmath.hpp"
 
 int main() {
     return 0;

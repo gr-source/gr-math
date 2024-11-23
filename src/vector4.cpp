@@ -1,7 +1,7 @@
-#include "vector4.h"
-#include "vector3.h"
+#include "vector4.hpp"
+#include "vector3.hpp"
 
-#include "gmath.h"
+#include "gmath.hpp"
 
 Vector4& Vector4::operator /=(vvalue rhs) {
     x /= rhs;

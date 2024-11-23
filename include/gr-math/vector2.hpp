@@ -1,6 +1,6 @@
 #pragma once
 
-#include "types.h"
+#include "types.hpp"
 
 struct Vector2 {
     union {
@@ -11,12 +11,6 @@ struct Vector2 {
         vvalue data[2];
     };
 
-    Vector2(vvalue x = 0.0f, vvalue y = 0.0f);
-
-    Vector2(const Vector2& other);
-
-    Vector2& operator =(const Vector2& other);
-
     Vector2& operator +=(const Vector2& lhs);
 
     Vector2& operator *=(vvalue lhs);
@@ -26,9 +20,17 @@ struct Vector2 {
     bool operator==(const Vector2& other) const;
     bool operator!=(const Vector2& other) const;
 
-    static const Vector2 zero;
+    static Vector2 zero;
 
-    static const Vector2 one;
+    static Vector2 one;
+
+    static Vector2 left;
+
+    static Vector2 right;
+
+    static Vector2 up;
+
+    static Vector2 down;
 
     friend std::istream &operator >>(std::istream &is, Vector2 &other);
 

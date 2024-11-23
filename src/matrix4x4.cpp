@@ -1,5 +1,5 @@
-#include "matrix4x4.h"
-#include "gmath.h"
+#include "matrix4x4.hpp"
+#include "gmath.hpp"
 
 Matrix4x4::Matrix4x4(const Vector4& row0, const Vector4& row1, const Vector4& row2, const Vector4& row3) {
     data[0] = {row0.x, row1.x, row2.x, row3.x};

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "types.h"
+#include "types.hpp"
 
 /*
 * (W) O componente w do quatérnion, que é a parte do número real do quatérnion.

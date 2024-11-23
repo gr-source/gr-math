@@ -1,19 +1,6 @@
-#include "vector2.h"
+#include "vector2.hpp"
 
-#include "gmath.h"
-
-Vector2::Vector2(vvalue x, vvalue y) : x(x), y(y) {}
-
-Vector2::Vector2(const Vector2 &other) : x(other.x), y(other.y) {}
-
-Vector2 &Vector2::operator =(const Vector2 &other) {
-    if (this == &other) {
-        return *this;
-    }
-    x = other.x;
-    y = other.y;
-    return *this;
-}
+#include "gmath.hpp"
 
 Vector2 &Vector2::operator +=(const Vector2 &lhs) {
     *this = *this + lhs;
@@ -40,9 +27,18 @@ bool Vector2::operator !=(const Vector2 &other) const {
     return ((x != other.x) || (y != other.y));
 }
 
-const Vector2 Vector2::zero = {0.0f, 0.0f};
+Vector2 Vector2::zero = {0.0f, 0.0f};
 
-const Vector2 Vector2::one = {1.0f, 1.0f};
+Vector2 Vector2::one = {1.0f, 1.0f};
+
+Vector2 Vector2::left = {-1.0f, 0.0f};
+
+Vector2 Vector2::right = {1.0f, 0.0f};
+
+Vector2 Vector2::up = {0.0f, 1.0f};
+
+Vector2 Vector2::down = {0.0f, -1.0f};
+
 
 // operator -
 Vector2 operator -(const Vector2 &lhs, const Vector2 &rhs) noexcept {

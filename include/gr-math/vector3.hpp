@@ -1,6 +1,6 @@
 #pragma once
 
-#include "types.h"
+#include "types.hpp"
 
 struct Vector3 {
     union {
@@ -46,15 +46,21 @@ struct Vector3 {
 
     operator Vector4() const;
 
-    static const Vector3 zero;
+    static Vector3 zero;
 
-    static const Vector3 one;
+    static Vector3 one;
 
-    static const Vector3 forward;
+    static Vector3 right;
 
-    static const Vector3 right;
+    static Vector3 left;
 
-    static const Vector3 up;
+    static Vector3 up;
+
+    static Vector3 down;
+
+    static Vector3 forward;
+
+    static Vector3 backward;
 
     friend std::istream &operator >>(std::istream &is, Vector3 &other);
 

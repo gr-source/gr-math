@@ -8,7 +8,7 @@ set(GR_MATH_LIB "${CMAKE_SOURCE_DIR}/lib/lib${PROJECT_NAME}.so")
 
 option(GR_COMPILE_LINUX "Compile on Linux" ON)
 option(GR_COMPILE_STATIC_LIBRARY "Compile static library" OFF)
-option(GR_BUILD_TEST "Build test" ON)
+option(GR_BUILD_TEST "Build test" OFF)
 
 set(math_src
     src/gmath.cpp
@@ -35,8 +35,6 @@ target_include_directories(${PROJECT_NAME} PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include/${PROJECT_NAME}>
     $<INSTALL_INTERFACE:include/${PROJECT_NAME}>
 )
-
-message("Dir: ${CMAKE_CURRENT_BINARY_DIR}")
 
 if(GR_COMPILE_LINUX)
     install(DIRECTORY include/${PROJECT_NAME}

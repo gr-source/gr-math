@@ -1,5 +1,5 @@
-#include "matrix3x3.h"
-#include "gmath.h"
+#include "matrix3x3.hpp"
+#include "gmath.hpp"
 
 Matrix3x3::Matrix3x3(const Vector3& row0, const Vector3& row1, const Vector3& row2) {
     data[0] = {row0.x, row1.x, row2.x};
