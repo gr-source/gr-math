@@ -19,6 +19,7 @@
 #include "gVector2.hpp"
 
 #include "color.hpp"
+#include "rect.hpp"
 
 namespace Math {
     template <typename T>
