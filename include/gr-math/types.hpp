@@ -3,6 +3,8 @@
 #include <istream>
 #include <ostream>
 
+#include <cstdint>
+
 #if DOUBLE_PRECISION
 using vvalue = double;
 #else
