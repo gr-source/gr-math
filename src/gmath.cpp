@@ -1,13 +1,17 @@
 #include "gmath.hpp"
+#include "matrix4x4.hpp"
+#include "quaternion.hpp"
+#include "vector3.hpp"
 
 template <>
-float Math::rand(float min, float max) {
+float Math::rand(float min, float max)
+{
     return  (max - min) * (((static_cast<float>(std::rand())) / static_cast<float>(RAND_MAX))) + min;
 }
 
 /* ========== cross ========== */
 template <>
-const Vector3 Math::cross(const Vector3& rhs, const Vector3& lhs) {
+Vector3 Math::cross(const Vector3& rhs, const Vector3& lhs) {
     return {
         (rhs.y * lhs.z) - (rhs.z * lhs.y),
         (rhs.z * lhs.x) - (rhs.x * lhs.z),
@@ -17,22 +21,26 @@ const Vector3 Math::cross(const Vector3& rhs, const Vector3& lhs) {
 
 /* ========== magnitude ========== */
 template <>
-vvalue Math::magnitude(const Vector2 &rhs) {
+vvalue Math::magnitude(const Vector2 &rhs)
+{
     return std::sqrt((rhs.x * rhs.x) + (rhs.y * rhs.y));
 }
 
 template <>
-vvalue Math::magnitude(const Vector3 &rhs) {
+vvalue Math::magnitude(const Vector3 &rhs)
+{
     return std::sqrt((rhs.x * rhs.x) + (rhs.y * rhs.y) + (rhs.z * rhs.z));
 }
 
 template <>
-vvalue Math::magnitude(const Vector4 &rhs) {
+vvalue Math::magnitude(const Vector4 &rhs)
+{
     return std::sqrt((rhs.x * rhs.x) + (rhs.y * rhs.y) + (rhs.z * rhs.z) + (rhs.w * rhs.w));
 }
 
 template <>
-vvalue Math::magnitude(const Quaternion &rhs) {
+vvalue Math::magnitude(const Quaternion &rhs)
+{
     return std::sqrt((rhs.w * rhs.w) + (rhs.x * rhs.x) + (rhs.y * rhs.y) + (rhs.z * rhs.z));
 }
 
@@ -114,30 +122,58 @@ Vector3 Math::max(Vector3 lhs, Vector3 rhs) {
 
 /* ========== mix ========== */
 template <>
-Vector3 Math::mix(const Vector3 &lhs, const Vector3 &rhs, vvalue f) {
+float Math::mix(float lhs, float rhs, vvalue f)
+{
+    return (1.0f - f) * rhs + f * lhs;
+}
+
+template <>
+Vector2 Math::mix(Vector2 lhs, Vector2 rhs, vvalue f)
+{
+    return (1.0f - f) * rhs + f * lhs;
+}
+
+template <>
+Vector3 Math::mix(Vector3 lhs, Vector3 rhs, vvalue f)
+{
+    return (1.0f - f) * rhs + f * lhs;
+}
+
+template <>
+Vector4 Math::mix(Vector4 lhs, Vector4 rhs, vvalue f)
+{
     return (1.0f - f) * rhs + f * lhs;
 }
 
 /* ========== lerp ========== */
 template <>
 vvalue Math::lerp(vvalue lhs, vvalue rhs, vvalue t) {
-    return rhs + (lhs - rhs) * t;
+    return lhs + (rhs - lhs) * t;
+}
+
+template <>
+Vector2 Math::lerp(Vector2 lhs, Vector2 rhs, vvalue t) {
+    return lhs + (rhs - lhs) * t;
 }
 
 template <>
 Vector3 Math::lerp(Vector3 lhs, Vector3 rhs, vvalue t) {
-    return rhs + (lhs - rhs) * t;
+    return lhs + (rhs - lhs) * t;
+}
+template <>
+Vector4 Math::lerp(Vector4 lhs, Vector4 rhs, vvalue t) {
+    return lhs + (rhs - lhs) * t;
 }
 
 /* ========== abs ========== */
 template <>
-const Vector3 Math::abs(const Vector3& rhs) {
+Vector3 Math::abs(const Vector3& rhs) {
     return {std::abs(rhs.x), std::abs(rhs.y), std::abs(rhs.z)};
 }
 
 /* ========== Matrix ========== */
 template <>
-const Matrix4x4 Math::translate(const Vector3& vector) {
+Matrix4x4 Math::translate(const Vector3& vector) {
     Matrix4x4 result = Matrix4x4::identityMatrix;
 
     result[3][0] = vector.x;
@@ -148,7 +184,7 @@ const Matrix4x4 Math::translate(const Vector3& vector) {
 }
 
 template <>
-const Matrix3x3 Math::translate(const Vector2& vector) {
+Matrix3x3 Math::translate(const Vector2& vector) {
     Matrix3x3 result = Matrix3x3::identityMatrix;
 
     result[2][0] = vector.x;
@@ -158,7 +194,7 @@ const Matrix3x3 Math::translate(const Vector2& vector) {
 }
 
 template <>
-const Matrix4x4 Math::rotate(const Quaternion& q) {
+Matrix4x4 Math::rotate(const Quaternion& q) {
     Matrix4x4 result = Matrix4x4::identityMatrix;
 
     result[0][0] = 1.0f - 2.0f * ((q.y * q.y) + (q.z * q.z));
@@ -177,7 +213,7 @@ const Matrix4x4 Math::rotate(const Quaternion& q) {
 }
 
 template <>
-const Matrix3x3 Math::rotate(const Quaternion& q) {
+Matrix3x3 Math::rotate(const Quaternion& q) {
     Matrix3x3 result = Matrix3x3::identityMatrix;
     
     result[0][0] = 1.0f - 2.0f * ((q.y * q.y) + (q.z * q.z));
@@ -189,7 +225,7 @@ const Matrix3x3 Math::rotate(const Quaternion& q) {
 }
 
 template <>
-const Matrix4x4 Math::scale(const Vector3& vector) {
+Matrix4x4 Math::scale(const Vector3& vector) {
     Matrix4x4 result = Matrix4x4::identityMatrix;
 
     result[0][0] = vector.x;
@@ -200,7 +236,7 @@ const Matrix4x4 Math::scale(const Vector3& vector) {
 }
 
 template <>
-const Matrix3x3 Math::scale(const Vector2& vector) {
+Matrix3x3 Math::scale(const Vector2& vector) {
     Matrix3x3 result = Matrix3x3::identityMatrix;
 
     result[0][0] = vector.x;
@@ -209,7 +245,8 @@ const Matrix3x3 Math::scale(const Vector2& vector) {
     return result;
 }
 
-Matrix4x4 Math::CreateTRS(const Vector3 &scale, const Quaternion &rotate, const Vector3 &position) {
+Matrix4x4 Math::CreateTRS(const Vector3 &position, const Quaternion &rotate, const Vector3 &scale)
+{
     Matrix4x4 result = Matrix4x4::identityMatrix;
 
     // translate
@@ -246,7 +283,7 @@ Matrix4x4 Math::CreateTRS(const Vector3 &scale, const Quaternion &rotate, const 
     return result;
 }
 
-const Matrix4x4 Math::perspective(vvalue fovy, vvalue aspect, vvalue near, vvalue far) {
+Matrix4x4 Math::perspective(vvalue fovy, vvalue aspect, vvalue near, vvalue far) {
     vvalue tanHalfFovy = std::tan(fovy / 2.0f);
     
     Matrix4x4 result = Matrix4x4::zeroMatrix;
@@ -262,7 +299,7 @@ const Matrix4x4 Math::perspective(vvalue fovy, vvalue aspect, vvalue near, vvalu
     return result;
 }
 
-const Matrix4x4 Math::orthographic(vvalue left, vvalue right, vvalue bottom, vvalue top, vvalue near, vvalue far) {
+Matrix4x4 Math::orthographic(vvalue left, vvalue right, vvalue bottom, vvalue top, vvalue near, vvalue far) {
     Matrix4x4 result = Matrix4x4::identityMatrix;
 
     result[0][0] =  2.0f / (right - left);
@@ -276,7 +313,7 @@ const Matrix4x4 Math::orthographic(vvalue left, vvalue right, vvalue bottom, vva
     return result;
 }
 
-const Matrix4x4 Math::lookAt(const Vector3& eye, const Vector3& center, const Vector3& upward) {
+Matrix4x4 Math::lookAt(const Vector3& eye, const Vector3& center, const Vector3& upward) {
     const Vector3 forward = Math::normalize(center - eye);
     const Vector3 right = Math::normalize(Math::cross(forward, upward));
     const Vector3 up = Math::cross(right, forward);
@@ -302,10 +339,10 @@ const Matrix4x4 Math::lookAt(const Vector3& eye, const Vector3& center, const Ve
 }
 
 /*********** Quaternion ***********/
-const Quaternion Math::Mat4ToQuat(const Matrix4x4 &lhs) {
+Quaternion Math::Mat4ToQuat(const Matrix4x4 &lhs) {
     vvalue trace = lhs[0][0] + lhs[1][1] + lhs[2][2];
 
-    Quaternion q;
+    Quaternion q = Quaternion::identity;
 
     if (trace > 0) {
         vvalue s = std::sqrt(trace + 1.0f) * 2.0f;
@@ -335,31 +372,27 @@ const Quaternion Math::Mat4ToQuat(const Matrix4x4 &lhs) {
     return q;
 }
 
-const Quaternion Math::lookRotation(const Vector3& forward, const Vector3& up) {
-    const Vector3 right = Math::normalize(Math::cross(forward, up));
-    const Vector3 upward = Math::normalize(Math::cross(right, forward));
+Quaternion Math::lookRotation(const Vector3& forward, const Vector3& up) {
+    auto right = Math::normalize(Math::cross(forward, up));
+    auto upward = Math::normalize(Math::cross(right, forward));
 
-    vvalue m00 = right.x;
-    vvalue m10 = right.y;
-    vvalue m20 = right.z;
+    Matrix4x4 result = Matrix4x4::identityMatrix;
+    result[0][0] = right.x;
+    result[0][1] = right.y;
+    result[0][2] = right.z;
 
-    vvalue m01 = upward.x;
-    vvalue m11 = upward.y;
-    vvalue m21 = upward.z;
+    result[1][0] = upward.x;
+    result[1][1] = upward.y;
+    result[1][2] = upward.z;
 
-    vvalue m02 = -forward.x;
-    vvalue m12 = -forward.y;
-    vvalue m22 = -forward.z;
+    result[2][0] = -forward.x;
+    result[2][1] = -forward.y;
+    result[2][2] = -forward.z;
 
-    return Mat4ToQuat({
-        {m00,  m10,  m20,  0.0f},
-        {m01,  m11,  m21,  0.0f},
-        {m02,  m12,  m22,  0.0f},
-        {0.0f, 0.0f, 0.0f, 1.0f}
-    });
+    return Mat4ToQuat(result);
 }
 
-const Quaternion Math::euler(const Vector3& axis, vvalue angle) {
+Quaternion Math::euler(const Vector3& axis, vvalue angle) {
     Quaternion result;
     result.w = std::cos(angle / 2.0f);
     result.x = std::sin(angle / 2.0f) * axis.x;
@@ -368,7 +401,7 @@ const Quaternion Math::euler(const Vector3& axis, vvalue angle) {
     return result;
 }
 
-const Quaternion Math::euler(const Vector3& axis) {
+Quaternion Math::euler(const Vector3& axis) {
     Quaternion result;
 
     // Roll
@@ -391,7 +424,7 @@ const Quaternion Math::euler(const Vector3& axis) {
     return result;
 }
 
-const Quaternion Math::slerp(const Quaternion& lhs, const Quaternion& rhs, vvalue t) {
+Quaternion Math::slerp(const Quaternion& lhs, const Quaternion& rhs, vvalue t) {
 	Quaternion result = lhs;
 	float c = Math::dot(lhs, rhs);
 	if (c < 0.0f) {
@@ -407,8 +440,8 @@ const Quaternion Math::slerp(const Quaternion& lhs, const Quaternion& rhs, vvalu
 	return result;
 }
 
-const Vector3 Math::eulerAngles(const Quaternion &lhs) {
-    Vector3 angles;
+Vector3 Math::eulerAngles(const Quaternion &lhs) {
+    Vector3 angles = Vector3::zero;
 
     // Roll (x-axis rotation)
     float sinr_cosp = 2.0f * ((lhs.w * lhs.x) + (lhs.y * lhs.z));

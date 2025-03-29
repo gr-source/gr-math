@@ -8,9 +8,12 @@
 * (Z) O componente z do Vector.
 * (W) O componente w do Vector.
 */
-struct Vector4 {
-    union {
-        struct {
+struct Vector4
+{
+    union
+    {
+        struct
+        {
             vvalue x;
             vvalue y;
             vvalue z;
@@ -29,11 +32,17 @@ struct Vector4 {
 
     bool operator ==(const Vector4 &rhs) const;
 
-    const float &operator [](int index) const;
+    inline constexpr const float &operator [](int index) const
+    {
+        return data[index];
+    }
 
-    float &operator [](int index);
+    inline constexpr float &operator [](int index)
+    {
+        return data[index];
+    }
 
-    static const Vector4 zero;
+    static Vector4 zero;
 
     friend std::istream &operator >>(std::istream &is, Vector4 &rhs);
 

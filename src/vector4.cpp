@@ -27,15 +27,16 @@ bool Vector4::operator==(const Vector4 &rhs) const {
     return Math::magnitude(*this - rhs) > 0.0f;
 }
 
-const float &Vector4::operator[](int index) const {
+/*const float &Vector4::operator[](int index) const {
     return data[index];
 }
 
 float &Vector4::operator[](int index) {
     return data[index];
 }
+*/
 
-const Vector4 Vector4::zero = {0.0f, 0.0f, 0.0f, 0.0f};
+Vector4 Vector4::zero = {0.0f, 0.0f, 0.0f, 0.0f};
 
 // operator -
 Vector4 operator -(const Vector4 &lhs, const Vector4 &rhs) noexcept {

@@ -8,7 +8,7 @@ set(GR_MATH_LIB "${CMAKE_SOURCE_DIR}/lib/lib${PROJECT_NAME}.so")
 
 option(GR_COMPILE_LINUX "Compile on Linux" ON)
 option(GR_COMPILE_STATIC_LIBRARY "Compile static library" OFF)
-option(GR_BUILD_TEST "Build test" OFF)
+option(GR_BUILD_TEST "Build test" ON)
 
 set(math_src
     src/gmath.cpp

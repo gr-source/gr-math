@@ -21,7 +21,8 @@
 #include "color.hpp"
 #include "rect.hpp"
 
-namespace Math {
+namespace Math
+{
     template <typename T>
     T rand(T max, T min);
 
@@ -38,7 +39,7 @@ namespace Math {
     }
 
     template <typename T>
-    const T cross(const T& rhs, const T& lhs);
+    T cross(const T& rhs, const T& lhs);
 
     template <typename T>
     vvalue magnitude(const T &rhs);
@@ -59,49 +60,49 @@ namespace Math {
     T max(T lhs, T rhs);
 
     template <typename T>
-    T mix(const T &lhs, const T &rhs, vvalue f);
+    T mix(T lhs, T rhs, vvalue f);
 
     template <typename T>
     T lerp(T lhs, T rhs, vvalue t);
 
     template <typename T>
-    const T abs(const T& rhs);
+    T abs(const T& rhs);
 
     template <typename T, typename V>
-    const T translate(const V& vector);
+    T translate(const V& vector);
 
     template <typename T>
-    const T rotate(const Quaternion& q);
+    T rotate(const Quaternion& q);
 
     template <typename T, typename V>
-    const T scale(const V& vector);
+    T scale(const V& vector);
 
-    Matrix4x4 CreateTRS(const Vector3 &scale, const Quaternion &rotate, const Vector3 &position);
+    Matrix4x4 CreateTRS(const Vector3 &position, const Quaternion &rotate, const Vector3 &scale);
 
     /* perspectiva calcula a view com profundidade de um plano de fundo, ideal pra render 3d
     * @param far plano distante
     * @param near plano proximo
     */
-    const Matrix4x4 perspective(vvalue fovy, vvalue aspect, vvalue near, vvalue far);
+    Matrix4x4 perspective(vvalue fovy, vvalue aspect, vvalue near, vvalue far);
 
     /* orthographic calcula a view sem fundo Ideal para render 2d
     * @param far plano distante
     * @param near plano proximo
     */
-    const Matrix4x4 orthographic(vvalue left, vvalue right, vvalue bottom, vvalue top, vvalue near, vvalue far);
+    Matrix4x4 orthographic(vvalue left, vvalue right, vvalue bottom, vvalue top, vvalue near, vvalue far);
 
-    const Matrix4x4 lookAt(const Vector3& eye, const Vector3& center, const Vector3& upward);
+    Matrix4x4 lookAt(const Vector3& eye, const Vector3& center, const Vector3& upward);
 
     /*********** Quaternion ***********/
-    const Quaternion Mat4ToQuat(const Matrix4x4& lhs);
+    Quaternion Mat4ToQuat(const Matrix4x4& lhs);
 
-    const Quaternion lookRotation(const Vector3& forward, const Vector3& up);
+    Quaternion lookRotation(const Vector3& forward, const Vector3& up);
 
-    const Quaternion euler(const Vector3& axis, vvalue angle);
+    Quaternion euler(const Vector3& axis, vvalue angle);
 
-    const Quaternion euler(const Vector3& axis);
+    Quaternion euler(const Vector3& axis);
 
-    const Quaternion slerp(const Quaternion& lhs, const Quaternion& rhs, vvalue t);
+    Quaternion slerp(const Quaternion& lhs, const Quaternion& rhs, vvalue t);
 
-    const Vector3 eulerAngles(const Quaternion &lhs);
+    Vector3 eulerAngles(const Quaternion &lhs);
 };
