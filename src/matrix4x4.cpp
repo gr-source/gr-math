@@ -1,24 +1,40 @@
 #include "matrix4x4.hpp"
 #include "gmath.hpp"
+#include "vector3.hpp"
 #include "vector4.hpp"
 
 /* ========================================= */
 
 void Matrix4x4::decompose(Vector3& scale, Quaternion& rotation, Vector3& position) const {
+    auto row0 = (*this)[0];
+    auto row1 = (*this)[1];
+    auto row2 = (*this)[2];
+    auto row3 = (*this)[3];
+
     position = Vector3(getRow(3));
 
-    scale = {
-        Math::magnitude(getRow(0)),
-        Math::magnitude(getRow(1)),
-        Math::magnitude(getRow(2))
+    scale = Vector3{
+        Math::magnitude(row0),
+        Math::magnitude(row1),
+        Math::magnitude(row2)
     };
 
-    Matrix4x4 m = Matrix4x4::zeroMatrix;
-    m[0] = (*this)[0] / scale.x;
-    m[1] = (*this)[1] / scale.y;
-    m[2] = (*this)[2] / scale.z;
+    row0 /= scale.x;
+    row1 /= scale.y;
+    row2 /= scale.z;
 
-    rotation = Math::Mat4ToQuat(m);
+
+    Matrix4x4 m = {
+        Vector4{row0.x,   row1.x,   row2.x,   0.0f},
+        Vector4{row0.y,   row1.y,   row2.y,   0.0f},
+        Vector4{row0.z,   row1.z,   row2.z,   0.0f},
+        Vector4{0.0f,           0.0f,           0.0f,           0.0f},
+    };
+    /*m[0] = (*this)[0] / scale.x;*/
+    /*m[1] = (*this)[0] / scale.y;*/
+    /*m[2] = (*this)[0] / scale.z;*/
+
+    rotation = Math::normalize(Math::Mat4ToQuat(m));
 }
 
 Matrix4x4 Matrix4x4::transpose() const {

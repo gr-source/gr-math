@@ -448,8 +448,6 @@ Vector3 Math::eulerAngles(const Quaternion &lhs) {
     float cosr_cosp = 1.0f - 2.0f * ((lhs.x * lhs.x) + (lhs.y * lhs.y));
     angles.x = Math::degree(std::atan2(sinr_cosp, cosr_cosp));
 
-    // Falta corrigir, mas não achei nenhuma referencia
-
     // pitch (y-axis rotation)
     float sinp = std::sqrt(1.0f + 2.0f * ((lhs.w * lhs.y) - (lhs.x * lhs.z)));
     float cosp = std::sqrt(1.0f - 2.0f * ((lhs.w * lhs.y) - (lhs.x * lhs.z)));
