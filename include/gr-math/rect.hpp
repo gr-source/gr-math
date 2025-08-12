@@ -1,6 +1,7 @@
 #pragma once
 
-struct Rect {
+typedef struct Rect
+{
     union {
         struct {
             float x;
@@ -10,6 +11,9 @@ struct Rect {
         };
         float data[4];
     };
-};
+} Rect;
+
+
+
 
 

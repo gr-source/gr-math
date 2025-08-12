@@ -213,7 +213,8 @@ Matrix4x4 Math::rotate(const Quaternion& q) {
 }
 
 template <>
-Matrix3x3 Math::rotate(const Quaternion& q) {
+Matrix3x3 Math::rotate(const Quaternion& q)
+{
     Matrix3x3 result = Matrix3x3::identityMatrix;
     
     result[0][0] = 1.0f - 2.0f * ((q.y * q.y) + (q.z * q.z));
@@ -283,7 +284,8 @@ Matrix4x4 Math::CreateTRS(const Vector3 &position, const Quaternion &rotate, con
     return result;
 }
 
-Matrix4x4 Math::perspective(vvalue fovy, vvalue aspect, vvalue near, vvalue far) {
+Matrix4x4 Math::perspective(vvalue fovy, vvalue aspect, vvalue near, vvalue far)
+{
     vvalue tanHalfFovy = std::tan(fovy / 2.0f);
     
     Matrix4x4 result = Matrix4x4::zeroMatrix;
@@ -314,9 +316,9 @@ Matrix4x4 Math::orthographic(vvalue left, vvalue right, vvalue bottom, vvalue to
 }
 
 Matrix4x4 Math::lookAt(const Vector3& eye, const Vector3& center, const Vector3& upward) {
-    const Vector3 forward = Math::normalize(center - eye);
-    const Vector3 right = Math::normalize(Math::cross(forward, upward));
-    const Vector3 up = Math::cross(right, forward);
+    auto forward = Math::normalize(center - eye);
+    auto right = Math::normalize(Math::cross(forward, upward));
+    auto up = Math::cross(right, forward);
 
     Matrix4x4 result = Matrix4x4::identityMatrix;
     result[0][0] = right.x;
@@ -378,15 +380,15 @@ Quaternion Math::lookRotation(const Vector3& forward, const Vector3& up) {
 
     Matrix4x4 result = Matrix4x4::identityMatrix;
     result[0][0] = right.x;
-    result[0][1] = right.y;
-    result[0][2] = right.z;
+    result[1][0] = right.y;
+    result[2][0] = right.z;
 
-    result[1][0] = upward.x;
+    result[0][1] = upward.x;
     result[1][1] = upward.y;
-    result[1][2] = upward.z;
+    result[2][1] = upward.z;
 
-    result[2][0] = -forward.x;
-    result[2][1] = -forward.y;
+    result[0][2] = -forward.x;
+    result[1][2] = -forward.y;
     result[2][2] = -forward.z;
 
     return Mat4ToQuat(result);

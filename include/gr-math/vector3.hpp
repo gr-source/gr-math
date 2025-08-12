@@ -12,8 +12,6 @@ struct Vector3 {
         vvalue data[3];
     };
 
-    // Vector3(vvalue x = 0.0f, vvalue y = 0.0f, vvalue z = 0.0f);
-
     vvalue operator[](int index) const;
 
     vvalue& operator[](int index);
