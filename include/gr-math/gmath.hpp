@@ -12,11 +12,10 @@
 
 #include "quaternion.hpp"
 
+#include "vector.hpp"
 #include "vector2.hpp"
 #include "vector3.hpp"
 #include "vector4.hpp"
-
-#include "gVector2.hpp"
 
 #include "color.hpp"
 #include "rect.hpp"
@@ -24,17 +23,22 @@
 namespace Math
 {
     template <typename T>
-    T rand(T max, T min);
+    T rand(const T &max, const T &min) noexcept
+    {
+        return  (max - min) * (((T(std::rand())) / T(RAND_MAX))) + min;
+    }
 
     /* converte graus para radianos */
     template <typename T>
-    inline T rad(T degrees) {
+    constexpr T rad(T degrees) noexcept
+    {
         return degrees * (M_PI / 180.0f);
     }
 
     /* convert radianos para graus */
     template <typename T>
-    inline T degree(T rad) {
+    constexpr T degree(T rad) noexcept
+    {
         return rad * (180.0f / M_PI);
     }
 

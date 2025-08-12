@@ -2,12 +2,7 @@
 #include "matrix4x4.hpp"
 #include "quaternion.hpp"
 #include "vector3.hpp"
-
-template <>
-float Math::rand(float min, float max)
-{
-    return  (max - min) * (((static_cast<float>(std::rand())) / static_cast<float>(RAND_MAX))) + min;
-}
+#include "vector2.hpp"
 
 /* ========== cross ========== */
 template <>

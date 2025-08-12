@@ -1,99 +1,64 @@
 #pragma once
 
-#include "types.hpp"
+#include "vector.hpp"
+#include "vec3_operator.inl"
 
-struct Vector3 {
-    union {
-        struct {
-            vvalue x;
-            vvalue y;
-            vvalue z;
+template <>
+struct vector<float, 3>
+{
+    union
+    {
+        struct
+        {
+            float x;
+            float y;
+            float z;
         };
-        vvalue data[3];
+        float data[3];
     };
 
-    vvalue operator[](int index) const;
+    static vector zero;
 
-    vvalue& operator[](int index);
+    static vector one;
 
-    Vector3 operator -() const;
+    static vector right;
 
-    Vector3& operator /=(const Vector3 &other);
-    Vector3& operator /=(vvalue other);
+    static vector left;
 
-    Vector3& operator +=(const Vector3 &other);
-    Vector3& operator +=(vvalue other);
+    static vector up;
 
-    Vector3& operator -=(const Vector3 &other);
-    Vector3& operator -=(vvalue other);
+    static vector down;
 
-    Vector3& operator *=(const Vector3 &other);
-    Vector3& operator *=(vvalue other);
+    static vector forward;
 
-    // Vector3& operator =(const Vector3 &other);
+    static vector backward;
 
-    bool operator ==(const Vector3 &other) const;
+    constexpr const float &operator[](int i) const noexcept
+    {
+        return data[i];
+    }
 
-    bool operator !=(const Vector3 &other) const;
-
-    bool operator >(const Vector3 &rhs) const;
-    bool operator >=(const Vector3 &rhs) const;
-
-    bool operator <(const Vector3 &rhs) const;
-    bool operator <=(const Vector3 &rhs) const;
-
-    operator Vector4() const;
-
-    static Vector3 zero;
-
-    static Vector3 one;
-
-    static Vector3 right;
-
-    static Vector3 left;
-
-    static Vector3 up;
-
-    static Vector3 down;
-
-    static Vector3 forward;
-
-    static Vector3 backward;
-
-    friend std::istream &operator >>(std::istream &is, Vector3 &other);
-
-    friend std::ostream &operator <<(std::ostream &os, const Vector3 &other);
+    constexpr float &operator[](int i) noexcept
+    {
+        return data[i];
+    }
 };
 
-// operator -
-Vector3 operator -(vvalue lhs, const Vector3 &rhs) noexcept;
+inline vector<float, 3> vector<float, 3>::zero = {0.0f, 0.0f, 0.0f};
 
-Vector3 operator -(const Vector3 &lhs, vvalue rhs) noexcept;
+inline vector<float, 3> vector<float, 3>::one = {1.0f, 1.0f, 1.0f};
 
-Vector3 operator -(const Vector3 &lhs, const Vector3 &rhs) noexcept;
+inline vector<float, 3> vector<float, 3>::right = {1.0f, 0.0f, 0.0f};
 
-// operator +
-Vector3 operator +(vvalue lhs, const Vector3 &rhs) noexcept;
+inline vector<float, 3> vector<float, 3>::left  = {-1.0f, 0.0f, 0.0f};
 
-Vector3 operator +(const Vector3 &lhs, vvalue rhs) noexcept;
+inline vector<float, 3> vector<float, 3>::up = {0.0f, 1.0f, 0.0f};
 
-Vector3 operator +(const Vector3 &lhs, const Vector3 &rhs) noexcept;
+inline vector<float, 3> vector<float, 3>::down = {0.0f, -1.0f, 0.0f};
 
-// operator *
-Vector3 operator *(vvalue lhs, const Vector3 &rhs) noexcept;
+inline vector<float, 3> vector<float, 3>::forward = {0.0f, 0.0f, 1.0f};
 
-Vector3 operator *(const Vector3 &lhs, vvalue rhs) noexcept;
+inline vector<float, 3> vector<float, 3>::backward = {0.0f, 0.0f, -1.0f};
 
-Vector3 operator *(const Vector3 &lhs, const Vector3 &rhs) noexcept;
 
-// operator /
-Vector3 operator /(vvalue lhs, const Vector3 &rhs) noexcept;
 
-Vector3 operator /(const Vector3 &lhs, vvalue rhs) noexcept;
-
-Vector3 operator /(const Vector3 &lhs, const Vector3 &rhs) noexcept;
-
-// stream 
-std::istream &operator >>(std::istream &is, Vector3 &other);
-
-std::ostream &operator <<(std::ostream &os, const Vector3 &other);

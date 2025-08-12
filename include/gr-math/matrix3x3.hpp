@@ -1,6 +1,7 @@
 #pragma once
 
 #include "vector3.hpp"
+#include "types.hpp"
 
 /* === Matrix3x3===
 * ordem de multiplicação:
