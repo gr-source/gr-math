@@ -11,7 +11,9 @@ void Matrix4x4::decompose(Vector3& scale, Quaternion& rotation, Vector3& positio
     auto row2 = (*this)[2];
     auto row3 = (*this)[3];
 
-    position = Vector3(getRow(3));
+    auto p = getRow(3);
+
+    position = Vector3{p.x, p.y, p.z};
 
     scale = Vector3{
         Math::magnitude(row0),

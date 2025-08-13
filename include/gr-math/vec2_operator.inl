@@ -1,6 +1,12 @@
 #include "vector.hpp"
 
 template <typename T>
+constexpr vector<T, 2> operator -(const vector<T, 2> &other) noexcept
+{
+    return {-other.x, -other.y};
+}
+
+template <typename T>
 constexpr vector<T, 2> &operator +=(vector<T, 2> &lhs, const vector<T, 2> &rhs) noexcept
 {
     lhs.x += rhs.x;

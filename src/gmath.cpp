@@ -16,82 +16,82 @@ Vector3 Math::cross(const Vector3& rhs, const Vector3& lhs) {
 
 /* ========== magnitude ========== */
 template <>
-vvalue Math::magnitude(const Vector2 &rhs)
+float Math::magnitude(const Vector2 &rhs)
 {
     return std::sqrt((rhs.x * rhs.x) + (rhs.y * rhs.y));
 }
 
 template <>
-vvalue Math::magnitude(const Vector3 &rhs)
+float Math::magnitude(const Vector3 &rhs)
 {
     return std::sqrt((rhs.x * rhs.x) + (rhs.y * rhs.y) + (rhs.z * rhs.z));
 }
 
 template <>
-vvalue Math::magnitude(const Vector4 &rhs)
+float Math::magnitude(const Vector4 &rhs)
 {
     return std::sqrt((rhs.x * rhs.x) + (rhs.y * rhs.y) + (rhs.z * rhs.z) + (rhs.w * rhs.w));
 }
 
 template <>
-vvalue Math::magnitude(const Quaternion &rhs)
+float Math::magnitude(const Quaternion &rhs)
 {
     return std::sqrt((rhs.w * rhs.w) + (rhs.x * rhs.x) + (rhs.y * rhs.y) + (rhs.z * rhs.z));
 }
 
 /* ========== dot product ========== */
 template <>
-vvalue Math::dot(const Vector2 &lhs, const Vector2 &rhs) {
+float Math::dot(const Vector2 &lhs, const Vector2 &rhs) {
     return (lhs.x * rhs.x) + (lhs.y * rhs.y);
 }
 
 template <>
-vvalue Math::dot(const Vector3 &lhs, const Vector3 &rhs) {
+float Math::dot(const Vector3 &lhs, const Vector3 &rhs) {
     return (lhs.x * rhs.x) + (lhs.y * rhs.y) + (lhs.z * rhs.z);
 }
 
 template <>
-vvalue Math::dot(const Vector4 &lhs, const Vector4 &rhs) {
+float Math::dot(const Vector4 &lhs, const Vector4 &rhs) {
     return (lhs.x * rhs.x) + (lhs.y * rhs.y) + (lhs.z * rhs.z) + (lhs.w * rhs.w);
 }
 
 template <>
-vvalue Math::dot(const Quaternion &lhs, const Quaternion &rhs) {
+float Math::dot(const Quaternion &lhs, const Quaternion &rhs) {
     return (lhs.w * rhs.w) + (lhs.x * rhs.x) + (lhs.y * rhs.y) + (lhs.z * rhs.z);
 }
 
 /* ========== normalize ========== */
 template <>
 Vector2 Math::normalize(Vector2 rhs) {
-    vvalue mag = magnitude(rhs);
+    float mag = magnitude(rhs);
 
     return mag > 1e-5f ? rhs / mag : Vector2::zero;
 }
 
 template <>
 Vector3 Math::normalize(Vector3 rhs) {
-    vvalue mag = magnitude(rhs);
+    float mag = magnitude(rhs);
 
     return mag > 1e-5f ? rhs / mag : Vector3::zero;
 }
 
 template <>
 Vector4 Math::normalize(Vector4 rhs) {
-    vvalue mag = magnitude(rhs);
+    float mag = magnitude(rhs);
 
     return mag > 1e-5f ? rhs / mag : Vector4::zero;
 }
 
 template <>
 Quaternion Math::normalize(Quaternion rhs) {
-    vvalue mag = magnitude(rhs);
+    float mag = magnitude(rhs);
     
     return mag > 1e-5f ? rhs / mag : Quaternion::identity;
 }
 
 /* ========== distance ========== */
 template <>
-vvalue Math::distance(const Vector3& lhs, const Vector3& rhs) {
+float Math::distance(const Vector3& lhs, const Vector3& rhs) {
     return magnitude(rhs - lhs);
 }
 
@@ -117,46 +117,46 @@ Vector3 Math::max(Vector3 lhs, Vector3 rhs) {
 
 /* ========== mix ========== */
 template <>
-float Math::mix(float lhs, float rhs, vvalue f)
+float Math::mix(float lhs, float rhs, float f)
 {
     return (1.0f - f) * rhs + f * lhs;
 }
 
 template <>
-Vector2 Math::mix(Vector2 lhs, Vector2 rhs, vvalue f)
+Vector2 Math::mix(Vector2 lhs, Vector2 rhs, float f)
 {
     return (1.0f - f) * rhs + f * lhs;
 }
 
 template <>
-Vector3 Math::mix(Vector3 lhs, Vector3 rhs, vvalue f)
+Vector3 Math::mix(Vector3 lhs, Vector3 rhs, float f)
 {
     return (1.0f - f) * rhs + f * lhs;
 }
 
 template <>
-Vector4 Math::mix(Vector4 lhs, Vector4 rhs, vvalue f)
+Vector4 Math::mix(Vector4 lhs, Vector4 rhs, float f)
 {
     return (1.0f - f) * rhs + f * lhs;
 }
 
 /* ========== lerp ========== */
 template <>
-vvalue Math::lerp(vvalue lhs, vvalue rhs, vvalue t) {
+float Math::lerp(float lhs, float rhs, float t) {
     return lhs + (rhs - lhs) * t;
 }
 
 template <>
-Vector2 Math::lerp(Vector2 lhs, Vector2 rhs, vvalue t) {
+Vector2 Math::lerp(Vector2 lhs, Vector2 rhs, float t) {
     return lhs + (rhs - lhs) * t;
 }
 
 template <>
-Vector3 Math::lerp(Vector3 lhs, Vector3 rhs, vvalue t) {
+Vector3 Math::lerp(Vector3 lhs, Vector3 rhs, float t) {
     return lhs + (rhs - lhs) * t;
 }
 template <>
-Vector4 Math::lerp(Vector4 lhs, Vector4 rhs, vvalue t) {
+Vector4 Math::lerp(Vector4 lhs, Vector4 rhs, float t) {
     return lhs + (rhs - lhs) * t;
 }
 
@@ -279,9 +279,9 @@ Matrix4x4 Math::CreateTRS(const Vector3 &position, const Quaternion &rotate, con
     return result;
 }
 
-Matrix4x4 Math::perspective(vvalue fovy, vvalue aspect, vvalue near, vvalue far)
+Matrix4x4 Math::perspective(float fovy, float aspect, float near, float far)
 {
-    vvalue tanHalfFovy = std::tan(fovy / 2.0f);
+    float tanHalfFovy = std::tan(fovy / 2.0f);
     
     Matrix4x4 result = Matrix4x4::zeroMatrix;
 
@@ -296,7 +296,7 @@ Matrix4x4 Math::perspective(vvalue fovy, vvalue aspect, vvalue near, vvalue far)
     return result;
 }
 
-Matrix4x4 Math::orthographic(vvalue left, vvalue right, vvalue bottom, vvalue top, vvalue near, vvalue far) {
+Matrix4x4 Math::orthographic(float left, float right, float bottom, float top, float near, float far) {
     Matrix4x4 result = Matrix4x4::identityMatrix;
 
     result[0][0] =  2.0f / (right - left);
@@ -337,30 +337,30 @@ Matrix4x4 Math::lookAt(const Vector3& eye, const Vector3& center, const Vector3&
 
 /*********** Quaternion ***********/
 Quaternion Math::Mat4ToQuat(const Matrix4x4 &lhs) {
-    vvalue trace = lhs[0][0] + lhs[1][1] + lhs[2][2];
+    float trace = lhs[0][0] + lhs[1][1] + lhs[2][2];
 
     Quaternion q = Quaternion::identity;
 
     if (trace > 0) {
-        vvalue s = std::sqrt(trace + 1.0f) * 2.0f;
+        float s = std::sqrt(trace + 1.0f) * 2.0f;
         q.w = 0.25f * s;
         q.x = (lhs[2][1] - lhs[1][2]) / s;
         q.y = (lhs[0][2] - lhs[2][0]) / s;
         q.z = (lhs[1][0] - lhs[0][1]) / s;
     } else if ((lhs[0][0] > lhs[1][1]) && (lhs[0][0] > lhs[2][2])) {
-        vvalue s = std::sqrt(1.0f + lhs[0][0] - lhs[1][1] - lhs[2][2]) * 2.0f;
+        float s = std::sqrt(1.0f + lhs[0][0] - lhs[1][1] - lhs[2][2]) * 2.0f;
         q.w = (lhs[2][1] - lhs[1][2]) / s;
         q.x = 0.25f * s;
         q.y = (lhs[0][1] + lhs[1][0]) / s;
         q.z = (lhs[0][2] + lhs[2][0]) / s;
     } else if (lhs[1][1] > lhs[2][2]) {
-        vvalue s = std::sqrt(1.0f + lhs[1][1] - lhs[0][0] - lhs[2][2]) * 2.0f;
+        float s = std::sqrt(1.0f + lhs[1][1] - lhs[0][0] - lhs[2][2]) * 2.0f;
         q.w = (lhs[0][2] - lhs[2][0]) / s;
         q.x = (lhs[0][1] + lhs[1][0]) / s;
         q.y = 0.25f * s;
         q.z = (lhs[1][2] + lhs[2][1]) / s;
     } else {
-        vvalue s = std::sqrt(1.0f + lhs[2][2] - lhs[0][0] - lhs[1][1]) * 2.0f;
+        float s = std::sqrt(1.0f + lhs[2][2] - lhs[0][0] - lhs[1][1]) * 2.0f;
         q.w = (lhs[1][0] - lhs[0][1]) / s;
         q.x = (lhs[0][2] + lhs[2][0]) / s;
         q.y = (lhs[1][2] + lhs[2][1]) / s;
@@ -389,7 +389,7 @@ Quaternion Math::lookRotation(const Vector3& forward, const Vector3& up) {
     return Mat4ToQuat(result);
 }
 
-Quaternion Math::euler(const Vector3& axis, vvalue angle) {
+Quaternion Math::euler(const Vector3& axis, float angle) {
     Quaternion result;
     result.w = std::cos(angle / 2.0f);
     result.x = std::sin(angle / 2.0f) * axis.x;
@@ -402,16 +402,16 @@ Quaternion Math::euler(const Vector3& axis) {
     Quaternion result;
 
     // Roll
-    vvalue cr = std::cos(axis.x * 0.5f);
-    vvalue sr = std::sin(axis.x * 0.5f);
+    float cr = std::cos(axis.x * 0.5f);
+    float sr = std::sin(axis.x * 0.5f);
 
     // Pitch
-    vvalue cp = std::cos(axis.y * 0.5f);
-    vvalue sp = std::sin(axis.y * 0.5f);
+    float cp = std::cos(axis.y * 0.5f);
+    float sp = std::sin(axis.y * 0.5f);
 
     // Yaw
-    vvalue cy = std::cos(axis.z * 0.5f);
-    vvalue sy = std::sin(axis.z * 0.5f);
+    float cy = std::cos(axis.z * 0.5f);
+    float sy = std::sin(axis.z * 0.5f);
 
     result.w = cr * cp * cy + sr * sp * sy;
     result.x = sr * cp * cy - cr * sp * sy;
@@ -421,7 +421,7 @@ Quaternion Math::euler(const Vector3& axis) {
     return result;
 }
 
-Quaternion Math::slerp(const Quaternion& lhs, const Quaternion& rhs, vvalue t) {
+Quaternion Math::slerp(const Quaternion& lhs, const Quaternion& rhs, float t) {
 	Quaternion result = lhs;
 	float c = Math::dot(lhs, rhs);
 	if (c < 0.0f) {

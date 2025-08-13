@@ -44,6 +44,8 @@ int main()
     Vector3 next = Vector3::zero;
     next += Vector3{1.1f, 1.3f, 1.6f};
 
+    next = -next;
+
     std::cout << next.x << ", " << next.y << ", " << next.z << std::endl;
 }
 

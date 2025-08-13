@@ -11,21 +11,21 @@
 struct Quaternion {
     union {
         struct {
-            vvalue w;
-            vvalue x;
-            vvalue y;
-            vvalue z;
+            float w;
+            float x;
+            float y;
+            float z;
         };
-        vvalue data[4];
+        float data[4];
     };
 
-    Quaternion(vvalue value = 0.0f);
+    Quaternion(float value = 0.0f);
     
-    Quaternion(vvalue w, vvalue x, vvalue y, vvalue z);
+    Quaternion(float w, float x, float y, float z);
 
     Quaternion& operator *=(const Quaternion& rhs);
 
-    Quaternion& operator /=(vvalue rhs);
+    Quaternion& operator /=(float rhs);
 
     Quaternion operator +(const Quaternion& lhs) const;
 
@@ -55,11 +55,11 @@ struct Quaternion {
 // operator *
 Quaternion operator *(const Quaternion &lhs, const Quaternion &rhs) noexcept;
 
-Quaternion operator *(const Quaternion &lhs, vvalue rhs) noexcept;
+Quaternion operator *(const Quaternion &lhs, float rhs) noexcept;
 
 Vector3 operator *(const Quaternion &lhs, const Vector3 &rhs) noexcept;
 
-Quaternion operator /(const Quaternion &lhs, vvalue rhs) noexcept;
+Quaternion operator /(const Quaternion &lhs, float rhs) noexcept;
 
 
 

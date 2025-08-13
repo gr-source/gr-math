@@ -1,16 +1,16 @@
 #include "quaternion.hpp"
 #include "gmath.hpp"
 
-Quaternion::Quaternion(vvalue value) : w(value), x(value), y(value), z(value) {}
+Quaternion::Quaternion(float value) : w(value), x(value), y(value), z(value) {}
     
-Quaternion::Quaternion(vvalue w, vvalue x, vvalue y, vvalue z) : w(w), x(x), y(y), z(z) {}
+Quaternion::Quaternion(float w, float x, float y, float z) : w(w), x(x), y(y), z(z) {}
 
 Quaternion& Quaternion::operator *=(const Quaternion& rhs) {
     *this = *this * rhs;
     return *this;
 }
 
-Quaternion &Quaternion::operator /=(vvalue rhs) {
+Quaternion &Quaternion::operator /=(float rhs) {
     w /= rhs;
     x /= rhs;
     y /= rhs;
@@ -74,11 +74,11 @@ Vector3 operator *(const Quaternion &lhs, const Vector3 &rhs) noexcept
     return {result.x, result.y, result.z};
 }
 
-Quaternion operator*(const Quaternion &lhs, vvalue rhs) noexcept {
+Quaternion operator*(const Quaternion &lhs, float rhs) noexcept {
     return {lhs.w * rhs, lhs.x * rhs, lhs.y * rhs, lhs.z * rhs};
 }
 
-Quaternion operator /(const Quaternion &lhs, vvalue rhs) noexcept {
+Quaternion operator /(const Quaternion &lhs, float rhs) noexcept {
     return {lhs.w / rhs, lhs.x / rhs, lhs.y / rhs, lhs.z / rhs};
 }
 

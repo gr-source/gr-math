@@ -1,78 +1,39 @@
 #pragma once
 
-#include "types.hpp"
+#include "vector.hpp"
 
-/*
-* (X) O componente x do Vector.
-* (Y) O componente y do Vector.
-* (Z) O componente z do Vector.
-* (W) O componente w do Vector.
-*/
-struct Vector4
+#include "vec4_operator.inl"
+
+template <>
+struct vector<float, 4>
 {
     union
     {
         struct
         {
-            vvalue x;
-            vvalue y;
-            vvalue z;
-            vvalue w;
+            float x;
+            float y;
+            float z;
+            float w;
         };
-        vvalue data[4];
+        float data[4];
     };
 
-    Vector4& operator /=(vvalue rhs);
-    
-    bool operator >(const Vector4& rhs) const;
+    static vector zero;
 
-    bool operator !=(const Vector4& lhs) const;
-
-    operator Vector3() const;
-
-    bool operator ==(const Vector4 &rhs) const;
-
-    inline constexpr const float &operator [](int index) const
+    constexpr const float &operator[](int i) const noexcept
     {
-        return data[index];
+        return data[i];
     }
 
-    inline constexpr float &operator [](int index)
+    constexpr float &operator[](int i) noexcept
     {
-        return data[index];
+        return data[i];
     }
-
-    static Vector4 zero;
-
-    friend std::istream &operator >>(std::istream &is, Vector4 &rhs);
-
-    friend std::ostream &operator <<(std::ostream &os, const Vector4 &rhs);
 };
 
-// operator -
-Vector4 operator -(const Vector4 &lhs, const Vector4 &rhs) noexcept;
+inline vector<float, 4> vector<float, 4>::zero = {0.0f, 0.0f, 0.0f, 0.0f};
 
-// operator +
-Vector4 operator +(const Vector4 &lhs, const Vector4 &rhs) noexcept;
-
-// operator *
-Vector4 operator *(const Vector4 &lhs, const Vector4 &rhs) noexcept;
-
-Vector4 operator *(const Vector4 &lhs, vvalue rhs) noexcept;
-
-Vector4 operator *(vvalue lhs, const Vector4 &rhs) noexcept;
-
-// operator /
-Vector4 operator /(const Vector4 &lhs, const Vector4 &rhs) noexcept;
-
-Vector4 operator /(vvalue lhs, const Vector4 &rhs) noexcept;
-
-Vector4 operator /(const Vector4 &lhs, vvalue rhs) noexcept;
-
-// stream
-std::istream &operator >>(std::istream &is, Vector4 &rhs);
-
-std::ostream &operator <<(std::ostream &os, const Vector4 &rhs);
 
 
 
