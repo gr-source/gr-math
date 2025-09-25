@@ -1,6 +1,6 @@
 #include "quaternion.hpp"
 #include "gmath.hpp"
-
+/*
 Quaternion::Quaternion(float value) : w(value), x(value), y(value), z(value) {}
     
 Quaternion::Quaternion(float w, float x, float y, float z) : w(w), x(x), y(y), z(z) {}
@@ -81,5 +81,5 @@ Quaternion operator*(const Quaternion &lhs, float rhs) noexcept {
 Quaternion operator /(const Quaternion &lhs, float rhs) noexcept {
     return {lhs.w / rhs, lhs.x / rhs, lhs.y / rhs, lhs.z / rhs};
 }
-
+*/
 

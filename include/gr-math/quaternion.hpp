@@ -1,6 +1,6 @@
 #pragma once
 
-#include "types.hpp"
+#include "quat_operator.inl"
 
 /*
 * (W) O componente w do quatérnion, que é a parte do número real do quatérnion.
@@ -8,17 +8,24 @@
 * (Y) O componente y do quatérnion, que é o coeficiente do vetor de unidade j no quatérnion.
 * (Z) O componente z do quatérnion, que é o coeficiente do vetor de unidade k no quatérnion.
 */
-struct Quaternion {
-    union {
-        struct {
-            float w;
-            float x;
-            float y;
-            float z;
+
+template <typename T>
+struct quat
+{
+    union
+    {
+        struct
+        {
+            T w;
+            T x;
+            T y;
+            T z;
         };
-        float data[4];
+        T data[4];
     };
 
+    static quat<T> identity;
+    /*
     Quaternion(float value = 0.0f);
     
     Quaternion(float w, float x, float y, float z);
@@ -50,8 +57,13 @@ struct Quaternion {
         os << rhs.w << " " << rhs.x << " " << rhs.y << " " << rhs.z;
         return os;
     }
+    */
 };
 
+template <typename T>
+quat<T> quat<T>::identity = {T(1), T(0), T(0), T(0)};
+
+/*
 // operator *
 Quaternion operator *(const Quaternion &lhs, const Quaternion &rhs) noexcept;
 
@@ -60,7 +72,7 @@ Quaternion operator *(const Quaternion &lhs, float rhs) noexcept;
 Vector3 operator *(const Quaternion &lhs, const Vector3 &rhs) noexcept;
 
 Quaternion operator /(const Quaternion &lhs, float rhs) noexcept;
-
+*/
 
 
 

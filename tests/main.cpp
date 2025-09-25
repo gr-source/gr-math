@@ -1,3 +1,4 @@
+#include <cstdio>
 #include <iomanip>
 #include <ios>
 #include <iostream>
@@ -41,12 +42,9 @@ private:
 
 int main()
 {
-    Vector3 next = Vector3::zero;
-    next += Vector3{1.1f, 1.3f, 1.6f};
+    Quaternion q = {1.0f, 0.0f, 0.0f, 0.0f};
 
-    next = -next;
-
-    std::cout << next.x << ", " << next.y << ", " << next.z << std::endl;
+    printf("Quat: w(%f), x(%f), y(%f), z(%f)\n", q.w, q.x, q.y, q.z);
 }
 
 

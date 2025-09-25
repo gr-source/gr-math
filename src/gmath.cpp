@@ -1,6 +1,7 @@
 #include "gmath.hpp"
 #include "matrix4x4.hpp"
 #include "quaternion.hpp"
+#include "types.hpp"
 #include "vector3.hpp"
 #include "vector2.hpp"
 

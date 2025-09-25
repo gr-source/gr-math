@@ -88,16 +88,16 @@ constexpr vector<T, 2> operator *(const vector<T, 2> &lhs, const vector<T, 2> &r
     return {lhs.x * rhs.x, lhs.y * rhs.y};
 }
 
-template <typename L, typename R>
-constexpr vector<L, 2> operator *(const vector<L, 2> &lhs, R rhs) noexcept
+template <typename T>
+constexpr vector<T, 2> operator *(const vector<T, 2> &lhs, T rhs) noexcept
 {
-    return {lhs.x * L(rhs), lhs.y * L(rhs)};
+    return {lhs.x * rhs, lhs.y * rhs};
 }
 
-template <typename L, typename R>
-constexpr vector<R, 2> operator *(L lhs, const vector<R, 2> &rhs) noexcept
+template <typename T>
+constexpr vector<T, 2> operator *(T lhs, const vector<T, 2> &rhs) noexcept
 {
-    return {R(lhs) * rhs.x, R(lhs) * rhs.y};
+    return {lhs * rhs.x, lhs * rhs.y};
 }
 
 template <typename T>
@@ -106,9 +106,9 @@ constexpr vector<T, 2> operator /(const vector<T, 2> &lhs, const vector<T, 2> &r
     return {lhs.x / rhs.x, lhs.y / rhs.y};
 }
 
-template <typename L, typename R>
-constexpr vector<L, 2> operator /(const vector<L, 2> &lhs, R rhs) noexcept
+template <typename T>
+constexpr vector<T, 2> operator /(const vector<T, 2> &lhs, T rhs) noexcept
 {
-    return {lhs.x / L(rhs), lhs.y / L(rhs)};
+    return {lhs.x / rhs, lhs.y / rhs};
 }
 
