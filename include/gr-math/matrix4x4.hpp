@@ -1,7 +1,7 @@
 #pragma once
 
-#include "types.hpp"
 #include "vector4.hpp"
+#include "types.hpp"
 
 /*
  s.x        t.x

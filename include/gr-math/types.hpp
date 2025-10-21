@@ -11,9 +11,10 @@ using Vector2 = vector<float, 2>;
 using Vector3 = vector<float, 3>;
 using Vector4 = vector<float, 4>;
 
+using Matrix3x3 = mat<float, 3, 3>;
+
 using Quaternion = quat<float>;
 
-struct Matrix3x3;
 struct Matrix4x4;
 
 namespace grm {

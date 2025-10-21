@@ -1,6 +1,7 @@
 #include "matrix3x3.hpp"
 #include "gmath.hpp"
 
+/*
 Matrix3x3::Matrix3x3(const Vector3& row0, const Vector3& row1, const Vector3& row2) {
     data[0] = {row0.x, row1.x, row2.x};
     data[1] = {row0.y, row1.y, row2.y};
@@ -92,4 +93,4 @@ const Vector3 operator*(const Vector3 &lhs, const Matrix3x3 &rhs) noexcept {
     };
 }
 
-
+*/

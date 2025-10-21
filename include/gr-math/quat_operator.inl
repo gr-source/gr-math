@@ -31,6 +31,41 @@ constexpr quat<T> operator *(const quat<T> &lhs, T rhs) noexcept
 }
 
 template <typename T>
+constexpr vector<T, 3> operator *(const quat<T> &lhs, const vector<T, 3> &rhs) noexcept
+{
+    T x = lhs.x;
+    T y = lhs.y;
+    T z = lhs.z;
+    T w = lhs.w;
+
+    T vx = rhs.x;
+    T vy = rhs.y;
+    T vz = rhs.z;
+
+    T qx2 = x + x;
+    T qy2 = y + y;
+    T qz2 = z + z;
+
+    T qxqx2 = x * qx2;
+    T qxqy2 = x * qy2;
+    T qxqz2 = x * qz2;
+
+    T qyqy2 = y * qy2;
+    T qyqz2 = y * qz2;
+    T qzqz2 = z * qz2;
+
+    T qwqx2 = w * qx2;
+    T qwqy2 = w * qy2;
+    T qwqz2 = w * qz2;
+
+    return {
+        (1 - qyqy2 - qzqz2) * vx + (qxqy2 - qwqz2) * vy + (qxqz2 + qwqy2) * vz,
+        (qxqy2 + qwqz2) * vx + (1 - qxqx2 - qzqz2) * vy + (qyqz2 - qwqx2) * vz,
+        (qxqz2 - qwqy2) * vx + (qyqz2 + qwqx2) * vy + (1 - qxqx2 - qyqy2) * vz
+    };
+}
+
+template <typename T>
 constexpr quat<T> operator /(const quat<T> &lhs, T rhs) noexcept
 {
     return quat<T>{lhs.w / rhs, lhs.x / rhs, lhs.y / rhs, lhs.z / rhs};

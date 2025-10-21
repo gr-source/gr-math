@@ -32,7 +32,7 @@ namespace Math
     template <typename T>
     constexpr T rad(T degrees) noexcept
     {
-        return degrees * (M_PI / 180.0f);
+        return degrees * (T(M_PI) / T(180));
     }
 
     /* convert radianos para graus */
