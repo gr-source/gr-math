@@ -8,18 +8,20 @@
     s.y     t.y
         s.z t.z
 */
-struct Matrix4x4
+
+template <>
+struct mat<f32, 4, 4>
 {
     union
     {
         struct
         {
-            Vector4 row0;
-            Vector4 row1;
-            Vector4 row2;
-            Vector4 row3;
+            vector<f32, 4> row0;
+            vector<f32, 4> row1;
+            vector<f32, 4> row2;
+            vector<f32, 4> row3;
         };
-        Vector4 data[4];
+        vector<f32, 4> data[4];
     };
 
     /* ========================================= */

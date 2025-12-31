@@ -1,56 +1,56 @@
 #pragma once
 
-#include "vector.hpp"
+#include "types.hpp"
 
 #include "vec2_operator.inl"
 
 template <>
-struct vector<float, 2>
+struct vector<f32, 2>
 {
     union
     {
         struct
         {
-            float x;
-            float y;
+            f32 x;
+            f32 y;
         };
-        float data[2];
+        f32 data[2];
     };
 
-    static vector<float, 2> zero;
+    static vector<f32, 2> zero;
 
-    static vector<float, 2> one;
+    static vector<f32, 2> one;
 
-    static vector<float, 2> left;
+    static vector<f32, 2> left;
 
-    static vector<float, 2> right;
+    static vector<f32, 2> right;
 
-    static vector<float, 2> up;
+    static vector<f32, 2> up;
 
-    static vector<float, 2> down;
+    static vector<f32, 2> down;
     
-    constexpr const float &operator[](int i) const noexcept
+    constexpr const f32 &operator[](int i) const noexcept
     {
         return data[i];
     }
 
-    constexpr float &operator[](int i) noexcept
+    constexpr f32 &operator[](int i) noexcept
     {
         return data[i];
     }
 };
 
-inline vector<float, 2> vector<float, 2>::zero = {0.0f, 0.0f};
+inline vector<f32, 2> vector<f32, 2>::zero = {0.0f, 0.0f};
 
-inline vector<float, 2> vector<float, 2>::one = {1.0f, 1.0f};
+inline vector<f32, 2> vector<f32, 2>::one = {1.0f, 1.0f};
 
-inline vector<float, 2> vector<float, 2>::left = {-1.0f, 0.0f};
+inline vector<f32, 2> vector<f32, 2>::left = {-1.0f, 0.0f};
 
-inline vector<float, 2> vector<float, 2>::right = {1.0f, 0.0f};
+inline vector<f32, 2> vector<f32, 2>::right = {1.0f, 0.0f};
 
-inline vector<float, 2> vector<float, 2>::up = {0.0f, 1.0f};
+inline vector<f32, 2> vector<f32, 2>::up = {0.0f, 1.0f};
 
-inline vector<float, 2> vector<float, 2>::down = {0.0f, -1.0f};
+inline vector<f32, 2> vector<f32, 2>::down = {0.0f, -1.0f};
 
 
 

@@ -2,45 +2,47 @@
 
 #include "mat3x3_operator.inl"
 
+#include "types.hpp"
+
 template <>
-struct mat<float, 3, 3>
+struct mat<f32, 3, 3>
 {
     union
     {
         struct
         {
-            vector<float, 3> row0;
-            vector<float, 3> row1;
-            vector<float, 3> row2;
+            vector<f32, 3> row0;
+            vector<f32, 3> row1;
+            vector<f32, 3> row2;
         };
-        vector<float, 3> data[3];
+        vector<f32, 3> data[3];
     };
 
-    static mat<float, 3, 3> identityMatrix;
+    static mat<f32, 3, 3> identityMatrix;
 
-    static mat<float, 3, 3> zeroMatrix;
+    static mat<f32, 3, 3> zeroMatrix;
 
-    constexpr const vector<float, 3> &operator[](int i) const noexcept
+    constexpr const vector<f32, 3> &operator[](int i) const noexcept
     {
         return data[i];
     }
 
-    constexpr vector<float, 3> &operator[](int i) noexcept
+    constexpr vector<f32, 3> &operator[](int i) noexcept
     {
         return data[i];
     }
 };
 
-inline mat<float, 3, 3> mat<float, 3, 3>::identityMatrix = {
-    vector<float, 3>{1.0f, 0.0f, 0.0f},
-    vector<float, 3>{0.0f, 1.0f, 0.0f},
-    vector<float, 3>{0.0f, 0.0f, 1.0f}
+inline mat<f32, 3, 3> mat<f32, 3, 3>::identityMatrix = {
+    vector<f32, 3>{1.0f, 0.0f, 0.0f},
+    vector<f32, 3>{0.0f, 1.0f, 0.0f},
+    vector<f32, 3>{0.0f, 0.0f, 1.0f}
 };
 
-inline mat<float, 3, 3> mat<float, 3, 3>::zeroMatrix = {
-    vector<float, 3>{0.0f, 0.0f, 0.0f},
-    vector<float, 3>{0.0f, 0.0f, 0.0f},
-    vector<float, 3>{0.0f, 0.0f, 0.0f}
+inline mat<f32, 3, 3> mat<f32, 3, 3>::zeroMatrix = {
+    vector<f32, 3>{0.0f, 0.0f, 0.0f},
+    vector<f32, 3>{0.0f, 0.0f, 0.0f},
+    vector<f32, 3>{0.0f, 0.0f, 0.0f}
 };
 
 /*

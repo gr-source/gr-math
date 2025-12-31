@@ -1,38 +1,38 @@
 #pragma once
 
-#include "vector.hpp"
+#include "types.hpp"
 
 #include "vec4_operator.inl"
 
 template <>
-struct vector<float, 4>
+struct vector<f32, 4>
 {
     union
     {
         struct
         {
-            float x;
-            float y;
-            float z;
-            float w;
+            f32 x;
+            f32 y;
+            f32 z;
+            f32 w;
         };
-        float data[4];
+        f32 data[4];
     };
 
     static vector zero;
 
-    constexpr const float &operator[](int i) const noexcept
+    constexpr const f32 &operator[](int i) const noexcept
     {
         return data[i];
     }
 
-    constexpr float &operator[](int i) noexcept
+    constexpr f32 &operator[](int i) noexcept
     {
         return data[i];
     }
 };
 
-inline vector<float, 4> vector<float, 4>::zero = {0.0f, 0.0f, 0.0f, 0.0f};
+inline vector<f32, 4> vector<f32, 4>::zero = {0.0f, 0.0f, 0.0f, 0.0f};
 
 
 

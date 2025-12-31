@@ -3,7 +3,8 @@
 #include <istream>
 #include <ostream>
 
-struct Color {
+typedef struct Color
+{
     union {
         struct {
             float r;
@@ -14,24 +15,14 @@ struct Color {
         float data[4];
     };
 
-    static Color red;
+    static const Color red;
 
-    static Color green;
+    static const Color green;
 
-    static Color blue;
+    static const Color blue;
 
-    static Color white;
+    static const Color white;
 
-    static Color black;
-
-    friend std::istream& operator>>(std::istream& is, Color& color) {
-        is >> color.r >> color.g >> color.b >> color.a;
-        return is;
-    }
-
-    friend std::ostream& operator<<(std::ostream& os, const Color& color) {
-        os << color.r << " " << color.g << " " << color.b << " " << color.a;
-        return os;
-    }
-};
+    static const Color black;
+} Color;
 

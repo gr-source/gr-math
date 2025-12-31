@@ -46,16 +46,16 @@ namespace Math
     T cross(const T& rhs, const T& lhs);
 
     template <typename T>
-    float magnitude(const T &rhs);
+    f32 magnitude(const T &rhs);
 
     template <typename T>
-    float dot(const T &lhs, const T& rhs);
+    f32 dot(const T &lhs, const T& rhs);
 
     template <typename T>
     T normalize(T rhs);
 
     template <typename T>
-    float distance(const T &lhs, const T &rhs);
+    f32 distance(const T &lhs, const T &rhs);
 
     template <typename T>
     T min(T lhs, T rhs);
@@ -64,10 +64,10 @@ namespace Math
     T max(T lhs, T rhs);
 
     template <typename T>
-    T mix(T lhs, T rhs, float f);
+    T mix(T lhs, T rhs, f32 f);
 
     template <typename T>
-    T lerp(T lhs, T rhs, float t);
+    T lerp(T lhs, T rhs, f32 t);
 
     template <typename T>
     T abs(const T& rhs);
@@ -87,13 +87,13 @@ namespace Math
     * @param far plano distante
     * @param near plano proximo
     */
-    Matrix4x4 perspective(float fovy, float aspect, float near, float far);
+    Matrix4x4 perspective(f32 fovy, f32 aspect, f32 near, f32 far);
 
     /* orthographic calcula a view sem fundo Ideal para render 2d
     * @param far plano distante
     * @param near plano proximo
     */
-    Matrix4x4 orthographic(float left, float right, float bottom, float top, float near, float far);
+    Matrix4x4 orthographic(f32 left, f32 right, f32 bottom, f32 top, f32 near, f32 far);
 
     Matrix4x4 lookAt(const Vector3& eye, const Vector3& center, const Vector3& upward);
 
@@ -102,11 +102,11 @@ namespace Math
 
     Quaternion lookRotation(const Vector3& forward, const Vector3& up);
 
-    Quaternion euler(const Vector3& axis, float angle);
+    Quaternion euler(const Vector3& axis, f32 angle);
 
     Quaternion euler(const Vector3& axis);
 
-    Quaternion slerp(const Quaternion& lhs, const Quaternion& rhs, float t);
+    Quaternion slerp(const Quaternion& lhs, const Quaternion& rhs, f32 t);
 
     Vector3 eulerAngles(const Quaternion &lhs);
 };
