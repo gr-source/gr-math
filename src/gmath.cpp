@@ -42,52 +42,68 @@ f32 Math::magnitude(const Quaternion &rhs)
 
 /* ========== dot product ========== */
 template <>
-f32 Math::dot(const Vector2 &lhs, const Vector2 &rhs) {
-    return (lhs.x * rhs.x) + (lhs.y * rhs.y);
+f32 Math::dot(const Vector2 &rhs, const Vector2 &lhs) noexcept
+{
+    return rhs.x * lhs.x + rhs.y * lhs.y;
 }
 
 template <>
-f32 Math::dot(const Vector3 &lhs, const Vector3 &rhs) {
-    return (lhs.x * rhs.x) + (lhs.y * rhs.y) + (lhs.z * rhs.z);
+f32 Math::dot(const Vector3 &rhs, const Vector3 &lhs) noexcept
+{
+    return rhs.x * lhs.x + rhs.y * lhs.y + rhs.z * lhs.z;
 }
 
 template <>
-f32 Math::dot(const Vector4 &lhs, const Vector4 &rhs) {
-    return (lhs.x * rhs.x) + (lhs.y * rhs.y) + (lhs.z * rhs.z) + (lhs.w * rhs.w);
+f32 Math::dot(const Vector4 &rhs, const Vector4 &lhs) noexcept
+{
+    return rhs.x * lhs.x + rhs.y * lhs.y + rhs.z * lhs.z + rhs.w * lhs.w;
 }
 
 template <>
-f32 Math::dot(const Quaternion &lhs, const Quaternion &rhs) {
-    return (lhs.w * rhs.w) + (lhs.x * rhs.x) + (lhs.y * rhs.y) + (lhs.z * rhs.z);
+f32 Math::dot(const Quaternion &rhs, const Quaternion &lhs) noexcept
+{
+    return rhs.w * lhs.w + rhs.x * lhs.x + rhs.y * lhs.y + rhs.z * lhs.z;
 }
 
 /* ========== normalize ========== */
 template <>
-Vector2 Math::normalize(Vector2 rhs) {
+Vector2 Math::normalize(const Vector2& rhs) noexcept
+{
     f32 mag = magnitude(rhs);
 
     return mag > 1e-5f ? rhs / mag : Vector2::zero;
 }
 
 template <>
-Vector3 Math::normalize(Vector3 rhs) {
-    f32 mag = magnitude(rhs);
-
-    return mag > 1e-5f ? rhs / mag : Vector3::zero;
+Vector3 Math::normalize(const Vector3& v) noexcept
+{
+    f32 magSq = dot(v, v);
+    if (magSq > 1e-10f)
+    {
+        f32 invMag = 1.0f / std::sqrt(magSq);
+        return v * invMag;
+    }
+    return Vector3::zero;
 }
 
 template <>
-Vector4 Math::normalize(Vector4 rhs) {
+Vector4 Math::normalize(const Vector4& rhs) noexcept
+{
     f32 mag = magnitude(rhs);
 
     return mag > 1e-5f ? rhs / mag : Vector4::zero;
 }
 
 template <>
-Quaternion Math::normalize(Quaternion rhs) {
-    f32 mag = magnitude(rhs);
-    
-    return mag > 1e-5f ? rhs / mag : Quaternion::identity;
+Quaternion Math::normalize(const Quaternion& v) noexcept
+{
+    f32 magSq = dot(v, v);
+    if (magSq > 1e-10f)
+    {
+        f32 invMag = 1.0f / std::sqrt(magSq);
+        return v * invMag;
+    }
+    return Quaternion::identity;
 }
 
 /* ========== distance ========== */
@@ -98,7 +114,8 @@ f32 Math::distance(const Vector3& lhs, const Vector3& rhs) {
 
 /* ========== min ========== */
 template <>
-Vector3 Math::min(Vector3 lhs, Vector3 rhs) {
+Vector3 Math::min(const Vector3& rhs, const Vector3& lhs) noexcept
+{
     return {
         rhs.x < lhs.x ? rhs.x : lhs.x,
         rhs.y < lhs.y ? rhs.y : lhs.y,
@@ -108,57 +125,13 @@ Vector3 Math::min(Vector3 lhs, Vector3 rhs) {
 
 /* ========== max ========== */
 template <>
-Vector3 Math::max(Vector3 lhs, Vector3 rhs) {
+Vector3 Math::max(const Vector3& rhs, const Vector3& lhs) noexcept
+{
     return {
-        lhs.x < rhs.x ? rhs.x : lhs.x,
-        lhs.y < rhs.y ? rhs.y : lhs.y,
-        lhs.z < rhs.z ? rhs.z : lhs.z
+        rhs.x > lhs.x ? rhs.x : lhs.x,
+        rhs.y > lhs.y ? rhs.y : lhs.y,
+        rhs.z > lhs.z ? rhs.z : lhs.z
     };
-}
-
-/* ========== mix ========== */
-template <>
-f32 Math::mix(f32 lhs, f32 rhs, f32 f)
-{
-    return (1.0f - f) * rhs + f * lhs;
-}
-
-template <>
-Vector2 Math::mix(Vector2 lhs, Vector2 rhs, f32 f)
-{
-    return (1.0f - f) * rhs + f * lhs;
-}
-
-template <>
-Vector3 Math::mix(Vector3 lhs, Vector3 rhs, f32 f)
-{
-    return (1.0f - f) * rhs + f * lhs;
-}
-
-template <>
-Vector4 Math::mix(Vector4 lhs, Vector4 rhs, f32 f)
-{
-    return (1.0f - f) * rhs + f * lhs;
-}
-
-/* ========== lerp ========== */
-template <>
-f32 Math::lerp(f32 lhs, f32 rhs, f32 t) {
-    return lhs + (rhs - lhs) * t;
-}
-
-template <>
-Vector2 Math::lerp(Vector2 lhs, Vector2 rhs, f32 t) {
-    return lhs + (rhs - lhs) * t;
-}
-
-template <>
-Vector3 Math::lerp(Vector3 lhs, Vector3 rhs, f32 t) {
-    return lhs + (rhs - lhs) * t;
-}
-template <>
-Vector4 Math::lerp(Vector4 lhs, Vector4 rhs, f32 t) {
-    return lhs + (rhs - lhs) * t;
 }
 
 /* ========== abs ========== */
@@ -190,26 +163,43 @@ Matrix3x3 Math::translate(const Vector2& vector) {
 }
 
 template <>
-Matrix4x4 Math::rotate(const Quaternion& q) {
+Matrix4x4 Math::rotate(const Quaternion& rotate) noexcept
+{
     Matrix4x4 result = Matrix4x4::identityMatrix;
 
-    result[0][0] = 1.0f - 2.0f * ((q.y * q.y) + (q.z * q.z));
-    result[0][1] = 2.0f * ((q.x * q.y) + (q.z * q.w));
-    result[0][2] = 2.0f * ((q.x * q.z) - (q.y * q.w));
+    f32 xx = rotate.x * rotate.x;
+    f32 yy = rotate.y * rotate.y;
+    f32 zz = rotate.z * rotate.z;
 
-    result[1][0] = 2.0f * ((q.x * q.y) - (q.z * q.w));
-    result[1][1] = 1.0f - 2.0f * ((q.x * q.x) + (q.z * q.z));
-    result[1][2] = 2.0f * ((q.y * q.z) + (q.x * q.w));
+    f32 xy = rotate.x * rotate.y;
+    f32 xz = rotate.x * rotate.z;
+    f32 xw = rotate.x * rotate.w;
 
-    result[2][0] = 2.0f * ((q.x * q.z) + (q.y * q.w));
-    result[2][1] = 2.0f * ((q.y * q.z) - (q.x * q.w));
-    result[2][2] = 1.0f - 2.0f * ((q.x * q.x) + (q.y * q.y));
+    f32 yw = rotate.y * rotate.w;
+    f32 yz = rotate.y * rotate.z;
+
+    f32 zw = rotate.z * rotate.w;
+
+    result[0][0] = (1.0f - 2.0f * (yy + zz));
+    result[0][1] = (2.0f * (xy + zw));
+    result[0][2] = (2.0f * (xz - yw));
+    result[0][3] = 0.0f;
+
+    result[1][0] = (2.0f * (xy - zw));
+    result[1][1] = (1.0f - 2.0f * (xx + zz));
+    result[1][2] = (2.0f * (yz + xw));
+    result[1][3] = 0.0f;
+
+    result[2][0] = (2.0f * (xz + yw));
+    result[2][1] = (2.0f * (yz - xw));
+    result[2][2] = (1.0f - 2.0f * (xx + yy));
+    result[2][3] = 0.0f;
 
     return result;
 }
 
 template <>
-Matrix3x3 Math::rotate(const Quaternion& q)
+Matrix3x3 Math::rotate(const Quaternion& q) noexcept
 {
     Matrix3x3 result = Matrix3x3::identityMatrix;
     
@@ -246,36 +236,38 @@ Matrix4x4 Math::CreateTRS(const Vector3 &position, const Quaternion &rotate, con
 {
     Matrix4x4 result = Matrix4x4::identityMatrix;
 
-    // translate
+    f32 xx = rotate.x * rotate.x;
+    f32 yy = rotate.y * rotate.y;
+    f32 zz = rotate.z * rotate.z;
+
+    f32 xy = rotate.x * rotate.y;
+    f32 xz = rotate.x * rotate.z;
+    f32 xw = rotate.x * rotate.w;
+
+    f32 yw = rotate.y * rotate.w;
+    f32 yz = rotate.y * rotate.z;
+
+    f32 zw = rotate.z * rotate.w;
+
+    result[0][0] = (1.0f - 2.0f * (yy + zz)) * scale.x;
+    result[0][1] = (2.0f * (xy + zw)) * scale.x;
+    result[0][2] = (2.0f * (xz - yw)) * scale.x;
+    result[0][3] = 0.0f;
+
+    result[1][0] = (2.0f * (xy - zw)) * scale.y;
+    result[1][1] = (1.0f - 2.0f * (xx + zz)) * scale.y;
+    result[1][2] = (2.0f * (yz + xw)) * scale.y;
+    result[1][3] = 0.0f;
+
+    result[2][0] = (2.0f * (xz + yw)) * scale.z;
+    result[2][1] = (2.0f * (yz - xw)) * scale.z;
+    result[2][2] = (1.0f - 2.0f * (xx + yy)) * scale.z;
+    result[2][3] = 0.0f;
+
     result[3][0] = position.x;
     result[3][1] = position.y;
     result[3][2] = position.z;
-
-    //rotate
-    result[0][0] = 1.0f - 2.0f * ((rotate.y * rotate.y) + (rotate.z * rotate.z));
-    result[0][1] = 2.0f * ((rotate.x * rotate.y) + (rotate.z * rotate.w));
-    result[0][2] = 2.0f * ((rotate.x * rotate.z) - (rotate.y * rotate.w));
-
-    result[1][0] = 2.0f * ((rotate.x * rotate.y) - (rotate.z * rotate.w));
-    result[1][1] = 1.0f - 2.0f * ((rotate.x * rotate.x) + (rotate.z * rotate.z));
-    result[1][2] = 2.0f * ((rotate.y * rotate.z) + (rotate.x * rotate.w));
-
-    result[2][0] = 2.0f * ((rotate.x * rotate.z) + (rotate.y * rotate.w));
-    result[2][1] = 2.0f * ((rotate.y * rotate.z) - (rotate.x * rotate.w));
-    result[2][2] = 1.0f - 2.0f * ((rotate.x * rotate.x) + (rotate.y * rotate.y));
-
-    // scale
-    result[0][0] *= scale.x;
-    result[0][1] *= scale.x;
-    result[0][2] *= scale.x;
-
-    result[1][0] *= scale.y;
-    result[1][1] *= scale.y;
-    result[1][2] *= scale.y;
-
-    result[2][0] *= scale.z;
-    result[2][1] *= scale.z;
-    result[2][2] *= scale.z;
+    result[3][3] = 1.0f;
 
     return result;
 }
@@ -430,7 +422,7 @@ Quaternion Math::slerp(const Quaternion& lhs, const Quaternion& rhs, f32 t) {
 		result = -result;
 	}
     
-	f32 phi = std::cos(c);
+	f32 phi = std::acos(c);
 	if (phi > 0.001f) {
 		f32 s = std::sin(phi);
 		return result * (std::sin((1.0f - t) * phi) / s) + rhs * (std::sin(t * phi) / s);

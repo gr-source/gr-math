@@ -49,25 +49,25 @@ namespace Math
     f32 magnitude(const T &rhs);
 
     template <typename T>
-    f32 dot(const T &lhs, const T& rhs);
+    f32 dot(const T &rhs, const T& lhs) noexcept;
 
     template <typename T>
-    T normalize(T rhs);
+    T normalize(const T& v) noexcept;
 
     template <typename T>
     f32 distance(const T &lhs, const T &rhs);
 
     template <typename T>
-    T min(T lhs, T rhs);
+    T min(const T& rhs, const T& lhs) noexcept;
 
     template <typename T>
-    T max(T lhs, T rhs);
+    T max(const T& rhs, const T& lhs) noexcept;
 
     template <typename T>
-    T mix(T lhs, T rhs, f32 f);
+    T mix(const T& rhs, const T& lhs, f32 f) noexcept;
 
     template <typename T>
-    T lerp(T lhs, T rhs, f32 t);
+    T lerp(const T& rhs, const T& lhs, f32 t) noexcept;
 
     template <typename T>
     T abs(const T& rhs);
@@ -76,7 +76,7 @@ namespace Math
     T translate(const V& vector);
 
     template <typename T>
-    T rotate(const Quaternion& q);
+    T rotate(const Quaternion& q) noexcept;
 
     template <typename T, typename V>
     T scale(const V& vector);
@@ -110,3 +110,18 @@ namespace Math
 
     Vector3 eulerAngles(const Quaternion &lhs);
 };
+
+
+template <typename T>
+inline T Math::mix(const T& rhs, const T& lhs, f32 f) noexcept
+{
+    return (1.0f - f) * rhs + f * lhs;
+}
+
+template <typename T>
+inline T Math::lerp(const T& rhs, const T& lhs, f32 t) noexcept
+{
+    return lhs + (rhs - lhs) * t;
+}
+
+
