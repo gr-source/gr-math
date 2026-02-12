@@ -167,8 +167,8 @@ Matrix4x4 operator+(const Matrix4x4 &lhs, const Matrix4x4 &rhs) noexcept {
 }
 */
 
-Matrix4x4 operator *(const Matrix4x4 &lhs, const Matrix4x4 &rhs) noexcept {
-    // Teste de otimização, descobrir que armazenando algumas variaveis o calculo da multiplicação de matrizes diminui.
+Matrix4x4 operator *(const Matrix4x4 &lhs, const Matrix4x4 &rhs) noexcept
+{
     Matrix4x4 result = Matrix4x4::zeroMatrix;
 
 	Vector4 rowA0 = lhs[0];

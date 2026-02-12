@@ -15,31 +15,6 @@ Vector3 Math::cross(const Vector3& rhs, const Vector3& lhs) {
     };
 }
 
-/* ========== magnitude ========== */
-template <>
-f32 Math::magnitude(const Vector2 &rhs)
-{
-    return std::sqrt((rhs.x * rhs.x) + (rhs.y * rhs.y));
-}
-
-template <>
-f32 Math::magnitude(const Vector3 &rhs)
-{
-    return std::sqrt((rhs.x * rhs.x) + (rhs.y * rhs.y) + (rhs.z * rhs.z));
-}
-
-template <>
-f32 Math::magnitude(const Vector4 &rhs)
-{
-    return std::sqrt((rhs.x * rhs.x) + (rhs.y * rhs.y) + (rhs.z * rhs.z) + (rhs.w * rhs.w));
-}
-
-template <>
-f32 Math::magnitude(const Quaternion &rhs)
-{
-    return std::sqrt((rhs.w * rhs.w) + (rhs.x * rhs.x) + (rhs.y * rhs.y) + (rhs.z * rhs.z));
-}
-
 /* ========== dot product ========== */
 template <>
 f32 Math::dot(const Vector2 &rhs, const Vector2 &lhs) noexcept
@@ -67,40 +42,48 @@ f32 Math::dot(const Quaternion &rhs, const Quaternion &lhs) noexcept
 
 /* ========== normalize ========== */
 template <>
-Vector2 Math::normalize(const Vector2& rhs) noexcept
+Vector2 Math::normalize(const Vector2& v) noexcept
 {
-    f32 mag = magnitude(rhs);
-
-    return mag > 1e-5f ? rhs / mag : Vector2::zero;
+    f32 magSq = magnitudeSqrt(v);
+    if (magSq > 1e-10f)
+    {
+        f32 invMag = 1.0f / std::sqrtf(magSq);
+        return v * invMag;
+    }
+    return Vector2::zero;
 }
 
 template <>
 Vector3 Math::normalize(const Vector3& v) noexcept
 {
-    f32 magSq = dot(v, v);
+    f32 magSq = magnitudeSqrt(v);
     if (magSq > 1e-10f)
     {
-        f32 invMag = 1.0f / std::sqrt(magSq);
+        f32 invMag = 1.0f / std::sqrtf(magSq);
         return v * invMag;
     }
     return Vector3::zero;
 }
 
 template <>
-Vector4 Math::normalize(const Vector4& rhs) noexcept
+Vector4 Math::normalize(const Vector4& v) noexcept
 {
-    f32 mag = magnitude(rhs);
-
-    return mag > 1e-5f ? rhs / mag : Vector4::zero;
+    f32 magSq = magnitudeSqrt(v);
+    if (magSq > 1e-10f)
+    {
+        f32 invMag = 1.0f / std::sqrtf(magSq);
+        return v * invMag;
+    }
+    return Vector4::zero;
 }
 
 template <>
 Quaternion Math::normalize(const Quaternion& v) noexcept
 {
-    f32 magSq = dot(v, v);
+    f32 magSq = magnitudeSqrt(v);
     if (magSq > 1e-10f)
     {
-        f32 invMag = 1.0f / std::sqrt(magSq);
+        f32 invMag = 1.0f / std::sqrtf(magSq);
         return v * invMag;
     }
     return Quaternion::identity;
@@ -113,7 +96,6 @@ f32 Math::distance(const Vector3& lhs, const Vector3& rhs) {
 }
 
 /* ========== min ========== */
-template <>
 Vector3 Math::min(const Vector3& rhs, const Vector3& lhs) noexcept
 {
     return {
@@ -124,7 +106,6 @@ Vector3 Math::min(const Vector3& rhs, const Vector3& lhs) noexcept
 }
 
 /* ========== max ========== */
-template <>
 Vector3 Math::max(const Vector3& rhs, const Vector3& lhs) noexcept
 {
     return {

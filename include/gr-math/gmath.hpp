@@ -5,6 +5,7 @@
 #include <ostream>
 #include <iostream>
 
+#include "boundbox.hpp"
 #include "types.hpp"
 
 #include "matrix3x3.hpp"
@@ -23,33 +24,27 @@
 namespace Math
 {
     template <typename T>
-    T rand(const T &max, const T &min) noexcept
-    {
-        return  (max - min) * (((T(std::rand())) / T(RAND_MAX))) + min;
-    }
+    T rand(const T &max, const T &min) noexcept;
 
     /* converte graus para radianos */
     template <typename T>
-    constexpr T rad(T degrees) noexcept
-    {
-        return degrees * (T(M_PI) / T(180));
-    }
+    constexpr T rad(T degrees) noexcept;
 
     /* convert radianos para graus */
     template <typename T>
-    constexpr T degree(T rad) noexcept
-    {
-        return rad * (180.0f / M_PI);
-    }
+    constexpr T degree(T rad) noexcept;
 
     template <typename T>
     T cross(const T& rhs, const T& lhs);
 
     template <typename T>
-    f32 magnitude(const T &rhs);
+    f32 dot(const T &rhs, const T& lhs) noexcept;
 
     template <typename T>
-    f32 dot(const T &rhs, const T& lhs) noexcept;
+    f32 magnitudeSqrt(const T &v) noexcept;
+
+    template <typename T>
+    f32 magnitude(const T &v) noexcept;
 
     template <typename T>
     T normalize(const T& v) noexcept;
@@ -57,11 +52,9 @@ namespace Math
     template <typename T>
     f32 distance(const T &lhs, const T &rhs);
 
-    template <typename T>
-    T min(const T& rhs, const T& lhs) noexcept;
+    Vector3 min(const Vector3& rhs, const Vector3& lhs) noexcept;
 
-    template <typename T>
-    T max(const T& rhs, const T& lhs) noexcept;
+    Vector3 max(const Vector3& rhs, const Vector3& lhs) noexcept;
 
     template <typename T>
     T mix(const T& rhs, const T& lhs, f32 f) noexcept;
@@ -109,8 +102,47 @@ namespace Math
     Quaternion slerp(const Quaternion& lhs, const Quaternion& rhs, f32 t);
 
     Vector3 eulerAngles(const Quaternion &lhs);
+
+    Boundbox Encapsulate(const Boundbox& lhs, const Boundbox& rhs) noexcept;
+
+    Vector3 Size(const Boundbox& b) noexcept;
+
+    Vector3 Center(const Boundbox& b) noexcept;
+
+    f32 Area(const Boundbox& b) noexcept;
 };
 
+
+template <typename T>
+inline T Math::rand(const T &max, const T &min) noexcept
+{
+    return  (max - min) * (((T(std::rand())) / T(RAND_MAX))) + min;
+}
+
+template <typename T>
+inline constexpr T Math::rad(T degrees) noexcept
+{
+    return degrees * (T(M_PI) / T(180));
+}
+
+template <typename T>
+inline constexpr T Math::degree(T rad) noexcept
+{
+    return rad * (180.0f / M_PI);
+}
+
+// mag
+template <typename V>
+inline f32 Math::magnitudeSqrt(const V& v) noexcept
+{
+    return dot(v, v);
+}
+
+template <typename V>
+inline f32 Math::magnitude(const V& v) noexcept
+{
+    return std::sqrtf(magnitudeSqrt(v));
+}
 
 template <typename T>
 inline T Math::mix(const T& rhs, const T& lhs, f32 f) noexcept
@@ -123,5 +155,33 @@ inline T Math::lerp(const T& rhs, const T& lhs, f32 t) noexcept
 {
     return lhs + (rhs - lhs) * t;
 }
+
+inline Boundbox Math::Encapsulate(const Boundbox& lhs, const Boundbox& rhs) noexcept
+{
+    return {
+        Math::min(lhs.min, rhs.min),
+        Math::max(lhs.max, rhs.max)
+    };
+}
+
+inline Vector3 Math::Size(const Boundbox &b) noexcept
+{
+    return b.max - b.min;
+}
+
+inline Vector3 Math::Center(const Boundbox &b) noexcept
+{
+    return (b.min + b.max) * 0.5f;
+}
+
+inline f32 Math::Area(const Boundbox &b) noexcept
+{
+    Vector3 size = Size(b);
+
+    return 2.0f * (size.x * size.y + size.y * size.z + size.z * size.x);
+}
+
+
+
 
 

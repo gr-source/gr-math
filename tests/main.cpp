@@ -44,6 +44,8 @@ int main()
 {
     Quaternion q = {1.0f, 0.0f, 0.0f, 0.0f};
 
+    Vector3 r = q * Vector3::right;
+
     printf("Quat: w(%f), x(%f), y(%f), z(%f)\n", q.w, q.x, q.y, q.z);
 }
 
