@@ -85,9 +85,21 @@ inline constexpr vector<T, 3> operator +(const vector<T, 3> &lhs, const vector<T
 }
 
 template <typename T>
+inline constexpr vector<T, 3> operator +(const vector<T, 3> &lhs, T rhs) noexcept
+{
+    return {lhs.x + rhs, lhs.y + rhs, lhs.z + rhs};
+}
+
+template <typename T>
 inline constexpr vector<T, 3> operator -(const vector<T, 3> &lhs, const vector<T, 3> &rhs) noexcept
 {
     return {lhs.x - rhs.x, lhs.y - rhs.y, lhs.z - rhs.z};
+}
+
+template <typename T>
+inline constexpr vector<T, 3> operator -(const vector<T, 3> &lhs, T rhs) noexcept
+{
+    return {lhs.x - rhs, lhs.y - rhs, lhs.z - rhs};
 }
 
 template <typename T>
