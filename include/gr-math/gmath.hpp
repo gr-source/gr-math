@@ -76,6 +76,8 @@ namespace Math
 
     Matrix4x4 CreateTRS(const Vector3 &position, const Quaternion &rotate, const Vector3 &scale);
 
+    Matrix3x3 CreateTRS(const Vector2 &position, const Quaternion &rotate, const Vector2 &scale);
+
     /* perspectiva calcula a view com profundidade de um plano de fundo, ideal pra render 3d
     * @param far plano distante
     * @param near plano proximo

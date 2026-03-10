@@ -29,12 +29,12 @@ struct vector<f32, 2>
 
     static vector<f32, 2> down;
     
-    constexpr const f32 &operator[](int i) const noexcept
+    inline constexpr const f32 &operator[](int i) const noexcept
     {
         return data[i];
     }
 
-    constexpr f32 &operator[](int i) noexcept
+    inline constexpr f32 &operator[](int i) noexcept
     {
         return data[i];
     }

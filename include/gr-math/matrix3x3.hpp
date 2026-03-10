@@ -22,12 +22,12 @@ struct mat<f32, 3, 3>
 
     static mat<f32, 3, 3> zeroMatrix;
 
-    constexpr const vector<f32, 3> &operator[](int i) const noexcept
+    inline constexpr const vector<f32, 3> &operator[](int i) const noexcept
     {
         return data[i];
     }
 
-    constexpr vector<f32, 3> &operator[](int i) noexcept
+    inline constexpr vector<f32, 3> &operator[](int i) noexcept
     {
         return data[i];
     }

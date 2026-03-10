@@ -134,7 +134,8 @@ Matrix4x4 Math::translate(const Vector3& vector) {
 }
 
 template <>
-Matrix3x3 Math::translate(const Vector2& vector) {
+Matrix3x3 Math::translate(const Vector2& vector)
+{
     Matrix3x3 result = Matrix3x3::identityMatrix;
 
     result[2][0] = vector.x;
@@ -193,7 +194,8 @@ Matrix3x3 Math::rotate(const Quaternion& q) noexcept
 }
 
 template <>
-Matrix4x4 Math::scale(const Vector3& vector) {
+Matrix4x4 Math::scale(const Vector3& vector)
+{
     Matrix4x4 result = Matrix4x4::identityMatrix;
 
     result[0][0] = vector.x;
@@ -249,6 +251,33 @@ Matrix4x4 Math::CreateTRS(const Vector3 &position, const Quaternion &rotate, con
     result[3][1] = position.y;
     result[3][2] = position.z;
     result[3][3] = 1.0f;
+
+    return result;
+}
+
+Matrix3x3 Math::CreateTRS(const Vector2 &position, const Quaternion &rotate, const Vector2 &scale)
+{
+    Matrix3x3 result{0};
+
+    f32 xx = rotate.x * rotate.x;
+    f32 yy = rotate.y * rotate.y;
+    f32 zz = rotate.z * rotate.z;
+
+    f32 xy = rotate.x * rotate.y;
+
+    f32 zw = rotate.z * rotate.w;
+
+    result[0][0] = (1.0f - 2.0f * (yy + zz)) * scale.x;
+    result[0][1] = (2.0f * (xy + zw)) * scale.x;
+    result[0][2] = 0.0f;
+
+    result[1][0] = (2.0f * (xy - zw)) * scale.y;
+    result[1][1] = (1.0f - 2.0f * (xx + zz)) * scale.y;
+    result[1][2] = 0.0f;
+
+    result[2][0] = position.x;
+    result[2][1] = position.y;
+    result[2][2] = 1.0f;
 
     return result;
 }
