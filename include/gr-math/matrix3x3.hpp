@@ -2,8 +2,9 @@
 
 #include "mat3x3_operator.inl"
 
-#include "types.hpp"
+#include "vector3.hpp"
 
+// Column-Major
 template <>
 struct mat<f32, 3, 3>
 {
@@ -11,9 +12,9 @@ struct mat<f32, 3, 3>
     {
         struct
         {
-            vector<f32, 3> row0;
-            vector<f32, 3> row1;
-            vector<f32, 3> row2;
+            vector<f32, 3> col0;
+            vector<f32, 3> col1;
+            vector<f32, 3> col2;
         };
         vector<f32, 3> data[3];
     };
@@ -22,11 +23,13 @@ struct mat<f32, 3, 3>
 
     static mat<f32, 3, 3> zeroMatrix;
 
+    // [Column][Row]
     inline constexpr const vector<f32, 3> &operator[](int i) const noexcept
     {
         return data[i];
     }
 
+    // [Column][Row]
     inline constexpr vector<f32, 3> &operator[](int i) noexcept
     {
         return data[i];

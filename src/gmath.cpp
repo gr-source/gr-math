@@ -392,13 +392,17 @@ Quaternion Math::lookRotation(const Vector3& forward, const Vector3& up) {
     return Mat4ToQuat(result);
 }
 
-Quaternion Math::euler(const Vector3& axis, f32 angle) {
-    Quaternion result;
-    result.w = std::cos(angle / 2.0f);
-    result.x = std::sin(angle / 2.0f) * axis.x;
-    result.y = std::sin(angle / 2.0f) * axis.y;
-    result.z = std::sin(angle / 2.0f) * axis.z;
-    return result;
+Quaternion Math::fromAxisAngle(const Vector3& axis, f32 angle)
+{
+    f32 halfAngle = angle * 0.5f;
+    f32 s = sin(halfAngle);
+    
+    return { 
+        cosf(halfAngle),
+        axis.x * s,
+        axis.y * s,
+        axis.z * s
+    };
 }
 
 Quaternion Math::euler(const Vector3& axis) {

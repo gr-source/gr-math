@@ -120,13 +120,6 @@ bool Matrix4x4::operator!=(const Matrix4x4 &lhs) const noexcept {
 /*    return data[index];*/
 /*}*/
 
-const float *Matrix4x4::getData() const {
-    return reinterpret_cast<const float *>(data);
-}
-
-float *Matrix4x4::getData() {
-    return reinterpret_cast<float *>(data);
-}
 
 /*
 bool Matrix4x4::operator==(const Matrix4x4& other) const noexcept {
@@ -167,6 +160,7 @@ Matrix4x4 operator+(const Matrix4x4 &lhs, const Matrix4x4 &rhs) noexcept {
 }
 */
 
+/*
 Matrix4x4 operator *(const Matrix4x4 &lhs, const Matrix4x4 &rhs) noexcept
 {
     Matrix4x4 result = Matrix4x4::zeroMatrix;
@@ -221,7 +215,6 @@ Vector4 operator *(const Vector4 &lhs, const Matrix4x4 &rhs) noexcept {
     return result;
 }
 
-/*
 Matrix4x4 operator *(const Matrix4x4 &lhs, vvalue rhs) noexcept {
     return Matrix4x4::identityMatrix;
 }

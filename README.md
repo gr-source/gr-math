@@ -22,5 +22,6 @@ Estou disponibilizando esse sistema matemático que utilizo no meu motor, não �
 
 * lhs e rhs: https://blog.jetbrains.com/rscpp/2020/12/10/cpp20-comparisons/
 
+* Row-Major Column-Major: https://stackoverflow.com/questions/33862730/row-major-vs-column-major-confusion
 
 

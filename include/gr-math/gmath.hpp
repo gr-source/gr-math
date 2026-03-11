@@ -97,7 +97,7 @@ namespace Math
 
     Quaternion lookRotation(const Vector3& forward, const Vector3& up);
 
-    Quaternion euler(const Vector3& axis, f32 angle);
+    Quaternion fromAxisAngle(const Vector3& axis, f32 angle);
 
     Quaternion euler(const Vector3& axis);
 

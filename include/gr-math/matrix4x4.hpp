@@ -1,13 +1,10 @@
 #pragma once
 
 #include "vector4.hpp"
-#include "types.hpp"
 
-/*
- s.x        t.x
-    s.y     t.y
-        s.z t.z
-*/
+#include "mat4x4_operator.inl"
+
+// [Column][Row]
 
 template <>
 struct mat<f32, 4, 4>
@@ -16,10 +13,10 @@ struct mat<f32, 4, 4>
     {
         struct
         {
-            vector<f32, 4> row0;
-            vector<f32, 4> row1;
-            vector<f32, 4> row2;
-            vector<f32, 4> row3;
+            vector<f32, 4> col0;
+            vector<f32, 4> col1;
+            vector<f32, 4> col2;
+            vector<f32, 4> col3;
         };
         vector<f32, 4> data[4];
     };
@@ -44,19 +41,9 @@ struct mat<f32, 4, 4>
         return data[index];
     }
 
-    const float *getData() const;
-    
-    float *getData();
-
     static Matrix4x4 zeroMatrix;
     
     static Matrix4x4 identityMatrix;
 };
 
-// operator *
-Matrix4x4 operator *(const Matrix4x4& lhs, const Matrix4x4& rhs) noexcept;
-
-Vector4 operator *(const Matrix4x4& lhs, const Vector4& rhs) noexcept;
-
-Vector4 operator *(const Vector4& lhs, const Matrix4x4& rhs) noexcept;
 

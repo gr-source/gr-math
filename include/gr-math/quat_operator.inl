@@ -59,9 +59,9 @@ inline constexpr vector<T, 3> operator *(const quat<T> &lhs, const vector<T, 3> 
     T qwqz2 = w * qz2;
 
     return {
-        (1 - qyqy2 - qzqz2) * vx + (qxqy2 - qwqz2) * vy + (qxqz2 + qwqy2) * vz,
-        (qxqy2 + qwqz2) * vx + (1 - qxqx2 - qzqz2) * vy + (qyqz2 - qwqx2) * vz,
-        (qxqz2 - qwqy2) * vx + (qyqz2 + qwqx2) * vy + (1 - qxqx2 - qyqy2) * vz
+        (T(1) - qyqy2 - qzqz2) * vx + (qxqy2 - qwqz2) * vy + (qxqz2 + qwqy2) * vz,
+        (qxqy2 + qwqz2) * vx + (T(1) - qxqx2 - qzqz2) * vy + (qyqz2 - qwqx2) * vz,
+        (qxqz2 - qwqy2) * vx + (qyqz2 + qwqx2) * vy + (T(1) - qxqx2 - qyqy2) * vz
     };
 }
 
