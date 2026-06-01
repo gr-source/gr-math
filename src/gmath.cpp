@@ -5,6 +5,15 @@
 #include "vector3.hpp"
 #include "vector2.hpp"
 
+static_assert(alignof(vector<f32, 3>) == 16); // Garantido pelo alignas no template
+static_assert(sizeof(vector<f32, 3>) == 16);  // Garantido pelo _pad na especialização
+
+static_assert(alignof(quat<f32>) == 16);      // Garantido (4 floats = 16 bytes naturally)
+static_assert(sizeof(quat<f32>) == 16);       // OK
+
+static_assert(alignof(mat<f32, 4, 4>) == 16); // Garantido
+static_assert(sizeof(mat<f32, 4, 4>) == 64);  // OK (4 * 16)   
+
 /* ========== cross ========== */
 template <>
 Vector3 Math::cross(const Vector3& rhs, const Vector3& lhs) {

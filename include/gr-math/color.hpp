@@ -3,7 +3,7 @@
 #include <istream>
 #include <ostream>
 
-typedef struct Color
+struct alignas(16) Color
 {
     union {
         struct {
@@ -24,5 +24,5 @@ typedef struct Color
     static const Color white;
 
     static const Color black;
-} Color;
+};
 

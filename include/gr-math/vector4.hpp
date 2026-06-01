@@ -5,7 +5,7 @@
 #include "vec4_operator.inl"
 
 template <>
-struct vector<f32, 4>
+struct alignas(16) vector<f32, 4>
 {
     union
     {

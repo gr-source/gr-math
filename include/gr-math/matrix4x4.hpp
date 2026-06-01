@@ -7,7 +7,7 @@
 // [Column][Row]
 
 template <>
-struct mat<f32, 4, 4>
+struct alignas(16) mat<f32, 4, 4>
 {
     union
     {

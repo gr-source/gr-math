@@ -5,7 +5,7 @@
 #include "vec3_operator.inl"
 
 template <>
-struct vector<f32, 3>
+struct alignas(16) vector<f32, 3>
 {
     union
     {
@@ -14,8 +14,9 @@ struct vector<f32, 3>
             f32 x;
             f32 y;
             f32 z;
+            f32 _pad;
         };
-        f32 data[3];
+        f32 data[4];
     };
 
     static vector zero;
@@ -45,21 +46,21 @@ struct vector<f32, 3>
     }
 };
 
-inline vector<f32, 3> vector<f32, 3>::zero = {0.0f, 0.0f, 0.0f};
+inline vector<f32, 3> vector<f32, 3>::zero = {0.0f, 0.0f, 0.0f, 0.0f};
 
-inline vector<f32, 3> vector<f32, 3>::one = {1.0f, 1.0f, 1.0f};
+inline vector<f32, 3> vector<f32, 3>::one = {1.0f, 1.0f, 1.0f, 0.0f};
 
-inline vector<f32, 3> vector<f32, 3>::right = {1.0f, 0.0f, 0.0f};
+inline vector<f32, 3> vector<f32, 3>::right = {1.0f, 0.0f, 0.0f, 0.0f};
 
-inline vector<f32, 3> vector<f32, 3>::left  = {-1.0f, 0.0f, 0.0f};
+inline vector<f32, 3> vector<f32, 3>::left  = {-1.0f, 0.0f, 0.0f, 0.0f};
 
-inline vector<f32, 3> vector<f32, 3>::up = {0.0f, 1.0f, 0.0f};
+inline vector<f32, 3> vector<f32, 3>::up = {0.0f, 1.0f, 0.0f, 0.0f};
 
-inline vector<f32, 3> vector<f32, 3>::down = {0.0f, -1.0f, 0.0f};
+inline vector<f32, 3> vector<f32, 3>::down = {0.0f, -1.0f, 0.0f, 0.0f};
 
-inline vector<f32, 3> vector<f32, 3>::forward = {0.0f, 0.0f, 1.0f};
+inline vector<f32, 3> vector<f32, 3>::forward = {0.0f, 0.0f, 1.0f, 0.0f};
 
-inline vector<f32, 3> vector<f32, 3>::backward = {0.0f, 0.0f, -1.0f};
+inline vector<f32, 3> vector<f32, 3>::backward = {0.0f, 0.0f, -1.0f, 0.0f};
 
 
 

@@ -1,6 +1,6 @@
 #pragma once
 
-typedef struct Rect
+struct alignas(16) Rect
 {
     union {
         struct {
@@ -11,7 +11,7 @@ typedef struct Rect
         };
         float data[4];
     };
-} Rect;
+};
 
 
 

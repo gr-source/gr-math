@@ -5,7 +5,7 @@
 #include "vec2_operator.inl"
 
 template <>
-struct vector<f32, 2>
+struct alignas(8) vector<f32, 2>
 {
     union
     {

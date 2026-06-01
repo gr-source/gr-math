@@ -1,13 +1,13 @@
 #pragma once
 
 template <typename T, unsigned char L>
-struct vector;
+struct alignas(16) vector;
 
 template <typename T>
-struct quat;
+struct alignas(16) quat;
 
 template <typename T, unsigned char R, unsigned char C>
-struct mat;
+struct alignas(16) mat;
 
 
 

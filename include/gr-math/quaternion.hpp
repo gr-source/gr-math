@@ -10,7 +10,7 @@
 */
 
 template <typename T>
-struct quat
+struct alignas(16) quat
 {
     union
     {
