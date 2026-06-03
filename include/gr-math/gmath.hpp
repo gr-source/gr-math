@@ -5,7 +5,6 @@
 #include <ostream>
 #include <iostream>
 
-#include "boundbox.hpp"
 #include "types.hpp"
 
 #include "matrix3x3.hpp"
@@ -104,14 +103,6 @@ namespace Math
     Quaternion slerp(const Quaternion& lhs, const Quaternion& rhs, f32 t);
 
     Vector3 eulerAngles(const Quaternion &lhs);
-
-    Boundbox Encapsulate(const Boundbox& lhs, const Boundbox& rhs) noexcept;
-
-    Vector3 Size(const Boundbox& b) noexcept;
-
-    Vector3 Center(const Boundbox& b) noexcept;
-
-    f32 Area(const Boundbox& b) noexcept;
 };
 
 
@@ -158,30 +149,6 @@ inline T Math::lerp(const T& rhs, const T& lhs, f32 t) noexcept
     return lhs + (rhs - lhs) * t;
 }
 
-inline Boundbox Math::Encapsulate(const Boundbox& lhs, const Boundbox& rhs) noexcept
-{
-    return {
-        Math::min(lhs.min, rhs.min),
-        Math::max(lhs.max, rhs.max)
-    };
-}
-
-inline Vector3 Math::Size(const Boundbox &b) noexcept
-{
-    return b.max - b.min;
-}
-
-inline Vector3 Math::Center(const Boundbox &b) noexcept
-{
-    return (b.min + b.max) * 0.5f;
-}
-
-inline f32 Math::Area(const Boundbox &b) noexcept
-{
-    Vector3 size = Size(b);
-
-    return 2.0f * (size.x * size.y + size.y * size.z + size.z * size.x);
-}
 
 
 

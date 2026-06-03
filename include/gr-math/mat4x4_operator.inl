@@ -20,5 +20,15 @@ inline constexpr vector<T, 4> operator *(const mat<T, 4, 4> &lhs, const vector<T
     return (lhs.col0 * rhs.x) + (lhs.col1 * rhs.y) + (lhs.col2 * rhs.z) + (lhs.col3 * rhs.w);
 }
 
+template <typename T>
+inline constexpr vector<T, 3> operator*(const mat<T, 4, 4>& lhs, const vector<T, 3>& rhs) noexcept
+{
+    return vector<T, 3>{
+        lhs.col0.x * rhs.x + lhs.col1.x * rhs.y + lhs.col2.x * rhs.z + lhs.col3.x,
+        lhs.col0.y * rhs.x + lhs.col1.y * rhs.y + lhs.col2.y * rhs.z + lhs.col3.y,
+        lhs.col0.z * rhs.x + lhs.col1.z * rhs.y + lhs.col2.z * rhs.z + lhs.col3.z
+    };
+}
+
 
 
