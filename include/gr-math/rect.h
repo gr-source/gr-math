@@ -1,6 +1,9 @@
-#pragma once
+#ifndef RECT_H
+#define RECT_H
 
-struct alignas(16) Rect
+#include "default.h"
+
+typedef struct ALIGN16 Rect
 {
     union {
         struct {
@@ -11,7 +14,11 @@ struct alignas(16) Rect
         };
         float data[4];
     };
-};
+} Rect;
+
+
+#endif // !RECT_H
+
 
 
 

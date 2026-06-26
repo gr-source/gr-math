@@ -17,8 +17,8 @@
 #include "vector3.hpp"
 #include "vector4.hpp"
 
-#include "color.hpp"
-#include "rect.hpp"
+#include "color.h"
+#include "rect.h"
 
 namespace Math
 {

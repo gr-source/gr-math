@@ -12,7 +12,6 @@ option(GR_BUILD_TEST "Build test" ON)
 
 set(math_src
     src/gmath.cpp
-    src/color.cpp
     src/matrix3x3.cpp
     src/matrix4x4.cpp
     src/quaternion.cpp
