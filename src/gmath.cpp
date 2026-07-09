@@ -1,18 +1,4 @@
 #include "gmath.hpp"
-#include "matrix4x4.hpp"
-#include "quaternion.hpp"
-#include "types.hpp"
-#include "vector3.hpp"
-#include "vector2.hpp"
-
-static_assert(alignof(vector<f32, 3>) == 16); // Garantido pelo alignas no template
-static_assert(sizeof(vector<f32, 3>) == 16);  // Garantido pelo _pad na especialização
-
-static_assert(alignof(quat<f32>) == 16);      // Garantido (4 floats = 16 bytes naturally)
-static_assert(sizeof(quat<f32>) == 16);       // OK
-
-static_assert(alignof(mat<f32, 4, 4>) == 16); // Garantido
-static_assert(sizeof(mat<f32, 4, 4>) == 64);  // OK (4 * 16)   
 
 /* ========== cross ========== */
 template <>
@@ -59,7 +45,7 @@ Vector2 Math::normalize(const Vector2& v) noexcept
         f32 invMag = 1.0f / std::sqrtf(magSq);
         return v * invMag;
     }
-    return Vector2::zero;
+    return type_traits<Vector2>::zero;
 }
 
 template <>
@@ -71,7 +57,7 @@ Vector3 Math::normalize(const Vector3& v) noexcept
         f32 invMag = 1.0f / std::sqrtf(magSq);
         return v * invMag;
     }
-    return Vector3::zero;
+    return type_traits<Vector3>::zero;
 }
 
 template <>
@@ -83,7 +69,7 @@ Vector4 Math::normalize(const Vector4& v) noexcept
         f32 invMag = 1.0f / std::sqrtf(magSq);
         return v * invMag;
     }
-    return Vector4::zero;
+    return type_traits<Vector4>::zero;
 }
 
 template <>
@@ -95,7 +81,7 @@ Quaternion Math::normalize(const Quaternion& v) noexcept
         f32 invMag = 1.0f / std::sqrtf(magSq);
         return v * invMag;
     }
-    return Quaternion::identity;
+    return type_traits<Quaternion>::identity;
 }
 
 /* ========== distance ========== */
@@ -132,8 +118,9 @@ Vector3 Math::abs(const Vector3& rhs) {
 
 /* ========== Matrix ========== */
 template <>
-Matrix4x4 Math::translate(const Vector3& vector) {
-    Matrix4x4 result = Matrix4x4::identityMatrix;
+Matrix4x4 Math::translate(const Vector3& vector)
+{
+    Matrix4x4 result = type_traits<Matrix4x4>::identity;
 
     result[3][0] = vector.x;
     result[3][1] = vector.y;
@@ -145,7 +132,7 @@ Matrix4x4 Math::translate(const Vector3& vector) {
 template <>
 Matrix3x3 Math::translate(const Vector2& vector)
 {
-    Matrix3x3 result = Matrix3x3::identityMatrix;
+    Matrix3x3 result = type_traits<Matrix3x3>::identity;
 
     result[2][0] = vector.x;
     result[2][1] = vector.y;
@@ -156,7 +143,7 @@ Matrix3x3 Math::translate(const Vector2& vector)
 template <>
 Matrix4x4 Math::rotate(const Quaternion& rotate) noexcept
 {
-    Matrix4x4 result = Matrix4x4::identityMatrix;
+    Matrix4x4 result = type_traits<Matrix4x4>::identity;
 
     f32 xx = rotate.x * rotate.x;
     f32 yy = rotate.y * rotate.y;
@@ -192,7 +179,7 @@ Matrix4x4 Math::rotate(const Quaternion& rotate) noexcept
 template <>
 Matrix3x3 Math::rotate(const Quaternion& q) noexcept
 {
-    Matrix3x3 result = Matrix3x3::identityMatrix;
+    Matrix3x3 result = type_traits<Matrix3x3>::identity;
     
     result[0][0] = 1.0f - 2.0f * ((q.y * q.y) + (q.z * q.z));
     result[0][1] = 2.0f * ((q.x * q.y) + (q.z * q.w));
@@ -205,7 +192,7 @@ Matrix3x3 Math::rotate(const Quaternion& q) noexcept
 template <>
 Matrix4x4 Math::scale(const Vector3& vector)
 {
-    Matrix4x4 result = Matrix4x4::identityMatrix;
+    Matrix4x4 result = type_traits<Matrix4x4>::identity;
 
     result[0][0] = vector.x;
     result[1][1] = vector.y;
@@ -215,8 +202,9 @@ Matrix4x4 Math::scale(const Vector3& vector)
 }
 
 template <>
-Matrix3x3 Math::scale(const Vector2& vector) {
-    Matrix3x3 result = Matrix3x3::identityMatrix;
+Matrix3x3 Math::scale(const Vector2& vector)
+{
+    Matrix3x3 result = type_traits<Matrix3x3>::identity;
 
     result[0][0] = vector.x;
     result[1][1] = vector.y;
@@ -226,7 +214,7 @@ Matrix3x3 Math::scale(const Vector2& vector) {
 
 Matrix4x4 Math::CreateTRS(const Vector3 &position, const Quaternion &rotate, const Vector3 &scale)
 {
-    Matrix4x4 result = Matrix4x4::identityMatrix;
+    Matrix4x4 result = type_traits<Matrix4x4>::identity;
 
     f32 xx = rotate.x * rotate.x;
     f32 yy = rotate.y * rotate.y;
@@ -295,7 +283,7 @@ Matrix4x4 Math::perspective(f32 fovy, f32 aspect, f32 near, f32 far)
 {
     f32 tanHalfFovy = std::tan(fovy / 2.0f);
     
-    Matrix4x4 result = Matrix4x4::zeroMatrix;
+    Matrix4x4 result = type_traits<Matrix4x4>::zero;
 
     result[0][0] = 1.0f / (aspect * tanHalfFovy);
     result[1][1] = 1.0f / tanHalfFovy;
@@ -309,7 +297,7 @@ Matrix4x4 Math::perspective(f32 fovy, f32 aspect, f32 near, f32 far)
 }
 
 Matrix4x4 Math::orthographic(f32 left, f32 right, f32 bottom, f32 top, f32 near, f32 far) {
-    Matrix4x4 result = Matrix4x4::identityMatrix;
+    Matrix4x4 result = type_traits<Matrix4x4>::identity;
 
     result[0][0] =  2.0f / (right - left);
     result[1][1] =  2.0f / (top   - bottom);
@@ -327,7 +315,7 @@ Matrix4x4 Math::lookAt(const Vector3& eye, const Vector3& center, const Vector3&
     auto right = Math::normalize(Math::cross(forward, upward));
     auto up = Math::cross(right, forward);
 
-    Matrix4x4 result = Matrix4x4::identityMatrix;
+    Matrix4x4 result = type_traits<Matrix4x4>::identity;
     result[0][0] = right.x;
     result[1][0] = right.y;
     result[2][0] = right.z;
@@ -351,7 +339,7 @@ Matrix4x4 Math::lookAt(const Vector3& eye, const Vector3& center, const Vector3&
 Quaternion Math::Mat4ToQuat(const Matrix4x4 &lhs) {
     f32 trace = lhs[0][0] + lhs[1][1] + lhs[2][2];
 
-    Quaternion q = Quaternion::identity;
+    Quaternion q = type_traits<Quaternion>::identity;
 
     if (trace > 0) {
         f32 s = std::sqrt(trace + 1.0f) * 2.0f;
@@ -385,7 +373,7 @@ Quaternion Math::lookRotation(const Vector3& forward, const Vector3& up) {
     auto right = Math::normalize(Math::cross(forward, up));
     auto upward = Math::normalize(Math::cross(right, forward));
 
-    Matrix4x4 result = Matrix4x4::identityMatrix;
+    Matrix4x4 result = type_traits<Matrix4x4>::identity;
     result[0][0] = right.x;
     result[1][0] = right.y;
     result[2][0] = right.z;
@@ -453,8 +441,9 @@ Quaternion Math::slerp(const Quaternion& lhs, const Quaternion& rhs, f32 t) {
 	return result;
 }
 
-Vector3 Math::eulerAngles(const Quaternion &lhs) {
-    Vector3 angles = Vector3::zero;
+Vector3 Math::eulerAngles(const Quaternion &lhs)
+{
+    Vector3 angles = type_traits<Vector3>::zero;
 
     // Roll (x-axis rotation)
     f32 sinr_cosp = 2.0f * ((lhs.w * lhs.x) + (lhs.y * lhs.z));

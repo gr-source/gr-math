@@ -2,12 +2,24 @@
 
 #include "quat_operator.inl"
 
+template <typename T>
+struct type_traits<quaternion<T>>
+{
+    static constexpr quaternion<T> identity =
+        { T(1),  T(0),  T(0),  T(0) };
+
+    static constexpr quaternion<T> zero =
+        { T(0),  T(0),  T(0),  T(0) };
+};
+
 /*
+
+#include "quat_operator.inl"
+
 * (W) O componente w do quatérnion, que é a parte do número real do quatérnion.
 * (X) O componente x do quatérnion, que é o coeficiente do vetor de unidade i no quatérnion.
 * (Y) O componente y do quatérnion, que é o coeficiente do vetor de unidade j no quatérnion.
 * (Z) O componente z do quatérnion, que é o coeficiente do vetor de unidade k no quatérnion.
-*/
 
 template <typename T>
 struct alignas(16) quat
@@ -57,13 +69,11 @@ struct alignas(16) quat
         os << rhs.w << " " << rhs.x << " " << rhs.y << " " << rhs.z;
         return os;
     }
-    */
 };
 
 template <typename T>
 quat<T> quat<T>::identity = {T(1), T(0), T(0), T(0)};
 
-/*
 // operator *
 Quaternion operator *(const Quaternion &lhs, const Quaternion &rhs) noexcept;
 

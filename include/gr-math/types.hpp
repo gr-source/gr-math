@@ -4,14 +4,14 @@
 
 #include "vector.hpp"
 
-using Vector2 = vector<float, 2>;
-using Vector3 = vector<float, 3>;
-using Vector4 = vector<float, 4>;
+using Vector2 = vector2<float>;
+using Vector3 = vector3<float>;
+using Vector4 = vector4<float>;
 
-using Matrix3x3 = mat<float, 3, 3>;
-using Matrix4x4 = mat<float, 4, 4>;
+using Matrix3x3 = mat3<float>;
+using Matrix4x4 = mat4<float>;
 
-using Quaternion = quat<float>;
+using Quaternion = quaternion<float>;
 
 typedef std::uint8_t  u8;
 typedef std::uint16_t u16;

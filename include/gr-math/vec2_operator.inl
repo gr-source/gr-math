@@ -1,13 +1,13 @@
 #include "vector.hpp"
 
 template <typename T>
-inline constexpr vector<T, 2> operator -(const vector<T, 2> &other) noexcept
+inline constexpr vector2<T> operator -(const vector2<T> &other) noexcept
 {
     return {-other.x, -other.y};
 }
 
 template <typename T>
-inline constexpr vector<T, 2> &operator +=(vector<T, 2> &lhs, const vector<T, 2> &rhs) noexcept
+inline constexpr vector2<T> &operator +=(vector2<T> &lhs, const vector2<T> &rhs) noexcept
 {
     lhs.x += rhs.x;
     lhs.y += rhs.y;
@@ -15,7 +15,7 @@ inline constexpr vector<T, 2> &operator +=(vector<T, 2> &lhs, const vector<T, 2>
 }
 
 template <typename T>
-inline constexpr vector<T, 2> &operator +=(vector<T, 2> &lhs, T rhs) noexcept
+inline constexpr vector2<T> &operator +=(vector2<T> &lhs, T rhs) noexcept
 {
     lhs.x += rhs;
     lhs.y += rhs;
@@ -23,7 +23,7 @@ inline constexpr vector<T, 2> &operator +=(vector<T, 2> &lhs, T rhs) noexcept
 }
 
 template <typename T>
-inline constexpr vector<T, 2> &operator -=(vector<T, 2> &lhs, const vector<T, 2> &rhs) noexcept
+inline constexpr vector2<T> &operator -=(vector2<T> &lhs, const vector2<T> &rhs) noexcept
 {
     lhs.x -= rhs.x;
     lhs.y -= rhs.y;
@@ -31,7 +31,7 @@ inline constexpr vector<T, 2> &operator -=(vector<T, 2> &lhs, const vector<T, 2>
 }
 
 template <typename T>
-inline constexpr vector<T, 2> &operator -=(vector<T, 2> &lhs, T rhs) noexcept
+inline constexpr vector2<T> &operator -=(vector2<T> &lhs, T rhs) noexcept
 {
     lhs.x -= rhs;
     lhs.y -= rhs;
@@ -39,7 +39,7 @@ inline constexpr vector<T, 2> &operator -=(vector<T, 2> &lhs, T rhs) noexcept
 }
 
 template <typename T>
-inline constexpr vector<T, 2> &operator *=(vector<T, 2> &lhs, const vector<T, 2> &rhs) noexcept
+inline constexpr vector2<T> &operator *=(vector2<T> &lhs, const vector2<T> &rhs) noexcept
 {
     lhs.x *= rhs.x;
     lhs.y *= rhs.y;
@@ -47,7 +47,7 @@ inline constexpr vector<T, 2> &operator *=(vector<T, 2> &lhs, const vector<T, 2>
 }
 
 template <typename T>
-inline constexpr vector<T, 2> &operator *=(vector<T, 2> &lhs, T rhs) noexcept
+inline constexpr vector2<T> &operator *=(vector2<T> &lhs, T rhs) noexcept
 {
     lhs.x *= rhs;
     lhs.y *= rhs;
@@ -55,7 +55,7 @@ inline constexpr vector<T, 2> &operator *=(vector<T, 2> &lhs, T rhs) noexcept
 }
 
 template <typename T>
-inline constexpr vector<T, 2> &operator /=(vector<T, 2> &lhs, const vector<T, 2> &rhs) noexcept
+inline constexpr vector2<T> &operator /=(vector2<T> &lhs, const vector2<T> &rhs) noexcept
 {
     lhs.x /= rhs.x;
     lhs.y /= rhs.y;
@@ -63,7 +63,7 @@ inline constexpr vector<T, 2> &operator /=(vector<T, 2> &lhs, const vector<T, 2>
 }
 
 template <typename T>
-inline constexpr vector<T, 2> &operator /=(vector<T, 2> &lhs, T rhs) noexcept
+inline constexpr vector2<T> &operator /=(vector2<T> &lhs, T rhs) noexcept
 {
     lhs.x /= rhs;
     lhs.y /= rhs;
@@ -71,43 +71,43 @@ inline constexpr vector<T, 2> &operator /=(vector<T, 2> &lhs, T rhs) noexcept
 }
 
 template <typename T>
-inline constexpr vector<T, 2> operator +(const vector<T, 2> &lhs, const vector<T, 2> &rhs) noexcept
+inline constexpr vector2<T> operator +(const vector2<T> &lhs, const vector2<T> &rhs) noexcept
 {
     return {lhs.x + rhs.x, lhs.y + rhs.y};
 }
 
 template <typename T>
-inline constexpr vector<T, 2> operator -(const vector<T, 2> &lhs, const vector<T, 2> &rhs) noexcept
+inline constexpr vector2<T> operator -(const vector2<T> &lhs, const vector2<T> &rhs) noexcept
 {
     return {lhs.x - rhs.x, lhs.y - rhs.y};
 }
 
 template <typename T>
-inline constexpr vector<T, 2> operator *(const vector<T, 2> &lhs, const vector<T, 2> &rhs) noexcept
+inline constexpr vector2<T> operator *(const vector2<T> &lhs, const vector2<T> &rhs) noexcept
 {
     return {lhs.x * rhs.x, lhs.y * rhs.y};
 }
 
 template <typename T>
-inline constexpr vector<T, 2> operator *(const vector<T, 2> &lhs, T rhs) noexcept
+inline constexpr vector2<T> operator *(const vector2<T> &lhs, T rhs) noexcept
 {
     return {lhs.x * rhs, lhs.y * rhs};
 }
 
 template <typename T>
-inline constexpr vector<T, 2> operator *(T lhs, const vector<T, 2> &rhs) noexcept
+inline constexpr vector2<T> operator *(T lhs, const vector2<T> &rhs) noexcept
 {
     return {lhs * rhs.x, lhs * rhs.y};
 }
 
 template <typename T>
-inline constexpr vector<T, 2> operator /(const vector<T, 2> &lhs, const vector<T, 2> &rhs) noexcept
+inline constexpr vector2<T> operator /(const vector2<T> &lhs, const vector2<T> &rhs) noexcept
 {
     return {lhs.x / rhs.x, lhs.y / rhs.y};
 }
 
 template <typename T>
-inline constexpr vector<T, 2> operator /(const vector<T, 2> &lhs, T rhs) noexcept
+inline constexpr vector2<T> operator /(const vector2<T> &lhs, T rhs) noexcept
 {
     return {lhs.x / rhs, lhs.y / rhs};
 }

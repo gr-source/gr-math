@@ -1,5 +1,36 @@
 #pragma once
 
+#include "vec3_operator.inl"
+
+template <typename T>
+struct type_traits<vector3<T>>
+{
+    static constexpr vector3<T> zero =
+        { T(0),  T(0),  T(0) };
+
+    static constexpr vector3<T> one =
+        { T(1),  T(1),  T(1) };
+
+    static constexpr vector3<T> right =
+        { T(1),  T(0),  T(0) };
+
+    static constexpr vector3<T> left =
+        {- T(1),  T(0),  T(0) };
+
+    static constexpr vector3<T> up =
+        { T(0),  T(1),  T(0) };
+
+    static constexpr vector3<T> down =
+        { T(0), - T(1),  T(0) };
+
+    static constexpr vector3<T> forward =
+        { T(0),  T(0),  T(1) };
+
+    static constexpr vector3<T> backward =
+        { T(0),  T(0), - T(1) };
+};
+
+/*
 #include "types.hpp"
 
 #include "vec3_operator.inl"
@@ -46,21 +77,21 @@ struct alignas(16) vector<f32, 3>
     }
 };
 
-inline vector<f32, 3> vector<f32, 3>::zero = {0.0f, 0.0f, 0.0f, 0.0f};
+static constexpr vector3<T> zero = { T(0),  T(0),  T(0),  T(0)};
 
-inline vector<f32, 3> vector<f32, 3>::one = {1.0f, 1.0f, 1.0f, 0.0f};
+static constexpr vector3<T> one = { T(1),  T(1),  T(1),  T(0)};
 
-inline vector<f32, 3> vector<f32, 3>::right = {1.0f, 0.0f, 0.0f, 0.0f};
+static constexpr vector3<T> right = { T(1),  T(0),  T(0),  T(0)};
 
-inline vector<f32, 3> vector<f32, 3>::left  = {-1.0f, 0.0f, 0.0f, 0.0f};
+static constexpr vector3<T> left  = {- T(1),  T(0),  T(0),  T(0)};
 
-inline vector<f32, 3> vector<f32, 3>::up = {0.0f, 1.0f, 0.0f, 0.0f};
+static constexpr vector3<T> up = { T(0),  T(1),  T(0),  T(0)};
 
-inline vector<f32, 3> vector<f32, 3>::down = {0.0f, -1.0f, 0.0f, 0.0f};
+static constexpr vector3<T> down = { T(0), - T(1),  T(0),  T(0)};
 
-inline vector<f32, 3> vector<f32, 3>::forward = {0.0f, 0.0f, 1.0f, 0.0f};
+static constexpr vector3<T> forward = { T(0),  T(0),  T(1),  T(0)};
 
-inline vector<f32, 3> vector<f32, 3>::backward = {0.0f, 0.0f, -1.0f, 0.0f};
-
+static constexpr vector3<T> backward = { T(0),  T(0), - T(1),  T(0)};
+*/
 
 

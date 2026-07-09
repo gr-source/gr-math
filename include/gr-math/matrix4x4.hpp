@@ -1,5 +1,32 @@
 #pragma once
 
+#include "mat4x4_operator.inl"
+
+template <typename T>
+struct type_traits<mat4<T>>
+{
+    static constexpr mat4<T> identity =
+    {
+        {
+            { T(1),  T(0),  T(0), T(0) },
+            { T(0),  T(1),  T(0), T(0) },
+            { T(0),  T(0),  T(1), T(0) },
+            { T(0),  T(0),  T(0), T(1) }
+        }
+    };
+
+    static constexpr mat4<T> zero =
+    {
+        {
+            { T(0),  T(0),  T(0), T(0) },
+            { T(0),  T(0),  T(0), T(0) },
+            { T(0),  T(0),  T(0), T(0) },
+            { T(0),  T(0),  T(0), T(0) }
+        }
+    };
+};
+
+/*
 #include "vector4.hpp"
 
 #include "mat4x4_operator.inl"
@@ -20,8 +47,6 @@ struct alignas(16) mat<f32, 4, 4>
         };
         vector<f32, 4> data[4];
     };
-
-    /* ========================================= */
 
     void decompose(Vector3& scale, Quaternion& rotation, Vector3& position) const;
 
@@ -45,5 +70,5 @@ struct alignas(16) mat<f32, 4, 4>
     
     static Matrix4x4 identityMatrix;
 };
-
+*/
 

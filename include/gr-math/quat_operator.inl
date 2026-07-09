@@ -1,20 +1,20 @@
 #include "vector.hpp"
 
 template <typename T>
-inline constexpr quat<T> operator +(const quat<T> &lhs,const quat<T> &rhs) noexcept
+inline constexpr quaternion<T> operator +(const quaternion<T> &lhs,const quaternion<T> &rhs) noexcept
 {
     return {lhs.w + rhs.w, lhs.x + rhs.x, lhs.y + rhs.y, lhs.z + rhs.z};
 }
 
 template <typename T>
-inline constexpr quat<T> &operator *=(quat<T> &lhs, const quat<T> &rhs) noexcept
+inline constexpr quaternion<T> &operator *=(quaternion<T> &lhs, const quaternion<T> &rhs) noexcept
 {
     lhs = lhs * rhs;
     return lhs;
 }
 
 template <typename T>
-inline constexpr quat<T> operator *(const quat<T> &lhs, const quat<T> &rhs) noexcept
+inline constexpr quaternion<T> operator *(const quaternion<T> &lhs, const quaternion<T> &rhs) noexcept
 {
     return {
         (lhs.w * rhs.w) - (lhs.x * rhs.x) - (lhs.y * rhs.y) - (lhs.z * rhs.z),
@@ -25,13 +25,13 @@ inline constexpr quat<T> operator *(const quat<T> &lhs, const quat<T> &rhs) noex
 }
 
 template <typename T>
-inline constexpr quat<T> operator *(const quat<T> &lhs, T rhs) noexcept
+inline constexpr quaternion<T> operator *(const quaternion<T> &lhs, T rhs) noexcept
 {
     return {lhs.w * rhs, lhs.x * rhs, lhs.y * rhs, lhs.z * rhs};
 }
 
 template <typename T>
-inline constexpr vector<T, 3> operator *(const quat<T> &lhs, const vector<T, 3> &rhs) noexcept
+inline constexpr vector3<T> operator *(const quaternion<T> &lhs, const vector3<T> &rhs) noexcept
 {
     T w = lhs.w;
     T x = lhs.x;
@@ -66,14 +66,14 @@ inline constexpr vector<T, 3> operator *(const quat<T> &lhs, const vector<T, 3> 
 }
 
 template <typename T>
-inline constexpr quat<T> operator /(const quat<T> &lhs, T rhs) noexcept
+inline constexpr quaternion<T> operator /(const quaternion<T> &lhs, T rhs) noexcept
 {
-    return quat<T>{lhs.w / rhs, lhs.x / rhs, lhs.y / rhs, lhs.z / rhs};
+    return quaternion<T>{lhs.w / rhs, lhs.x / rhs, lhs.y / rhs, lhs.z / rhs};
 }
 
 
 template <typename T>
-inline constexpr quat<T> operator -(const quat<T> &q)
+inline constexpr quaternion<T> operator -(const quaternion<T> &q)
 {
     return {-q.w, -q.x, -q.y, -q.z};
 }

@@ -103,8 +103,48 @@ namespace Math
     Quaternion slerp(const Quaternion& lhs, const Quaternion& rhs, f32 t);
 
     Vector3 eulerAngles(const Quaternion &lhs);
-};
 
+    template <typename T>
+    inline constexpr void mat4_decompose(const mat4<T>& _this, vector3<T>& scale, quaternion<T>& rotation, vector3<T>& position) noexcept
+    {
+        auto col0 = _this[0];
+        auto col1 = _this[1];
+        auto col2 = _this[2];
+        auto col3 = _this[3];
+
+        auto p = _this[3];
+
+        position =
+            { p.x, p.y, p.z };
+
+        scale =
+        {
+            magnitude(col0),
+            magnitude(col1),
+            magnitude(col2)
+        };
+
+        col0 /= scale.x;
+        col1 /= scale.y;
+        col2 /= scale.z;
+
+
+        Matrix4x4 m =
+        {
+            {
+                {col0.x,   col1.x,   col2.x,   0.0f},
+                {col0.y,   col1.y,   col2.y,   0.0f},
+                {col0.z,   col1.z,   col2.z,   0.0f},
+                {0.0f,     0.0f,     0.0f,     0.0f},
+            }
+        };
+        /*m[0] = (*this)[0] / scale.x;*/
+        /*m[1] = (*this)[0] / scale.y;*/
+        /*m[2] = (*this)[0] / scale.z;*/
+
+        rotation = normalize(Mat4ToQuat(m));
+    }
+};
 
 template <typename T>
 inline T Math::rand(const T &max, const T &min) noexcept

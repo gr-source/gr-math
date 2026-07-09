@@ -9,44 +9,58 @@
 class FunctionTimer
 {
 public:
-    FunctionTimer() : startTime(std::chrono::high_resolution_clock::now()), deltaTime(0.0f)
+    FunctionTimer(const std::string& name) :
+        m_name(name),
+        m_start(std::chrono::steady_clock::now())
+    {}
+
+    ~FunctionTimer()
     {
+        auto end =
+                std::chrono::steady_clock::now();
+
+            auto duration =
+                std::chrono::duration<double, std::milli>(
+                    end - m_start);
+
+            std::cout
+                << m_name
+                << ": "
+                << std::fixed
+                << std::setprecision(3)
+                << duration.count()
+                << " ms\n";
     }
 
-    void start()
-    {
-        startTime = std::chrono::high_resolution_clock::now();
-    }
-
-    void end()
-    {
-        auto currentTime = std::chrono::high_resolution_clock::now();
-        deltaTime = std::chrono::duration<float>(currentTime - startTime).count();
-    }
-
-    float getDeltaTime() const
-    {
-        return deltaTime;
-    }
-
-    float getFps() const
-    {
-        return (deltaTime > 0.0f) ? (1.0f / deltaTime) : 0.0f;
-    }
 
 private:
-    std::chrono::high_resolution_clock::time_point startTime;
+    std::chrono::steady_clock::time_point m_start;
 
-    float deltaTime;
+    std::string m_name;
 };
 
 int main()
 {
-    Quaternion q = {1.0f, 0.0f, 0.0f, 0.0f};
+    {
+        FunctionTimer test("Multi");
 
-    Vector3 r = q * Vector3::right;
+        Vector3 value = type_traits<Vector3>::one;
+        for (size_t i=0;i<1000000;i++)
+        {
+            value *= Vector3{float(i), float(i + 11), float(i + 2)};
+        }
 
-    printf("Quat: w(%f), x(%f), y(%f), z(%f)\n", q.w, q.x, q.y, q.z);
+        std::cout
+            << "Value: "
+            << std::fixed
+            << std::setprecision(3)
+            << value.x
+            << " "
+            << value.y
+            << " "
+            << value.z
+            << std::endl;
+    }
 }
 
 

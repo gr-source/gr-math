@@ -1,5 +1,30 @@
 #pragma once
 
+#include "vector.hpp"
+
+template <typename T>
+struct type_traits<mat3<T>>
+{
+    static constexpr mat3<T> identity =
+    {
+        {
+            { T(1),  T(0),  T(0) },
+            { T(0),  T(1),  T(0) },
+            { T(0),  T(0),  T(1) }
+        }
+    };
+
+    static constexpr mat3<T> zero =
+    {
+        {
+            { T(0),  T(0),  T(0) },
+            { T(0),  T(0),  T(0) },
+            { T(0),  T(0),  T(0) }
+        }
+    };
+};
+
+/*
 #include "mat3x3_operator.inl"
 
 #include "vector3.hpp"
@@ -37,16 +62,16 @@ struct mat<f32, 3, 3>
 };
 
 inline mat<f32, 3, 3> mat<f32, 3, 3>::identityMatrix = {
-    vector<f32, 3>{1.0f, 0.0f, 0.0f},
-    vector<f32, 3>{0.0f, 1.0f, 0.0f},
-    vector<f32, 3>{0.0f, 0.0f, 1.0f}
+    vector<f32, 3>{ T(1),  T(0),  T(0)},
+    vector<f32, 3>{ T(0),  T(1),  T(0)},
+    vector<f32, 3>{ T(0),  T(0),  T(1)}
 };
 
 inline mat<f32, 3, 3> mat<f32, 3, 3>::zeroMatrix = {
-    vector<f32, 3>{0.0f, 0.0f, 0.0f},
-    vector<f32, 3>{0.0f, 0.0f, 0.0f},
-    vector<f32, 3>{0.0f, 0.0f, 0.0f}
+    vector<f32, 3>{ T(0),  T(0),  T(0)},
+    vector<f32, 3>{ T(0),  T(0),  T(0)},
+    vector<f32, 3>{ T(0),  T(0),  T(0)}
 };
-
+*/
 
 

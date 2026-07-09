@@ -1,33 +1,46 @@
 #pragma once
 
+#include "vec2_operator.inl"
+
+template <typename T>
+struct type_traits<vector2<T>>
+{
+    static constexpr vector2<T> zero =
+        { T(0), T(0) };
+
+    static constexpr vector2<T> one =
+        { T(1), T(1) };
+
+    static constexpr vector2<T> left =
+        { T(-1), T(0) };
+
+    static constexpr vector2<T> right =
+        { T(1), T(0) };
+
+    static constexpr vector2<T> up =
+        { T(0), T(1) };
+
+    static constexpr vector2<T> down =
+        { T(0), T(-1) };
+};
+
+/*
 #include "types.hpp"
 
 #include "vec2_operator.inl"
 
-template <>
-struct alignas(8) vector<f32, 2>
+struct Vector2
 {
-    union
-    {
-        struct
-        {
-            f32 x;
-            f32 y;
-        };
-        f32 data[2];
-    };
+    f32 x;
+    f32 y;
 
-    static vector<f32, 2> zero;
+    constexpr vector(f32 _x, f32 _y) : x(_x) {}
+
+    inline static const vector<f32, 2> zero = {0.0f, 0.0f, 0.0f};
 
     static vector<f32, 2> one;
 
-    static vector<f32, 2> left;
 
-    static vector<f32, 2> right;
-
-    static vector<f32, 2> up;
-
-    static vector<f32, 2> down;
     
     inline constexpr const f32 &operator[](int i) const noexcept
     {
@@ -40,17 +53,11 @@ struct alignas(8) vector<f32, 2>
     }
 };
 
-inline vector<f32, 2> vector<f32, 2>::zero = {0.0f, 0.0f};
+static constexpr vector2<T> zero = {0.0f, 0.0f};
 
-inline vector<f32, 2> vector<f32, 2>::one = {1.0f, 1.0f};
+static constexpr vector2<T> one = {1.0f, 1.0f};
 
-inline vector<f32, 2> vector<f32, 2>::left = {-1.0f, 0.0f};
 
-inline vector<f32, 2> vector<f32, 2>::right = {1.0f, 0.0f};
-
-inline vector<f32, 2> vector<f32, 2>::up = {0.0f, 1.0f};
-
-inline vector<f32, 2> vector<f32, 2>::down = {0.0f, -1.0f};
-
+*/
 
 
