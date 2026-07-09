@@ -142,7 +142,7 @@ namespace Math
         /*m[1] = (*this)[0] / scale.y;*/
         /*m[2] = (*this)[0] / scale.z;*/
 
-        rotation = normalize(Mat4ToQuat(m));
+        rotation = Math::normalize<Quaternion>(Math::Mat4ToQuat(m));
     }
 };
 
@@ -174,7 +174,19 @@ inline f32 Math::magnitudeSqrt(const V& v) noexcept
 template <typename V>
 inline f32 Math::magnitude(const V& v) noexcept
 {
-    return std::sqrtf(magnitudeSqrt(v));
+    return std::sqrt(magnitudeSqrt(v));
+}
+
+template <typename V>
+inline V Math::normalize(const V& v) noexcept
+{
+    f32 magSq = magnitudeSqrt(v);
+    if (magSq > 1e-10f)
+    {
+        f32 invMag = 1.0f / std::sqrt(magSq);
+        return v * invMag;
+    }
+    return type_traits<V>::zero;
 }
 
 template <typename T>

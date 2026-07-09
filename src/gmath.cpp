@@ -35,55 +35,6 @@ f32 Math::dot(const Quaternion &rhs, const Quaternion &lhs) noexcept
     return rhs.w * lhs.w + rhs.x * lhs.x + rhs.y * lhs.y + rhs.z * lhs.z;
 }
 
-/* ========== normalize ========== */
-template <>
-Vector2 Math::normalize(const Vector2& v) noexcept
-{
-    f32 magSq = magnitudeSqrt(v);
-    if (magSq > 1e-10f)
-    {
-        f32 invMag = 1.0f / std::sqrtf(magSq);
-        return v * invMag;
-    }
-    return type_traits<Vector2>::zero;
-}
-
-template <>
-Vector3 Math::normalize(const Vector3& v) noexcept
-{
-    f32 magSq = magnitudeSqrt(v);
-    if (magSq > 1e-10f)
-    {
-        f32 invMag = 1.0f / std::sqrtf(magSq);
-        return v * invMag;
-    }
-    return type_traits<Vector3>::zero;
-}
-
-template <>
-Vector4 Math::normalize(const Vector4& v) noexcept
-{
-    f32 magSq = magnitudeSqrt(v);
-    if (magSq > 1e-10f)
-    {
-        f32 invMag = 1.0f / std::sqrtf(magSq);
-        return v * invMag;
-    }
-    return type_traits<Vector4>::zero;
-}
-
-template <>
-Quaternion Math::normalize(const Quaternion& v) noexcept
-{
-    f32 magSq = magnitudeSqrt(v);
-    if (magSq > 1e-10f)
-    {
-        f32 invMag = 1.0f / std::sqrtf(magSq);
-        return v * invMag;
-    }
-    return type_traits<Quaternion>::identity;
-}
-
 /* ========== distance ========== */
 template <>
 f32 Math::distance(const Vector3& lhs, const Vector3& rhs) {
